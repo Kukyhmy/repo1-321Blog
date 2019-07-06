@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en" xmlns:th="http://www.thymeleaf.org">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+            <link href="https://cdn.bootcss.com/froala-editor/2.8.1/css/froala_editor.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/froala-editor/2.8.1/css/froala_style.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/froala-editor/2.8.1/css/plugins/colors.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/froala-editor/2.8.1/css/plugins/char_counter.min.css" rel="stylesheet">
+            <script src="https://cdn.bootcss.com/froala-editor/2.8.1/js/froala_editor.min.js"></script>
+            <script src="https://cdn.bootcss.com/froala-editor/2.8.1/js/plugins/align.min.js"></script>
+            <script src="https://cdn.bootcss.com/froala-editor/2.8.1/js/plugins/colors.min.js"></script>
+            <script src="https://cdn.bootcss.com/froala-editor/2.8.1/js/plugins/font_size.min.js"></script>
+            <script src="https://cdn.bootcss.com/froala-editor/2.8.1/js/plugins/char_counter.min.js"></script>
+            <script src="https://cdn.bootcss.com/froala-editor/2.8.1/js/languages/zh_cn.js"></script>
+        </head>
+        <script>
+            $(function() {
+                var editCont = '<p>adddddp</p>';
+                $.FroalaEditor.DefineIcon('color', {SRC: 'txt_color@2x.png', ALT: 'Image button', template: 'image'}); //自定义图标
+                $('#edit').froalaEditor({
+                    autofocus: true,
+                    toolbarButtonsXS: ['undo', 'redo', '|', 'bold', 'italic', 'underline', '|', 'fontSize', 'align', 'color'],
+                    language: 'zh_cn',
+                    colorsHEXInput: false,
+                    colorsBackground: ['#2E2E2E', '#767676', '#DF281B', '#F4821C', '#46AC43', '#2E5BF7', '#A249B3', 'REMOVE'],
+                    colorsText: ['#2E2E2E', '#767676', '#DF281B', '#F4821C', '#46AC43', '#2E5BF7', '#A249B3', 'REMOVE'],
+                    fontSize: ['14', '16', '18', '20'],
+                    fontSizeDefaultSelection: '16',
+                    height: 220,
+                    htmlAllowComments: false,
+                    pasteAllowedStyleProps: ['font-size', 'color'],
+                    placeholderText: '请输入内容',
+                    charCounterMax: 500
+                }).froalaEditor('html.set', editCont);
+            });
+
+            $("#save").click(function(){
+                $('#edit').froalaEditor('html.get', true); //返回富文本编辑里面的html代码
+            })
+        </script>
+<body>
+<div id="editor">
+    <div id='edit'>
+
+    </div>
+    <button id="save">保存</button>
+</div>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

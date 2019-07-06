@@ -1,0 +1,105 @@
+// buildscript 代码块中脚本优先执行
+buildscript {
+
+	// ext 用于定义动态属性
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+
+	// 自定义  Thymeleaf 和 Thymeleaf Layout Dialect 的版本
+	ext['thymeleaf.version'] = '3.0.3.RELEASE'
+	ext['thymeleaf-layout-dialect.version'] = '2.2.0'
+
+	// 自定义  Hibernate 的版本
+	ext['hibernate.version'] = '5.2.8.Final'
+
+	// 使用了 Maven 的中央仓库（你也可以指定其他仓库）
+	repositories {
+		//mavenCentral()
+		maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
+	}
+
+	// 依赖关系
+	dependencies {
+		// classpath 声明说明了在执行其余的脚本时，ClassLoader 可以使用这些依赖项
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '1.5.2.RELEASE'
+	id 'java'
+}
+
+
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.kuky'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+// 使用插件
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+// 打包的类型为 jar，并指定了生成的打包的文件名称和版本
+jar {
+	baseName = 'music-blog'
+	version = '1.0.0'
+}
+
+repositories {
+	//mavenCentral()
+	maven {
+		url 'http://maven.aliyun.com/nexus/content/groups/public/'
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// 添加 Thymeleaf 的依赖
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+	// 添加  Spring Security 依赖
+	compile('org.springframework.boot:spring-boot-starter-security')
+
+	// 添加 Spring Boot 开发工具依赖
+	//compile("org.springframework.boot:spring-boot-devtools")
+
+	// 添加 Spring Data JPA 的依赖
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+
+	// 添加 MySQL连接驱动 的依赖
+	compile('mysql:mysql-connector-java:6.0.5')
+
+	// 添加   Thymeleaf Spring Security 依赖，与 Thymeleaf 版本一致都是 3.x
+	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
+
+	// 添加  Apache Commons Lang 依赖
+	compile('org.apache.commons:commons-lang3:3.5')
+
+	// 添加 Markdown parser 依赖
+	compile('es.nitaur.markdown:txtmark:0.16')
+
+	// 添加  Spring Data Elasticsearch 的依赖
+	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+
+	// 添加  JNA 的依赖
+	compile('net.java.dev.jna:jna:4.3.0')
+
+	// 阿里的druid数据源 https://mvnrepository.com/artifact/com.alibaba/druid
+	compile group: 'com.alibaba', name: 'druid', version: '1.1.16'
+
+    // https://mvnrepository.com/artifact/log4j/log4j
+	compile group: 'log4j', name: 'log4j', version: '1.2.17'
+
+	compileOnly 'org.projectlombok:lombok:1.18.6'
+	annotationProcessor 'org.projectlombok:lombok:1.18.6'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

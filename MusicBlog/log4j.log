@@ -1,0 +1,1296 @@
+2019-07-06 19:10:51,025 DEBUG {conn-10001,procId-46} connected
+2019-07-06 19:10:51,025 DEBUG {conn-10002,procId-47} connected
+2019-07-06 19:10:51,025 DEBUG {conn-10003,procId-48} connected
+2019-07-06 19:10:51,040 DEBUG {conn-10004,procId-49} connected
+2019-07-06 19:10:51,040 DEBUG {conn-10005,procId-50} connected
+2019-07-06 19:10:51,040 DEBUG {conn-10005} pool-connect
+2019-07-06 19:10:51,040 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:10:51,337 DEBUG {conn-10005} pool-connect
+2019-07-06 19:10:51,368 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:10:51,634 DEBUG {conn-10005} pool-connect
+2019-07-06 19:10:51,634 DEBUG {conn-10005, stmt-20000} created
+2019-07-06 19:10:51,712 DEBUG {conn-10005, stmt-20000} executed. 70.168728 millis. drop table if exists user
+2019-07-06 19:10:51,712 DEBUG {conn-10005, stmt-20000} closed
+2019-07-06 19:10:51,712 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:10:51,712 DEBUG {conn-10005} pool-connect
+2019-07-06 19:10:51,712 DEBUG {conn-10005, stmt-20001} created
+2019-07-06 19:10:51,728 DEBUG {conn-10005, stmt-20001} executed. 15.613442 millis. create table user (id bigint not null auto_increment, avatar varchar(200), email varchar(50) not null, name varchar(20) not null, password varchar(100) not null, phone varchar(20), username varchar(20) not null, primary key (id))
+2019-07-06 19:10:51,743 DEBUG {conn-10005, stmt-20001} executed. 13.313039 millis. alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+2019-07-06 19:10:51,759 DEBUG {conn-10005, stmt-20001} executed. 10.761261 millis. alter table user add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username)
+2019-07-06 19:10:51,759 DEBUG {conn-10005, stmt-20001} closed
+2019-07-06 19:10:51,759 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:10:52,712 INFO [Harry Leland] version[2.4.4], pid[228], build[fcbb46d/2017-01-03T11:33:16Z]
+2019-07-06 19:10:52,712 INFO [Harry Leland] initializing ...
+2019-07-06 19:10:52,712 DEBUG [Harry Leland] using config [D:\MusicBlog\config], data [[D:\MusicBlog\data]], logs [D:\MusicBlog\logs], plugins [D:\MusicBlog\plugins]
+2019-07-06 19:10:52,712 DEBUG [D:\MusicBlog\plugins] directory does not exist.
+2019-07-06 19:10:52,712 INFO [Harry Leland] modules [], plugins [], sites []
+2019-07-06 19:10:52,743 DEBUG [Harry Leland] using node location [[NodePath{path=D:\MusicBlog\data\elasticsearch\nodes\0, spins=null}]], local_node_id [0]
+2019-07-06 19:10:52,743 DEBUG [Harry Leland] node data locations details:
+ -> D:\MusicBlog\data\elasticsearch\nodes\0, free_space [3.4gb], usable_space [3.4gb], total_space [100.9gb], spins? [unknown], mount [Data (D:)], type [NTFS]
+2019-07-06 19:10:52,743 INFO [Harry Leland] heap size [3.5gb], compressed ordinary object pointers [true]
+2019-07-06 19:10:52,759 DEBUG [Harry Leland] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2019-07-06 19:10:52,774 DEBUG [Harry Leland] creating thread_pool [percolate], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [16], keep_alive [5m]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [listener], type [fixed], size [4], queue_size [null]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [index], type [fixed], size [8], queue_size [200]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [refresh], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [suggest], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [generic], type [cached], keep_alive [30s]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [warmer], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [search], type [fixed], size [13], queue_size [1k]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [flush], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [16], keep_alive [5m]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [get], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [bulk], type [fixed], size [8], queue_size [50]
+2019-07-06 19:10:52,790 DEBUG [Harry Leland] creating thread_pool [snapshot], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:10:53,196 DEBUG [Harry Leland] failed to load mustache
+java.lang.ClassNotFoundException: com.github.mustachejava.Mustache
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at org.elasticsearch.script.ScriptModule.configure(ScriptModule.java:80)
+	at org.elasticsearch.common.inject.AbstractModule.configure(AbstractModule.java:60)
+	at org.elasticsearch.common.inject.spi.Elements$RecordingBinder.install(Elements.java:233)
+	at org.elasticsearch.common.inject.spi.Elements.getElements(Elements.java:105)
+	at org.elasticsearch.common.inject.InjectorShell$Builder.build(InjectorShell.java:143)
+	at org.elasticsearch.common.inject.InjectorBuilder.build(InjectorBuilder.java:99)
+	at org.elasticsearch.common.inject.Guice.createInjector(Guice.java:93)
+	at org.elasticsearch.common.inject.Guice.createInjector(Guice.java:70)
+	at org.elasticsearch.common.inject.ModulesBuilder.createInjector(ModulesBuilder.java:46)
+	at org.elasticsearch.node.Node.<init>(Node.java:213)
+	at org.elasticsearch.node.Node.<init>(Node.java:140)
+	at org.elasticsearch.node.NodeBuilder.build(NodeBuilder.java:143)
+	at org.elasticsearch.node.NodeBuilder.node(NodeBuilder.java:150)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.createNodeClient(ElasticsearchAutoConfiguration.java:107)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.createClient(ElasticsearchAutoConfiguration.java:95)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.elasticsearchClient(ElasticsearchAutoConfiguration.java:84)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$f3b2f54a.CGLIB$elasticsearchClient$1(<generated>)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$f3b2f54a$$FastClassBySpringCGLIB$$c020be7f.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:358)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$f3b2f54a.elasticsearchClient(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at com.kuky.blog.MusicBlogApplication.main(MusicBlogApplication.java:10)
+2019-07-06 19:10:54,055 DEBUG [Harry Leland] enabled [true], interval [1s], gc_threshold [{default=GcThreshold{name='default', warnThreshold=10000, infoThreshold=5000, debugThreshold=2000}, young=GcThreshold{name='young', warnThreshold=1000, infoThreshold=700, debugThreshold=400}, old=GcThreshold{name='old', warnThreshold=10000, infoThreshold=5000, debugThreshold=2000}}]
+2019-07-06 19:10:54,461 DEBUG [Harry Leland] Using probe [org.elasticsearch.monitor.os.OsProbe@6516181f] with refresh_interval [1s]
+2019-07-06 19:10:54,555 DEBUG [Harry Leland] Using probe [org.elasticsearch.monitor.process.ProcessProbe@129c760d] with refresh_interval [1s]
+2019-07-06 19:10:54,555 DEBUG [Harry Leland] Using refresh_interval [1s]
+2019-07-06 19:10:54,555 DEBUG [Harry Leland] Using probe [org.elasticsearch.monitor.fs.FsProbe@22ee7fdc] with refresh_interval [1s]
+2019-07-06 19:10:54,555 DEBUG [Harry Leland] creating [8] workers, queue_size [-1]
+2019-07-06 19:10:54,946 DEBUG [Harry Leland] using script cache with max_size [100], expire [null]
+2019-07-06 19:10:54,946 DEBUG [Harry Leland] using node_concurrent_recoveries [2], node_initial_primaries_recoveries [4]
+2019-07-06 19:10:54,946 DEBUG [Harry Leland] using [cluster.routing.allocation.allow_rebalance] with [indices_all_active]
+2019-07-06 19:10:54,961 DEBUG [Harry Leland] using [cluster_concurrent_rebalance] with [2]
+2019-07-06 19:10:55,008 DEBUG [Harry Leland] using initial_shards [quorum]
+2019-07-06 19:10:55,742 DEBUG configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+net0
+        Microsoft 6to4 Adapter
+        MULTICAST mtu:-1 index:2
+
+eth0
+        Bluetooth Device (Personal Area Network) #2
+        MULTICAST mtu:-1 index:3
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:4
+
+net1
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:5
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:6
+
+net3
+        Microsoft IP-HTTPS Platform Adapter
+        MULTICAST mtu:-1 index:7
+
+wlan0
+        Intel(R) Dual Band Wireless-AC 8265
+        inet 192.168.1.5 netmask:255.255.255.0 broadcast:192.168.1.255 scope:site
+        inet6 fe80::2c77:9a3:6b46:aeb9 prefixlen:64 scope:link
+        hardware 7C:2A:31:3A:77:8F
+        UP MULTICAST mtu:1500 index:8
+
+eth2
+        Bluetooth Device (Personal Area Network)
+        MULTICAST mtu:-1 index:9
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter #2
+        inet6 fe80::cc82:adc3:7881:391b prefixlen:64 scope:link
+        hardware 7E:2A:31:3A:77:8F
+        MULTICAST mtu:1500 index:10
+
+eth3
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth4
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.10.1 netmask:255.255.255.0 broadcast:192.168.10.255 scope:site
+        inet6 fe80::88d:2b7f:7946:d786 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:12
+
+net4
+        Microsoft Teredo Tunneling Adapter
+        MULTICAST mtu:-1 index:13
+
+eth5
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:14
+
+net5
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:15
+
+net6
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+eth6
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:17
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:18
+
+wlan2
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::ed81:dc76:c445:6ce5 prefixlen:64 scope:link
+        hardware 7C:2A:31:3A:77:90
+        MULTICAST mtu:1500 index:19
+
+net7
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:20
+
+eth7
+        ASIX AX88179 USB 3.0 to Gigabit Ethernet Adapter #2
+        MULTICAST mtu:-1 index:21
+
+eth8
+        ASIX AX88179 USB 3.0 to Gigabit Ethernet Adapter
+        MULTICAST mtu:-1 index:22
+
+eth9
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.80.1 netmask:255.255.255.0 broadcast:192.168.80.255 scope:site
+        inet6 fe80::1c42:d67f:7f9d:8491 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:23
+
+wlan3
+        Intel(R) Dual Band Wireless-AC 8265-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:24
+
+wlan4
+        Intel(R) Dual Band Wireless-AC 8265-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:25
+
+wlan5
+        Intel(R) Dual Band Wireless-AC 8265-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:26
+
+wlan6
+        Intel(R) Dual Band Wireless-AC 8265-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+wlan7
+        Intel(R) Dual Band Wireless-AC 8265-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+eth10
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+eth11
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:30
+
+eth12
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:31
+
+eth13
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+eth14
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+eth15
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:37
+
+wlan11
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+wlan12
+        Microsoft Wi-Fi Direct Virtual Adapter #2-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:39
+
+wlan13
+        Microsoft Wi-Fi Direct Virtual Adapter #2-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:40
+
+wlan14
+        Microsoft Wi-Fi Direct Virtual Adapter #2-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+wlan15
+        Microsoft Wi-Fi Direct Virtual Adapter #2-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+2019-07-06 19:10:55,774 DEBUG [Harry Leland] using max_bytes_per_sec[40mb], concurrent_streams [3], file_chunk_size [512kb], translog_size [512kb], translog_ops [1000], and compress [true]
+2019-07-06 19:10:55,774 DEBUG [Harry Leland] using indices.store.throttle.type [NONE], with index.store.throttle.max_bytes_per_sec [10gb]
+2019-07-06 19:10:55,774 DEBUG [Harry Leland] using indexing buffer size [361.5mb], with indices.memory.min_shard_index_buffer_size [4mb], indices.memory.max_shard_index_buffer_size [512mb], indices.memory.shard_inactive_time [5m], indices.memory.interval [30s]
+2019-07-06 19:10:55,790 DEBUG [Harry Leland] using [node] query cache with size [10%], actual_size [361.5mb], max filter count [1000]
+2019-07-06 19:10:55,790 DEBUG [Harry Leland] using size [-1] [-1b]
+2019-07-06 19:10:55,790 DEBUG [Harry Leland] took 0s to load state
+2019-07-06 19:10:55,805 INFO [Harry Leland] initialized
+2019-07-06 19:10:55,805 INFO [Harry Leland] starting ...
+2019-07-06 19:10:55,805 INFO [Harry Leland] publish_address {local[1]}, bound_addresses {local[1]}
+2019-07-06 19:10:55,805 INFO [Harry Leland] elasticsearch/W2JEG8LESdii5VvbHc0XFw
+2019-07-06 19:10:55,805 DEBUG [Harry Leland] Connected to cluster [Cluster [elasticsearch]]
+2019-07-06 19:10:55,805 DEBUG [Harry Leland] processing [local-disco-initial_connect(master)]: execute
+2019-07-06 19:10:55,805 DEBUG [Harry Leland] cluster state updated, version [1], source [local-disco-initial_connect(master)]
+2019-07-06 19:10:55,805 INFO [Harry Leland] new_master {Harry Leland}{W2JEG8LESdii5VvbHc0XFw}{local}{local[1]}{local=true}, reason: local-disco-initial_connect(master)
+2019-07-06 19:10:55,805 DEBUG [Harry Leland] publishing cluster state version [1]
+2019-07-06 19:10:55,805 DEBUG [Harry Leland] set local cluster state to version 1
+2019-07-06 19:10:55,821 DEBUG [Harry Leland] processing [local-disco-initial_connect(master)]: took 7ms done applying updated cluster_state (version: 1, uuid: 6KYZbIT_TGiu0sKxcWXPDw)
+2019-07-06 19:10:55,821 INFO [Harry Leland] started
+2019-07-06 19:10:55,821 DEBUG [Harry Leland] processing [local-gateway-elected-state]: execute
+2019-07-06 19:10:55,836 DEBUG [Harry Leland] cluster state updated, version [2], source [local-gateway-elected-state]
+2019-07-06 19:10:55,836 DEBUG [Harry Leland] publishing cluster state version [2]
+2019-07-06 19:10:55,836 DEBUG [Harry Leland] set local cluster state to version 2
+2019-07-06 19:10:55,867 INFO [Harry Leland] recovered [0] indices into cluster_state
+2019-07-06 19:10:55,867 DEBUG [Harry Leland] processing [local-gateway-elected-state]: took 38ms done applying updated cluster_state (version: 2, uuid: j7wR2mcYTga8NaSgGJR9lw)
+2019-07-06 19:11:25,848 WARN [Harry Leland] high disk watermark [90%] exceeded on [W2JEG8LESdii5VvbHc0XFw][Harry Leland][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:11:25,848 INFO [Harry Leland] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:11:25,879 DEBUG [Harry Leland] processing [cluster_reroute (api)]: execute
+2019-07-06 19:11:25,879 DEBUG [Harry Leland] cluster state updated, version [3], source [cluster_reroute (api)]
+2019-07-06 19:11:25,879 DEBUG [Harry Leland] publishing cluster state version [3]
+2019-07-06 19:11:25,879 DEBUG [Harry Leland] set local cluster state to version 3
+2019-07-06 19:11:25,879 DEBUG [Harry Leland] processing [cluster_reroute (api)]: took 2ms done applying updated cluster_state (version: 3, uuid: vcbiG-aIRrSQOEmWwKRm3A)
+2019-07-06 19:11:55,893 WARN [Harry Leland] high disk watermark [90%] exceeded on [W2JEG8LESdii5VvbHc0XFw][Harry Leland][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:11:55,893 DEBUG [Harry Leland] high disk watermark exceeded on W2JEG8LESdii5VvbHc0XFw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:12:25,894 WARN [Harry Leland] high disk watermark [90%] exceeded on [W2JEG8LESdii5VvbHc0XFw][Harry Leland][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:12:25,894 INFO [Harry Leland] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:12:25,894 DEBUG [Harry Leland] processing [cluster_reroute (api)]: execute
+2019-07-06 19:12:25,894 DEBUG [Harry Leland] cluster state updated, version [4], source [cluster_reroute (api)]
+2019-07-06 19:12:25,894 DEBUG [Harry Leland] publishing cluster state version [4]
+2019-07-06 19:12:25,894 DEBUG [Harry Leland] set local cluster state to version 4
+2019-07-06 19:12:25,894 DEBUG [Harry Leland] processing [cluster_reroute (api)]: took 2ms done applying updated cluster_state (version: 4, uuid: eyyw3c_3Q2KLEp_3nJdoWQ)
+2019-07-06 19:12:55,904 WARN [Harry Leland] high disk watermark [90%] exceeded on [W2JEG8LESdii5VvbHc0XFw][Harry Leland][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:12:55,904 DEBUG [Harry Leland] high disk watermark exceeded on W2JEG8LESdii5VvbHc0XFw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:19:13,850 DEBUG {conn-10001,procId-51} connected
+2019-07-06 19:19:13,866 DEBUG {conn-10002,procId-52} connected
+2019-07-06 19:19:13,866 DEBUG {conn-10003,procId-53} connected
+2019-07-06 19:19:13,866 DEBUG {conn-10004,procId-54} connected
+2019-07-06 19:19:13,866 DEBUG {conn-10005,procId-55} connected
+2019-07-06 19:19:13,866 DEBUG {conn-10005} pool-connect
+2019-07-06 19:19:13,881 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:19:14,194 DEBUG {conn-10005} pool-connect
+2019-07-06 19:19:14,240 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:19:14,631 DEBUG {conn-10005} pool-connect
+2019-07-06 19:19:14,631 DEBUG {conn-10005, stmt-20000} created
+2019-07-06 19:19:14,709 DEBUG {conn-10005, stmt-20000} executed. 75.596139 millis. drop table if exists user
+2019-07-06 19:19:14,709 DEBUG {conn-10005, stmt-20000} closed
+2019-07-06 19:19:14,709 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:19:14,709 DEBUG {conn-10005} pool-connect
+2019-07-06 19:19:14,709 DEBUG {conn-10005, stmt-20001} created
+2019-07-06 19:19:14,740 DEBUG {conn-10005, stmt-20001} executed. 18.73942 millis. create table user (id bigint not null auto_increment, avatar varchar(200), email varchar(50) not null, name varchar(20) not null, password varchar(100) not null, phone varchar(20), username varchar(20) not null, primary key (id))
+2019-07-06 19:19:14,756 DEBUG {conn-10005, stmt-20001} executed. 14.58173 millis. alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+2019-07-06 19:19:14,756 DEBUG {conn-10005, stmt-20001} executed. 12.102949 millis. alter table user add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username)
+2019-07-06 19:19:14,772 DEBUG {conn-10005, stmt-20001} closed
+2019-07-06 19:19:14,772 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:19:15,959 INFO [Wonder Man] version[2.4.4], pid[15196], build[fcbb46d/2017-01-03T11:33:16Z]
+2019-07-06 19:19:15,959 INFO [Wonder Man] initializing ...
+2019-07-06 19:19:15,959 DEBUG [Wonder Man] using config [D:\MusicBlog\config], data [[D:\MusicBlog\data]], logs [D:\MusicBlog\logs], plugins [D:\MusicBlog\plugins]
+2019-07-06 19:19:15,974 DEBUG [D:\MusicBlog\plugins] directory does not exist.
+2019-07-06 19:19:15,974 INFO [Wonder Man] modules [], plugins [], sites []
+2019-07-06 19:19:15,974 DEBUG [Wonder Man] using node location [[NodePath{path=D:\MusicBlog\data\elasticsearch\nodes\0, spins=null}]], local_node_id [0]
+2019-07-06 19:19:15,974 DEBUG [Wonder Man] node data locations details:
+ -> D:\MusicBlog\data\elasticsearch\nodes\0, free_space [3.4gb], usable_space [3.4gb], total_space [100.9gb], spins? [unknown], mount [Data (D:)], type [NTFS]
+2019-07-06 19:19:15,974 INFO [Wonder Man] heap size [3.5gb], compressed ordinary object pointers [true]
+2019-07-06 19:19:15,990 DEBUG [Wonder Man] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2019-07-06 19:19:15,990 DEBUG [Wonder Man] creating thread_pool [percolate], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [16], keep_alive [5m]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [listener], type [fixed], size [4], queue_size [null]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [index], type [fixed], size [8], queue_size [200]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [refresh], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [suggest], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [generic], type [cached], keep_alive [30s]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [warmer], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [search], type [fixed], size [13], queue_size [1k]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [flush], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [16], keep_alive [5m]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [get], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [bulk], type [fixed], size [8], queue_size [50]
+2019-07-06 19:19:16,006 DEBUG [Wonder Man] creating thread_pool [snapshot], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:19:16,224 DEBUG [Wonder Man] failed to load mustache
+java.lang.ClassNotFoundException: com.github.mustachejava.Mustache
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at org.elasticsearch.script.ScriptModule.configure(ScriptModule.java:80)
+	at org.elasticsearch.common.inject.AbstractModule.configure(AbstractModule.java:60)
+	at org.elasticsearch.common.inject.spi.Elements$RecordingBinder.install(Elements.java:233)
+	at org.elasticsearch.common.inject.spi.Elements.getElements(Elements.java:105)
+	at org.elasticsearch.common.inject.InjectorShell$Builder.build(InjectorShell.java:143)
+	at org.elasticsearch.common.inject.InjectorBuilder.build(InjectorBuilder.java:99)
+	at org.elasticsearch.common.inject.Guice.createInjector(Guice.java:93)
+	at org.elasticsearch.common.inject.Guice.createInjector(Guice.java:70)
+	at org.elasticsearch.common.inject.ModulesBuilder.createInjector(ModulesBuilder.java:46)
+	at org.elasticsearch.node.Node.<init>(Node.java:213)
+	at org.elasticsearch.node.Node.<init>(Node.java:140)
+	at org.elasticsearch.node.NodeBuilder.build(NodeBuilder.java:143)
+	at org.elasticsearch.node.NodeBuilder.node(NodeBuilder.java:150)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.createNodeClient(ElasticsearchAutoConfiguration.java:107)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.createClient(ElasticsearchAutoConfiguration.java:95)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.elasticsearchClient(ElasticsearchAutoConfiguration.java:84)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$28079cc4.CGLIB$elasticsearchClient$1(<generated>)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$28079cc4$$FastClassBySpringCGLIB$$59c32d6e.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:358)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$28079cc4.elasticsearchClient(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at com.kuky.blog.MusicBlogApplication.main(MusicBlogApplication.java:10)
+2019-07-06 19:19:16,771 DEBUG [Wonder Man] enabled [true], interval [1s], gc_threshold [{default=GcThreshold{name='default', warnThreshold=10000, infoThreshold=5000, debugThreshold=2000}, young=GcThreshold{name='young', warnThreshold=1000, infoThreshold=700, debugThreshold=400}, old=GcThreshold{name='old', warnThreshold=10000, infoThreshold=5000, debugThreshold=2000}}]
+2019-07-06 19:19:17,175 DEBUG [Wonder Man] Using probe [org.elasticsearch.monitor.os.OsProbe@533d7c61] with refresh_interval [1s]
+2019-07-06 19:19:17,221 DEBUG [Wonder Man] Using probe [org.elasticsearch.monitor.process.ProcessProbe@5d94ac8a] with refresh_interval [1s]
+2019-07-06 19:19:17,221 DEBUG [Wonder Man] Using refresh_interval [1s]
+2019-07-06 19:19:17,221 DEBUG [Wonder Man] Using probe [org.elasticsearch.monitor.fs.FsProbe@15c4b1a4] with refresh_interval [1s]
+2019-07-06 19:19:17,237 DEBUG [Wonder Man] creating [8] workers, queue_size [-1]
+2019-07-06 19:19:17,518 DEBUG [Wonder Man] using script cache with max_size [100], expire [null]
+2019-07-06 19:19:17,518 DEBUG [Wonder Man] using [cluster.routing.allocation.allow_rebalance] with [indices_all_active]
+2019-07-06 19:19:17,518 DEBUG [Wonder Man] using node_concurrent_recoveries [2], node_initial_primaries_recoveries [4]
+2019-07-06 19:19:17,518 DEBUG [Wonder Man] using [cluster_concurrent_rebalance] with [2]
+2019-07-06 19:19:17,565 DEBUG [Wonder Man] using initial_shards [quorum]
+2019-07-06 19:19:18,221 DEBUG configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+net0
+        Microsoft 6to4 Adapter
+        MULTICAST mtu:-1 index:2
+
+eth0
+        Bluetooth Device (Personal Area Network) #2
+        MULTICAST mtu:-1 index:3
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:4
+
+net1
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:5
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:6
+
+net3
+        Microsoft IP-HTTPS Platform Adapter
+        MULTICAST mtu:-1 index:7
+
+wlan0
+        Intel(R) Dual Band Wireless-AC 8265
+        inet 192.168.1.5 netmask:255.255.255.0 broadcast:192.168.1.255 scope:site
+        inet6 fe80::2c77:9a3:6b46:aeb9 prefixlen:64 scope:link
+        hardware 7C:2A:31:3A:77:8F
+        UP MULTICAST mtu:1500 index:8
+
+eth2
+        Bluetooth Device (Personal Area Network)
+        MULTICAST mtu:-1 index:9
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter #2
+        inet6 fe80::cc82:adc3:7881:391b prefixlen:64 scope:link
+        hardware 7E:2A:31:3A:77:8F
+        MULTICAST mtu:1500 index:10
+
+eth3
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth4
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.10.1 netmask:255.255.255.0 broadcast:192.168.10.255 scope:site
+        inet6 fe80::88d:2b7f:7946:d786 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:12
+
+net4
+        Microsoft Teredo Tunneling Adapter
+        MULTICAST mtu:-1 index:13
+
+eth5
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:14
+
+net5
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:15
+
+net6
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+eth6
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:17
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:18
+
+wlan2
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::ed81:dc76:c445:6ce5 prefixlen:64 scope:link
+        hardware 7C:2A:31:3A:77:90
+        MULTICAST mtu:1500 index:19
+
+net7
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:20
+
+eth7
+        ASIX AX88179 USB 3.0 to Gigabit Ethernet Adapter #2
+        MULTICAST mtu:-1 index:21
+
+eth8
+        ASIX AX88179 USB 3.0 to Gigabit Ethernet Adapter
+        MULTICAST mtu:-1 index:22
+
+eth9
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.80.1 netmask:255.255.255.0 broadcast:192.168.80.255 scope:site
+        inet6 fe80::1c42:d67f:7f9d:8491 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:23
+
+wlan3
+        Intel(R) Dual Band Wireless-AC 8265-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:24
+
+wlan4
+        Intel(R) Dual Band Wireless-AC 8265-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:25
+
+wlan5
+        Intel(R) Dual Band Wireless-AC 8265-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:26
+
+wlan6
+        Intel(R) Dual Band Wireless-AC 8265-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+wlan7
+        Intel(R) Dual Band Wireless-AC 8265-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+eth10
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+eth11
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:30
+
+eth12
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:31
+
+eth13
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+eth14
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+eth15
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:37
+
+wlan11
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+wlan12
+        Microsoft Wi-Fi Direct Virtual Adapter #2-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:39
+
+wlan13
+        Microsoft Wi-Fi Direct Virtual Adapter #2-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:40
+
+wlan14
+        Microsoft Wi-Fi Direct Virtual Adapter #2-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+wlan15
+        Microsoft Wi-Fi Direct Virtual Adapter #2-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+2019-07-06 19:19:18,237 DEBUG [Wonder Man] using max_bytes_per_sec[40mb], concurrent_streams [3], file_chunk_size [512kb], translog_size [512kb], translog_ops [1000], and compress [true]
+2019-07-06 19:19:18,252 DEBUG [Wonder Man] using indices.store.throttle.type [NONE], with index.store.throttle.max_bytes_per_sec [10gb]
+2019-07-06 19:19:18,252 DEBUG [Wonder Man] using indexing buffer size [361.5mb], with indices.memory.min_shard_index_buffer_size [4mb], indices.memory.max_shard_index_buffer_size [512mb], indices.memory.shard_inactive_time [5m], indices.memory.interval [30s]
+2019-07-06 19:19:18,252 DEBUG [Wonder Man] using [node] query cache with size [10%], actual_size [361.5mb], max filter count [1000]
+2019-07-06 19:19:18,252 DEBUG [Wonder Man] using size [-1] [-1b]
+2019-07-06 19:19:18,331 DEBUG [Wonder Man] took 1ms to load state
+2019-07-06 19:19:18,346 INFO [Wonder Man] initialized
+2019-07-06 19:19:18,346 INFO [Wonder Man] starting ...
+2019-07-06 19:19:18,346 INFO [Wonder Man] publish_address {local[1]}, bound_addresses {local[1]}
+2019-07-06 19:19:18,346 INFO [Wonder Man] elasticsearch/sfhmRuqVQwSgDn_i0LZ-Xw
+2019-07-06 19:19:18,346 DEBUG [Wonder Man] Connected to cluster [Cluster [elasticsearch]]
+2019-07-06 19:19:18,346 DEBUG [Wonder Man] processing [local-disco-initial_connect(master)]: execute
+2019-07-06 19:19:18,346 DEBUG [Wonder Man] cluster state updated, version [1], source [local-disco-initial_connect(master)]
+2019-07-06 19:19:18,346 INFO [Wonder Man] new_master {Wonder Man}{sfhmRuqVQwSgDn_i0LZ-Xw}{local}{local[1]}{local=true}, reason: local-disco-initial_connect(master)
+2019-07-06 19:19:18,346 DEBUG [Wonder Man] publishing cluster state version [1]
+2019-07-06 19:19:18,346 DEBUG [Wonder Man] set local cluster state to version 1
+2019-07-06 19:19:18,362 DEBUG [Wonder Man] processing [local-disco-initial_connect(master)]: took 9ms done applying updated cluster_state (version: 1, uuid: ZV0MmUG0SO-jzw9nQNF2RA)
+2019-07-06 19:19:18,362 INFO [Wonder Man] started
+2019-07-06 19:19:18,362 DEBUG [Wonder Man] processing [local-gateway-elected-state]: execute
+2019-07-06 19:19:18,377 DEBUG [Wonder Man] cluster state updated, version [2], source [local-gateway-elected-state]
+2019-07-06 19:19:18,377 DEBUG [Wonder Man] publishing cluster state version [2]
+2019-07-06 19:19:18,377 DEBUG [Wonder Man] set local cluster state to version 2
+2019-07-06 19:19:18,393 INFO [Wonder Man] recovered [0] indices into cluster_state
+2019-07-06 19:19:18,393 DEBUG [Wonder Man] processing [local-gateway-elected-state]: took 17ms done applying updated cluster_state (version: 2, uuid: 3z8zO3GyTUOjLtxsBU7GXw)
+2019-07-06 19:19:48,382 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:19:48,382 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:19:48,398 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:19:48,414 DEBUG [Wonder Man] cluster state updated, version [3], source [cluster_reroute (api)]
+2019-07-06 19:19:48,414 DEBUG [Wonder Man] publishing cluster state version [3]
+2019-07-06 19:19:48,414 DEBUG [Wonder Man] set local cluster state to version 3
+2019-07-06 19:19:48,414 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 4ms done applying updated cluster_state (version: 3, uuid: Zk30Ve3ATyOrEBE_UHKS_g)
+2019-07-06 19:20:18,425 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:20:18,425 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:20:48,440 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:20:48,440 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:20:48,440 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:20:48,440 DEBUG [Wonder Man] cluster state updated, version [4], source [cluster_reroute (api)]
+2019-07-06 19:20:48,440 DEBUG [Wonder Man] publishing cluster state version [4]
+2019-07-06 19:20:48,440 DEBUG [Wonder Man] set local cluster state to version 4
+2019-07-06 19:20:48,440 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 4, uuid: Q5mKHkbKSOmruZ-x0kJH4A)
+2019-07-06 19:21:18,454 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:21:18,454 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:21:48,468 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:21:48,468 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:21:48,468 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:21:48,468 DEBUG [Wonder Man] cluster state updated, version [5], source [cluster_reroute (api)]
+2019-07-06 19:21:48,468 DEBUG [Wonder Man] publishing cluster state version [5]
+2019-07-06 19:21:48,468 DEBUG [Wonder Man] set local cluster state to version 5
+2019-07-06 19:21:48,468 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 2ms done applying updated cluster_state (version: 5, uuid: DuAQCN9-SNONCiC-bI4M_Q)
+2019-07-06 19:22:18,472 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:22:18,472 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:22:48,483 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:22:48,483 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:22:48,483 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:22:48,483 DEBUG [Wonder Man] cluster state updated, version [6], source [cluster_reroute (api)]
+2019-07-06 19:22:48,483 DEBUG [Wonder Man] publishing cluster state version [6]
+2019-07-06 19:22:48,483 DEBUG [Wonder Man] set local cluster state to version 6
+2019-07-06 19:22:48,483 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 6, uuid: ztVYTMIQRh2ZvR97NKuo0w)
+2019-07-06 19:23:18,489 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:23:18,489 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:23:48,491 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:23:48,491 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:23:48,491 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:23:48,491 DEBUG [Wonder Man] cluster state updated, version [7], source [cluster_reroute (api)]
+2019-07-06 19:23:48,491 DEBUG [Wonder Man] publishing cluster state version [7]
+2019-07-06 19:23:48,491 DEBUG [Wonder Man] set local cluster state to version 7
+2019-07-06 19:23:48,491 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 7, uuid: XLJ2-qMuTzWjv-BeEjNhkA)
+2019-07-06 19:24:18,504 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:24:18,504 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:24:48,509 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:24:48,509 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:24:48,509 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:24:48,509 DEBUG [Wonder Man] cluster state updated, version [8], source [cluster_reroute (api)]
+2019-07-06 19:24:48,509 DEBUG [Wonder Man] publishing cluster state version [8]
+2019-07-06 19:24:48,509 DEBUG [Wonder Man] set local cluster state to version 8
+2019-07-06 19:24:48,509 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 8, uuid: VGacl_M5TSSAr2s1NoYHiQ)
+2019-07-06 19:25:18,520 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:25:18,520 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:25:48,531 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:25:48,531 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:25:48,531 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:25:48,531 DEBUG [Wonder Man] cluster state updated, version [9], source [cluster_reroute (api)]
+2019-07-06 19:25:48,531 DEBUG [Wonder Man] publishing cluster state version [9]
+2019-07-06 19:25:48,531 DEBUG [Wonder Man] set local cluster state to version 9
+2019-07-06 19:25:48,531 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 9, uuid: s_HZrlbTQqCDUw7j9qs1lA)
+2019-07-06 19:26:18,536 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:26:18,536 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:26:48,545 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:26:48,545 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:26:48,545 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:26:48,545 DEBUG [Wonder Man] cluster state updated, version [10], source [cluster_reroute (api)]
+2019-07-06 19:26:48,545 DEBUG [Wonder Man] publishing cluster state version [10]
+2019-07-06 19:26:48,545 DEBUG [Wonder Man] set local cluster state to version 10
+2019-07-06 19:26:48,545 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 10, uuid: h44d6W9cQveWdHOU2D6VvQ)
+2019-07-06 19:27:18,551 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:27:18,551 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:27:48,560 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:27:48,560 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:27:48,560 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:27:48,560 DEBUG [Wonder Man] cluster state updated, version [11], source [cluster_reroute (api)]
+2019-07-06 19:27:48,560 DEBUG [Wonder Man] publishing cluster state version [11]
+2019-07-06 19:27:48,560 DEBUG [Wonder Man] set local cluster state to version 11
+2019-07-06 19:27:48,560 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 11, uuid: AITGqsgLTWGDr4GLFln6XA)
+2019-07-06 19:28:18,567 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:28:18,567 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:28:48,577 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:28:48,577 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:28:48,577 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:28:48,577 DEBUG [Wonder Man] cluster state updated, version [12], source [cluster_reroute (api)]
+2019-07-06 19:28:48,577 DEBUG [Wonder Man] publishing cluster state version [12]
+2019-07-06 19:28:48,577 DEBUG [Wonder Man] set local cluster state to version 12
+2019-07-06 19:28:48,577 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 12, uuid: cjI2Qxm-TmeqoY71T93j7w)
+2019-07-06 19:29:18,580 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:29:18,580 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:29:48,581 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:29:48,581 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:29:48,581 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:29:48,581 DEBUG [Wonder Man] cluster state updated, version [13], source [cluster_reroute (api)]
+2019-07-06 19:29:48,581 DEBUG [Wonder Man] publishing cluster state version [13]
+2019-07-06 19:29:48,581 DEBUG [Wonder Man] set local cluster state to version 13
+2019-07-06 19:29:48,581 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 13, uuid: KM0mnlg3RnanCghsI9qmyw)
+2019-07-06 19:30:18,597 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:30:18,597 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:30:48,613 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:30:48,613 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:30:48,613 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:30:48,613 DEBUG [Wonder Man] cluster state updated, version [14], source [cluster_reroute (api)]
+2019-07-06 19:30:48,613 DEBUG [Wonder Man] publishing cluster state version [14]
+2019-07-06 19:30:48,613 DEBUG [Wonder Man] set local cluster state to version 14
+2019-07-06 19:30:48,613 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 14, uuid: lKMHEZ_yQL28DyaZ_En3-Q)
+2019-07-06 19:31:18,628 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:31:18,628 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:31:48,639 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:31:48,639 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:31:48,639 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:31:48,639 DEBUG [Wonder Man] cluster state updated, version [15], source [cluster_reroute (api)]
+2019-07-06 19:31:48,639 DEBUG [Wonder Man] publishing cluster state version [15]
+2019-07-06 19:31:48,639 DEBUG [Wonder Man] set local cluster state to version 15
+2019-07-06 19:31:48,639 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 15, uuid: LYr4956mQraPDO1L832Zsw)
+2019-07-06 19:32:18,645 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:32:18,645 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:32:48,662 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:32:48,662 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:32:48,662 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:32:48,662 DEBUG [Wonder Man] cluster state updated, version [16], source [cluster_reroute (api)]
+2019-07-06 19:32:48,662 DEBUG [Wonder Man] publishing cluster state version [16]
+2019-07-06 19:32:48,662 DEBUG [Wonder Man] set local cluster state to version 16
+2019-07-06 19:32:48,662 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 16, uuid: sQOZePgXT_KouhMLCmLsQA)
+2019-07-06 19:33:18,676 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:33:18,676 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:33:48,680 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:33:48,680 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:33:48,680 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:33:48,680 DEBUG [Wonder Man] cluster state updated, version [17], source [cluster_reroute (api)]
+2019-07-06 19:33:48,680 DEBUG [Wonder Man] publishing cluster state version [17]
+2019-07-06 19:33:48,680 DEBUG [Wonder Man] set local cluster state to version 17
+2019-07-06 19:33:48,680 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 17, uuid: U0r8FBlmSieGx36uBXryyg)
+2019-07-06 19:34:18,691 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:34:18,691 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:34:48,701 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:34:48,701 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:34:48,701 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:34:48,701 DEBUG [Wonder Man] cluster state updated, version [18], source [cluster_reroute (api)]
+2019-07-06 19:34:48,701 DEBUG [Wonder Man] publishing cluster state version [18]
+2019-07-06 19:34:48,701 DEBUG [Wonder Man] set local cluster state to version 18
+2019-07-06 19:34:48,701 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 18, uuid: s_SeOT61TtKBPiWlMyW40A)
+2019-07-06 19:35:18,703 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:35:18,703 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:35:48,710 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:35:48,710 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:35:48,710 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:35:48,710 DEBUG [Wonder Man] cluster state updated, version [19], source [cluster_reroute (api)]
+2019-07-06 19:35:48,710 DEBUG [Wonder Man] publishing cluster state version [19]
+2019-07-06 19:35:48,710 DEBUG [Wonder Man] set local cluster state to version 19
+2019-07-06 19:35:48,710 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 19, uuid: yc3WIkywQBCHnFRfRNRCnA)
+2019-07-06 19:36:18,714 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:36:18,714 DEBUG [Wonder Man] high disk watermark exceeded on sfhmRuqVQwSgDn_i0LZ-Xw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:36:48,720 WARN [Wonder Man] high disk watermark [90%] exceeded on [sfhmRuqVQwSgDn_i0LZ-Xw][Wonder Man][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:36:48,720 INFO [Wonder Man] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:36:48,721 DEBUG [Wonder Man] processing [cluster_reroute (api)]: execute
+2019-07-06 19:36:48,722 DEBUG [Wonder Man] cluster state updated, version [20], source [cluster_reroute (api)]
+2019-07-06 19:36:48,722 DEBUG [Wonder Man] publishing cluster state version [20]
+2019-07-06 19:36:48,722 DEBUG [Wonder Man] set local cluster state to version 20
+2019-07-06 19:36:48,723 DEBUG [Wonder Man] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 20, uuid: EoHFwFFWQriw3z9QPz_3uw)
+2019-07-06 19:37:19,095 DEBUG {conn-10001,procId-56} connected
+2019-07-06 19:37:19,095 DEBUG {conn-10002,procId-57} connected
+2019-07-06 19:37:19,095 DEBUG {conn-10003,procId-58} connected
+2019-07-06 19:37:19,095 DEBUG {conn-10004,procId-59} connected
+2019-07-06 19:37:19,111 DEBUG {conn-10005,procId-60} connected
+2019-07-06 19:37:19,111 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:19,111 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:19,392 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:19,454 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:19,720 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:19,720 DEBUG {conn-10005, stmt-20000} created
+2019-07-06 19:37:19,782 DEBUG {conn-10005, stmt-20000} executed. 58.915002 millis. drop table if exists user
+2019-07-06 19:37:19,798 DEBUG {conn-10005, stmt-20000} closed
+2019-07-06 19:37:19,798 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:19,798 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:19,798 DEBUG {conn-10005, stmt-20001} created
+2019-07-06 19:37:19,814 DEBUG {conn-10005, stmt-20001} executed. 18.143115 millis. create table user (id bigint not null auto_increment, avatar varchar(200), email varchar(50) not null, name varchar(20) not null, password varchar(100) not null, phone varchar(20), username varchar(20) not null, primary key (id))
+2019-07-06 19:37:19,845 DEBUG {conn-10005, stmt-20001} executed. 23.645576 millis. alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+2019-07-06 19:37:19,845 DEBUG {conn-10005, stmt-20001} executed. 10.704715 millis. alter table user add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username)
+2019-07-06 19:37:19,845 DEBUG {conn-10005, stmt-20001} closed
+2019-07-06 19:37:19,845 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:20,064 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:20,064 DEBUG {conn-10005, stmt-20002} created
+2019-07-06 19:37:20,079 DEBUG {conn-10005, stmt-20002} executed. 8.943043 millis. drop table if exists user
+2019-07-06 19:37:20,079 DEBUG {conn-10005, stmt-20002} closed
+2019-07-06 19:37:20,079 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:20,079 DEBUG {conn-10001} closed
+2019-07-06 19:37:20,079 DEBUG {conn-10002} closed
+2019-07-06 19:37:20,079 DEBUG {conn-10003} closed
+2019-07-06 19:37:20,079 DEBUG {conn-10004} closed
+2019-07-06 19:37:20,079 DEBUG {conn-10005} closed
+2019-07-06 19:37:28,190 DEBUG {conn-10001,procId-61} connected
+2019-07-06 19:37:28,190 DEBUG {conn-10002,procId-62} connected
+2019-07-06 19:37:28,190 DEBUG {conn-10003,procId-63} connected
+2019-07-06 19:37:28,190 DEBUG {conn-10004,procId-64} connected
+2019-07-06 19:37:28,206 DEBUG {conn-10005,procId-65} connected
+2019-07-06 19:37:28,206 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:28,206 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:28,472 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:28,503 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:28,768 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:28,768 DEBUG {conn-10005, stmt-20000} created
+2019-07-06 19:37:28,815 DEBUG {conn-10005, stmt-20000} executed. 45.557754 millis. drop table if exists user
+2019-07-06 19:37:28,815 DEBUG {conn-10005, stmt-20000} closed
+2019-07-06 19:37:28,815 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:28,815 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:28,815 DEBUG {conn-10005, stmt-20001} created
+2019-07-06 19:37:28,846 DEBUG {conn-10005, stmt-20001} executed. 22.061768 millis. create table user (id bigint not null auto_increment, avatar varchar(200), email varchar(50) not null, name varchar(20) not null, password varchar(100) not null, phone varchar(20), username varchar(20) not null, primary key (id))
+2019-07-06 19:37:28,846 DEBUG {conn-10005, stmt-20001} executed. 12.868893 millis. alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+2019-07-06 19:37:28,862 DEBUG {conn-10005, stmt-20001} executed. 10.971511 millis. alter table user add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username)
+2019-07-06 19:37:28,862 DEBUG {conn-10005, stmt-20001} closed
+2019-07-06 19:37:28,862 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:29,081 DEBUG {conn-10005} pool-connect
+2019-07-06 19:37:29,081 DEBUG {conn-10005, stmt-20002} created
+2019-07-06 19:37:29,097 DEBUG {conn-10005, stmt-20002} executed. 9.944939 millis. drop table if exists user
+2019-07-06 19:37:29,097 DEBUG {conn-10005, stmt-20002} closed
+2019-07-06 19:37:29,097 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:37:29,097 DEBUG {conn-10001} closed
+2019-07-06 19:37:29,097 DEBUG {conn-10002} closed
+2019-07-06 19:37:29,097 DEBUG {conn-10003} closed
+2019-07-06 19:37:29,097 DEBUG {conn-10004} closed
+2019-07-06 19:37:29,097 DEBUG {conn-10005} closed
+2019-07-06 19:38:03,670 DEBUG {conn-10001,procId-66} connected
+2019-07-06 19:38:03,670 DEBUG {conn-10002,procId-67} connected
+2019-07-06 19:38:03,670 DEBUG {conn-10003,procId-68} connected
+2019-07-06 19:38:03,670 DEBUG {conn-10004,procId-69} connected
+2019-07-06 19:38:03,670 DEBUG {conn-10005,procId-70} connected
+2019-07-06 19:38:03,686 DEBUG {conn-10005} pool-connect
+2019-07-06 19:38:03,686 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:38:03,936 DEBUG {conn-10005} pool-connect
+2019-07-06 19:38:03,967 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:38:04,232 DEBUG {conn-10005} pool-connect
+2019-07-06 19:38:04,232 DEBUG {conn-10005, stmt-20000} created
+2019-07-06 19:38:04,279 DEBUG {conn-10005, stmt-20000} executed. 46.567875 millis. drop table if exists user
+2019-07-06 19:38:04,279 DEBUG {conn-10005, stmt-20000} closed
+2019-07-06 19:38:04,279 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:38:04,295 DEBUG {conn-10005} pool-connect
+2019-07-06 19:38:04,295 DEBUG {conn-10005, stmt-20001} created
+2019-07-06 19:38:04,311 DEBUG {conn-10005, stmt-20001} executed. 21.420739 millis. create table user (id bigint not null auto_increment, avatar varchar(200), email varchar(50) not null, name varchar(20) not null, password varchar(100) not null, phone varchar(20), username varchar(20) not null, primary key (id))
+2019-07-06 19:38:04,326 DEBUG {conn-10005, stmt-20001} executed. 12.676123 millis. alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+2019-07-06 19:38:04,342 DEBUG {conn-10005, stmt-20001} executed. 11.254756 millis. alter table user add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username)
+2019-07-06 19:38:04,342 DEBUG {conn-10005, stmt-20001} closed
+2019-07-06 19:38:04,342 DEBUG {conn-10005} pool-recycle
+2019-07-06 19:38:05,123 INFO [Baron Strucker] version[2.4.4], pid[20100], build[fcbb46d/2017-01-03T11:33:16Z]
+2019-07-06 19:38:05,123 INFO [Baron Strucker] initializing ...
+2019-07-06 19:38:05,123 DEBUG [Baron Strucker] using config [D:\MusicBlog\config], data [[D:\MusicBlog\data]], logs [D:\MusicBlog\logs], plugins [D:\MusicBlog\plugins]
+2019-07-06 19:38:05,123 DEBUG [D:\MusicBlog\plugins] directory does not exist.
+2019-07-06 19:38:05,123 INFO [Baron Strucker] modules [], plugins [], sites []
+2019-07-06 19:38:05,123 DEBUG [Baron Strucker] using node location [[NodePath{path=D:\MusicBlog\data\elasticsearch\nodes\0, spins=null}]], local_node_id [0]
+2019-07-06 19:38:05,138 DEBUG [Baron Strucker] node data locations details:
+ -> D:\MusicBlog\data\elasticsearch\nodes\0, free_space [3.4gb], usable_space [3.4gb], total_space [100.9gb], spins? [unknown], mount [Data (D:)], type [NTFS]
+2019-07-06 19:38:05,138 INFO [Baron Strucker] heap size [3.5gb], compressed ordinary object pointers [true]
+2019-07-06 19:38:05,138 DEBUG [Baron Strucker] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2019-07-06 19:38:05,138 DEBUG [Baron Strucker] creating thread_pool [percolate], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [16], keep_alive [5m]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [listener], type [fixed], size [4], queue_size [null]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [index], type [fixed], size [8], queue_size [200]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [refresh], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [suggest], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [generic], type [cached], keep_alive [30s]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [warmer], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [search], type [fixed], size [13], queue_size [1k]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [flush], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [16], keep_alive [5m]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [get], type [fixed], size [8], queue_size [1k]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [bulk], type [fixed], size [8], queue_size [50]
+2019-07-06 19:38:05,154 DEBUG [Baron Strucker] creating thread_pool [snapshot], type [scaling], min [1], size [4], keep_alive [5m]
+2019-07-06 19:38:05,341 DEBUG [Baron Strucker] failed to load mustache
+java.lang.ClassNotFoundException: com.github.mustachejava.Mustache
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at org.elasticsearch.script.ScriptModule.configure(ScriptModule.java:80)
+	at org.elasticsearch.common.inject.AbstractModule.configure(AbstractModule.java:60)
+	at org.elasticsearch.common.inject.spi.Elements$RecordingBinder.install(Elements.java:233)
+	at org.elasticsearch.common.inject.spi.Elements.getElements(Elements.java:105)
+	at org.elasticsearch.common.inject.InjectorShell$Builder.build(InjectorShell.java:143)
+	at org.elasticsearch.common.inject.InjectorBuilder.build(InjectorBuilder.java:99)
+	at org.elasticsearch.common.inject.Guice.createInjector(Guice.java:93)
+	at org.elasticsearch.common.inject.Guice.createInjector(Guice.java:70)
+	at org.elasticsearch.common.inject.ModulesBuilder.createInjector(ModulesBuilder.java:46)
+	at org.elasticsearch.node.Node.<init>(Node.java:213)
+	at org.elasticsearch.node.Node.<init>(Node.java:140)
+	at org.elasticsearch.node.NodeBuilder.build(NodeBuilder.java:143)
+	at org.elasticsearch.node.NodeBuilder.node(NodeBuilder.java:150)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.createNodeClient(ElasticsearchAutoConfiguration.java:107)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.createClient(ElasticsearchAutoConfiguration.java:95)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration.elasticsearchClient(ElasticsearchAutoConfiguration.java:84)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$2c44b810.CGLIB$elasticsearchClient$1(<generated>)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$2c44b810$$FastClassBySpringCGLIB$$432a390c.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:358)
+	at org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration$$EnhancerBySpringCGLIB$$2c44b810.elasticsearchClient(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at com.kuky.blog.MusicBlogApplication.main(MusicBlogApplication.java:10)
+2019-07-06 19:38:05,826 DEBUG [Baron Strucker] enabled [true], interval [1s], gc_threshold [{default=GcThreshold{name='default', warnThreshold=10000, infoThreshold=5000, debugThreshold=2000}, young=GcThreshold{name='young', warnThreshold=1000, infoThreshold=700, debugThreshold=400}, old=GcThreshold{name='old', warnThreshold=10000, infoThreshold=5000, debugThreshold=2000}}]
+2019-07-06 19:38:06,185 DEBUG [Baron Strucker] Using probe [org.elasticsearch.monitor.os.OsProbe@5cba890e] with refresh_interval [1s]
+2019-07-06 19:38:06,248 DEBUG [Baron Strucker] Using probe [org.elasticsearch.monitor.process.ProcessProbe@5d4a34ff] with refresh_interval [1s]
+2019-07-06 19:38:06,248 DEBUG [Baron Strucker] Using refresh_interval [1s]
+2019-07-06 19:38:06,263 DEBUG [Baron Strucker] Using probe [org.elasticsearch.monitor.fs.FsProbe@1e6bd367] with refresh_interval [1s]
+2019-07-06 19:38:06,263 DEBUG [Baron Strucker] creating [8] workers, queue_size [-1]
+2019-07-06 19:38:06,357 DEBUG [Baron Strucker] using script cache with max_size [100], expire [null]
+2019-07-06 19:38:06,372 DEBUG [Baron Strucker] using node_concurrent_recoveries [2], node_initial_primaries_recoveries [4]
+2019-07-06 19:38:06,560 DEBUG [Baron Strucker] using [cluster.routing.allocation.allow_rebalance] with [indices_all_active]
+2019-07-06 19:38:06,560 DEBUG [Baron Strucker] using [cluster_concurrent_rebalance] with [2]
+2019-07-06 19:38:06,560 DEBUG [Baron Strucker] using initial_shards [quorum]
+2019-07-06 19:38:07,294 DEBUG configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+net0
+        Microsoft 6to4 Adapter
+        MULTICAST mtu:-1 index:2
+
+eth0
+        Bluetooth Device (Personal Area Network) #2
+        MULTICAST mtu:-1 index:3
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:4
+
+net1
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:5
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:6
+
+net3
+        Microsoft IP-HTTPS Platform Adapter
+        MULTICAST mtu:-1 index:7
+
+wlan0
+        Intel(R) Dual Band Wireless-AC 8265
+        inet 192.168.1.5 netmask:255.255.255.0 broadcast:192.168.1.255 scope:site
+        inet6 fe80::2c77:9a3:6b46:aeb9 prefixlen:64 scope:link
+        hardware 7C:2A:31:3A:77:8F
+        UP MULTICAST mtu:1500 index:8
+
+eth2
+        Bluetooth Device (Personal Area Network)
+        MULTICAST mtu:-1 index:9
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter #2
+        inet6 fe80::cc82:adc3:7881:391b prefixlen:64 scope:link
+        hardware 7E:2A:31:3A:77:8F
+        MULTICAST mtu:1500 index:10
+
+eth3
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth4
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.10.1 netmask:255.255.255.0 broadcast:192.168.10.255 scope:site
+        inet6 fe80::88d:2b7f:7946:d786 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:12
+
+net4
+        Microsoft Teredo Tunneling Adapter
+        MULTICAST mtu:-1 index:13
+
+eth5
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:14
+
+net5
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:15
+
+net6
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+eth6
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:17
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:18
+
+wlan2
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::ed81:dc76:c445:6ce5 prefixlen:64 scope:link
+        hardware 7C:2A:31:3A:77:90
+        MULTICAST mtu:1500 index:19
+
+net7
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:20
+
+eth7
+        ASIX AX88179 USB 3.0 to Gigabit Ethernet Adapter #2
+        MULTICAST mtu:-1 index:21
+
+eth8
+        ASIX AX88179 USB 3.0 to Gigabit Ethernet Adapter
+        MULTICAST mtu:-1 index:22
+
+eth9
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.80.1 netmask:255.255.255.0 broadcast:192.168.80.255 scope:site
+        inet6 fe80::1c42:d67f:7f9d:8491 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:23
+
+wlan3
+        Intel(R) Dual Band Wireless-AC 8265-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:24
+
+wlan4
+        Intel(R) Dual Band Wireless-AC 8265-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:25
+
+wlan5
+        Intel(R) Dual Band Wireless-AC 8265-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:26
+
+wlan6
+        Intel(R) Dual Band Wireless-AC 8265-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+wlan7
+        Intel(R) Dual Band Wireless-AC 8265-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+eth10
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+eth11
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:30
+
+eth12
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:31
+
+eth13
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+eth14
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+eth15
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:37
+
+wlan11
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+wlan12
+        Microsoft Wi-Fi Direct Virtual Adapter #2-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:39
+
+wlan13
+        Microsoft Wi-Fi Direct Virtual Adapter #2-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:40
+
+wlan14
+        Microsoft Wi-Fi Direct Virtual Adapter #2-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+wlan15
+        Microsoft Wi-Fi Direct Virtual Adapter #2-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+2019-07-06 19:38:07,310 DEBUG [Baron Strucker] using max_bytes_per_sec[40mb], concurrent_streams [3], file_chunk_size [512kb], translog_size [512kb], translog_ops [1000], and compress [true]
+2019-07-06 19:38:07,310 DEBUG [Baron Strucker] using indices.store.throttle.type [NONE], with index.store.throttle.max_bytes_per_sec [10gb]
+2019-07-06 19:38:07,310 DEBUG [Baron Strucker] using indexing buffer size [361.5mb], with indices.memory.min_shard_index_buffer_size [4mb], indices.memory.max_shard_index_buffer_size [512mb], indices.memory.shard_inactive_time [5m], indices.memory.interval [30s]
+2019-07-06 19:38:07,310 DEBUG [Baron Strucker] using [node] query cache with size [10%], actual_size [361.5mb], max filter count [1000]
+2019-07-06 19:38:07,310 DEBUG [Baron Strucker] using size [-1] [-1b]
+2019-07-06 19:38:07,341 DEBUG [Baron Strucker] took 0s to load state
+2019-07-06 19:38:07,341 INFO [Baron Strucker] initialized
+2019-07-06 19:38:07,341 INFO [Baron Strucker] starting ...
+2019-07-06 19:38:07,341 INFO [Baron Strucker] publish_address {local[1]}, bound_addresses {local[1]}
+2019-07-06 19:38:07,357 INFO [Baron Strucker] elasticsearch/vI7sp4MOTGeSH1Nv3h5pMw
+2019-07-06 19:38:07,357 DEBUG [Baron Strucker] Connected to cluster [Cluster [elasticsearch]]
+2019-07-06 19:38:07,357 DEBUG [Baron Strucker] processing [local-disco-initial_connect(master)]: execute
+2019-07-06 19:38:07,357 DEBUG [Baron Strucker] cluster state updated, version [1], source [local-disco-initial_connect(master)]
+2019-07-06 19:38:07,357 INFO [Baron Strucker] new_master {Baron Strucker}{vI7sp4MOTGeSH1Nv3h5pMw}{local}{local[1]}{local=true}, reason: local-disco-initial_connect(master)
+2019-07-06 19:38:07,357 DEBUG [Baron Strucker] publishing cluster state version [1]
+2019-07-06 19:38:07,357 DEBUG [Baron Strucker] set local cluster state to version 1
+2019-07-06 19:38:07,357 DEBUG [Baron Strucker] processing [local-disco-initial_connect(master)]: took 6ms done applying updated cluster_state (version: 1, uuid: Fso_RCKPRWCAmDJ-Ob3yQA)
+2019-07-06 19:38:07,357 INFO [Baron Strucker] started
+2019-07-06 19:38:07,372 DEBUG [Baron Strucker] processing [local-gateway-elected-state]: execute
+2019-07-06 19:38:07,372 DEBUG [Baron Strucker] cluster state updated, version [2], source [local-gateway-elected-state]
+2019-07-06 19:38:07,372 DEBUG [Baron Strucker] publishing cluster state version [2]
+2019-07-06 19:38:07,372 DEBUG [Baron Strucker] set local cluster state to version 2
+2019-07-06 19:38:07,388 INFO [Baron Strucker] recovered [0] indices into cluster_state
+2019-07-06 19:38:07,388 DEBUG [Baron Strucker] processing [local-gateway-elected-state]: took 24ms done applying updated cluster_state (version: 2, uuid: FJRDtO1qR-GHZv7RoflPrg)
+2019-07-06 19:38:37,383 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:38:37,384 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:38:37,396 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:38:37,398 DEBUG [Baron Strucker] cluster state updated, version [3], source [cluster_reroute (api)]
+2019-07-06 19:38:37,398 DEBUG [Baron Strucker] publishing cluster state version [3]
+2019-07-06 19:38:37,398 DEBUG [Baron Strucker] set local cluster state to version 3
+2019-07-06 19:38:37,399 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 2ms done applying updated cluster_state (version: 3, uuid: sPURNvy1QKOx8hEPT57KbA)
+2019-07-06 19:39:07,407 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:39:07,407 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:39:37,410 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:39:37,410 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:39:37,410 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:39:37,410 DEBUG [Baron Strucker] cluster state updated, version [4], source [cluster_reroute (api)]
+2019-07-06 19:39:37,410 DEBUG [Baron Strucker] publishing cluster state version [4]
+2019-07-06 19:39:37,410 DEBUG [Baron Strucker] set local cluster state to version 4
+2019-07-06 19:39:37,410 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 4, uuid: Qf1V3eygQ1qpWh4YUVKn1Q)
+2019-07-06 19:40:07,425 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:40:07,425 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:40:37,440 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:40:37,440 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:40:37,440 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:40:37,440 DEBUG [Baron Strucker] cluster state updated, version [5], source [cluster_reroute (api)]
+2019-07-06 19:40:37,440 DEBUG [Baron Strucker] publishing cluster state version [5]
+2019-07-06 19:40:37,440 DEBUG [Baron Strucker] set local cluster state to version 5
+2019-07-06 19:40:37,440 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 5, uuid: 5LNkbGEgR1uSkCiR0Cbebg)
+2019-07-06 19:41:07,453 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:41:07,453 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:41:37,456 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:41:37,456 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:41:37,456 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:41:37,456 DEBUG [Baron Strucker] cluster state updated, version [6], source [cluster_reroute (api)]
+2019-07-06 19:41:37,456 DEBUG [Baron Strucker] publishing cluster state version [6]
+2019-07-06 19:41:37,456 DEBUG [Baron Strucker] set local cluster state to version 6
+2019-07-06 19:41:37,456 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 6, uuid: k1D-MPBnQAifsxi_6_nhRA)
+2019-07-06 19:42:07,470 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:42:07,470 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:42:37,473 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:42:37,473 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:42:37,473 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:42:37,473 DEBUG [Baron Strucker] cluster state updated, version [7], source [cluster_reroute (api)]
+2019-07-06 19:42:37,473 DEBUG [Baron Strucker] publishing cluster state version [7]
+2019-07-06 19:42:37,473 DEBUG [Baron Strucker] set local cluster state to version 7
+2019-07-06 19:42:37,473 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 7, uuid: A3si-iX3RcaXyq7VKi_38A)
+2019-07-06 19:43:07,486 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:43:07,486 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:43:37,487 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:43:37,487 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:43:37,487 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:43:37,487 DEBUG [Baron Strucker] cluster state updated, version [8], source [cluster_reroute (api)]
+2019-07-06 19:43:37,487 DEBUG [Baron Strucker] publishing cluster state version [8]
+2019-07-06 19:43:37,487 DEBUG [Baron Strucker] set local cluster state to version 8
+2019-07-06 19:43:37,487 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 8, uuid: HCMcpZnxSoWxWBjIwwC9wg)
+2019-07-06 19:44:07,501 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:44:07,501 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:44:37,505 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:44:37,505 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:44:37,505 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:44:37,505 DEBUG [Baron Strucker] cluster state updated, version [9], source [cluster_reroute (api)]
+2019-07-06 19:44:37,505 DEBUG [Baron Strucker] publishing cluster state version [9]
+2019-07-06 19:44:37,505 DEBUG [Baron Strucker] set local cluster state to version 9
+2019-07-06 19:44:37,505 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 9, uuid: nsbwgHRwTSuFsx2BwZ3cRQ)
+2019-07-06 19:45:07,519 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:45:07,519 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:45:37,534 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:45:37,534 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:45:37,534 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:45:37,534 DEBUG [Baron Strucker] cluster state updated, version [10], source [cluster_reroute (api)]
+2019-07-06 19:45:37,534 DEBUG [Baron Strucker] publishing cluster state version [10]
+2019-07-06 19:45:37,534 DEBUG [Baron Strucker] set local cluster state to version 10
+2019-07-06 19:45:37,534 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 10, uuid: 0__95p4YQIivQf4f0bKCWg)
+2019-07-06 19:46:07,550 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:46:07,550 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:46:37,560 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:46:37,560 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:46:37,560 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:46:37,560 DEBUG [Baron Strucker] cluster state updated, version [11], source [cluster_reroute (api)]
+2019-07-06 19:46:37,560 DEBUG [Baron Strucker] publishing cluster state version [11]
+2019-07-06 19:46:37,560 DEBUG [Baron Strucker] set local cluster state to version 11
+2019-07-06 19:46:37,560 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 11, uuid: N9YjFcN0SxmrNRj5ErqV1A)
+2019-07-06 19:47:07,564 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:47:07,564 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:47:37,567 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:47:37,567 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:47:37,567 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:47:37,567 DEBUG [Baron Strucker] cluster state updated, version [12], source [cluster_reroute (api)]
+2019-07-06 19:47:37,567 DEBUG [Baron Strucker] publishing cluster state version [12]
+2019-07-06 19:47:37,567 DEBUG [Baron Strucker] set local cluster state to version 12
+2019-07-06 19:47:37,567 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 1ms done applying updated cluster_state (version: 12, uuid: CE9H7OeVRWyLrEeM0z66QQ)
+2019-07-06 19:48:07,581 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:48:07,581 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
+2019-07-06 19:48:37,597 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:48:37,597 INFO [Baron Strucker] rerouting shards: [high disk watermark exceeded on one or more nodes]
+2019-07-06 19:48:37,597 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: execute
+2019-07-06 19:48:37,597 DEBUG [Baron Strucker] cluster state updated, version [13], source [cluster_reroute (api)]
+2019-07-06 19:48:37,597 DEBUG [Baron Strucker] publishing cluster state version [13]
+2019-07-06 19:48:37,597 DEBUG [Baron Strucker] set local cluster state to version 13
+2019-07-06 19:48:37,597 DEBUG [Baron Strucker] processing [cluster_reroute (api)]: took 0s done applying updated cluster_state (version: 13, uuid: wy9Pa9VFSkmOyp8MndVyQg)
+2019-07-06 19:49:07,609 WARN [Baron Strucker] high disk watermark [90%] exceeded on [vI7sp4MOTGeSH1Nv3h5pMw][Baron Strucker][D:\MusicBlog\data\elasticsearch\nodes\0] free: 3.4gb[3.3%], shards will be relocated away from this node
+2019-07-06 19:49:07,609 DEBUG [Baron Strucker] high disk watermark exceeded on vI7sp4MOTGeSH1Nv3h5pMw but an automatic reroute has occurred in the last [1m], skipping reroute
