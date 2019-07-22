@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuky.blog.basics.dao.UserconnectionMapper">
+  <resultMap id="BaseResultMap" type="com.kuky.blog.basics.entity.Userconnection">
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="providerId" jdbcType="VARCHAR" property="providerid" />
+    <result column="providerUserId" jdbcType="VARCHAR" property="provideruserid" />
+    <result column="rank" jdbcType="INTEGER" property="rank" />
+    <result column="displayName" jdbcType="VARCHAR" property="displayname" />
+    <result column="profileUrl" jdbcType="VARCHAR" property="profileurl" />
+    <result column="imageUrl" jdbcType="VARCHAR" property="imageurl" />
+    <result column="accessToken" jdbcType="VARCHAR" property="accesstoken" />
+    <result column="secret" jdbcType="VARCHAR" property="secret" />
+    <result column="refreshToken" jdbcType="VARCHAR" property="refreshtoken" />
+    <result column="expireTime" jdbcType="BIGINT" property="expiretime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    userId, providerId, providerUserId, rank, displayName, profileUrl, imageUrl, accessToken, 
+    secret, refreshToken, expireTime
+  </sql>
+
+  <insert id="insert" parameterType="com.kuky.blog.basics.entity.Userconnection">
+    insert into tb_userconnection (userId, providerId, providerUserId, 
+      rank, displayName, profileUrl, 
+      imageUrl, accessToken, secret, 
+      refreshToken, expireTime)
+    values (#{userid,jdbcType=VARCHAR}, #{providerid,jdbcType=VARCHAR}, #{provideruserid,jdbcType=VARCHAR}, 
+      #{rank,jdbcType=INTEGER}, #{displayname,jdbcType=VARCHAR}, #{profileurl,jdbcType=VARCHAR}, 
+      #{imageurl,jdbcType=VARCHAR}, #{accesstoken,jdbcType=VARCHAR}, #{secret,jdbcType=VARCHAR}, 
+      #{refreshtoken,jdbcType=VARCHAR}, #{expiretime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kuky.blog.basics.entity.Userconnection">
+    insert into tb_userconnection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="providerid != null">
+        providerId,
+      </if>
+      <if test="provideruserid != null">
+        providerUserId,
+      </if>
+      <if test="rank != null">
+        rank,
+      </if>
+      <if test="displayname != null">
+        displayName,
+      </if>
+      <if test="profileurl != null">
+        profileUrl,
+      </if>
+      <if test="imageurl != null">
+        imageUrl,
+      </if>
+      <if test="accesstoken != null">
+        accessToken,
+      </if>
+      <if test="secret != null">
+        secret,
+      </if>
+      <if test="refreshtoken != null">
+        refreshToken,
+      </if>
+      <if test="expiretime != null">
+        expireTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="providerid != null">
+        #{providerid,jdbcType=VARCHAR},
+      </if>
+      <if test="provideruserid != null">
+        #{provideruserid,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="displayname != null">
+        #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="profileurl != null">
+        #{profileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null">
+        #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="accesstoken != null">
+        #{accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="secret != null">
+        #{secret,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshtoken != null">
+        #{refreshtoken,jdbcType=VARCHAR},
+      </if>
+      <if test="expiretime != null">
+        #{expiretime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

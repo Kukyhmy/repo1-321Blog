@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuky.blog.basics.dao.BlogLinkMapper">
+  <resultMap id="BaseResultMap" type="com.kuky.blog.basics.entity.BlogLink">
+    <result column="link_id" jdbcType="INTEGER" property="linkId" />
+    <result column="link_type" jdbcType="TINYINT" property="linkType" />
+    <result column="link_name" jdbcType="VARCHAR" property="linkName" />
+    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="link_description" jdbcType="VARCHAR" property="linkDescription" />
+    <result column="link_rank" jdbcType="INTEGER" property="linkRank" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    link_id, link_type, link_name, link_url, link_description, link_rank, is_deleted, 
+    create_time
+  </sql>
+
+  <insert id="insert" parameterType="com.kuky.blog.basics.entity.BlogLink">
+    insert into tb_link (link_id, link_type, link_name, 
+      link_url, link_description, link_rank, 
+      is_deleted, create_time)
+    values (#{linkId,jdbcType=INTEGER}, #{linkType,jdbcType=TINYINT}, #{linkName,jdbcType=VARCHAR}, 
+      #{linkUrl,jdbcType=VARCHAR}, #{linkDescription,jdbcType=VARCHAR}, #{linkRank,jdbcType=INTEGER}, 
+      #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kuky.blog.basics.entity.BlogLink">
+    insert into tb_link
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="linkId != null">
+        link_id,
+      </if>
+      <if test="linkType != null">
+        link_type,
+      </if>
+      <if test="linkName != null">
+        link_name,
+      </if>
+      <if test="linkUrl != null">
+        link_url,
+      </if>
+      <if test="linkDescription != null">
+        link_description,
+      </if>
+      <if test="linkRank != null">
+        link_rank,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="linkId != null">
+        #{linkId,jdbcType=INTEGER},
+      </if>
+      <if test="linkType != null">
+        #{linkType,jdbcType=TINYINT},
+      </if>
+      <if test="linkName != null">
+        #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null">
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkDescription != null">
+        #{linkDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="linkRank != null">
+        #{linkRank,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="login_title">
+    <img th:src="${user.headimg}">
+</div>
+<form  th:action="@{/user/register}" method="post">
+
+    <div class="form_text_ipt">
+        <input name="username" type="text" placeholder="用户名">
+    </div>
+    <div class="ececk_warning"><span>用户名</span></div>
+    <div class="form_text_ipt">
+        <input name="password" type="password" value="123456" placeholder="密码">
+    </div>
+    <div class="ececk_warning"><span>密码不能为空</span></div>
+    <div class="form_btn">
+        <button type="submit" id="regist">注册</button>
+    </div>
+    <div class="form_btn">
+        <button type="submit" id="binding">绑定</button>
+    </div>
+    <div class="form_reg_btn">
+        <span>&nbsp;</span>
+    </div>
+</form>
+</body>
+</html>

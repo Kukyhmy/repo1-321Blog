@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+
+<div th:replace="header::header('首页','My Blog')"></div>
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/reset.css}"/>
+    <link rel="stylesheet" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" th:href="@{/admin/dist/css/font-awesome.min.css}">
+    <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+    </head>
+<body>
+<div class="content">
+    <section class="jumbotron">
+        <div class="container">
+            <h3>我不怕千万人阻挡，只怕自己投降！</h3>
+        </div>
+    </section>
+    <section class="content container">
+        <div class="row">
+            <!-- Post List -->
+            <div class="col-md-8">
+                <ol class="post-list">
+                    <th:block >
+                        <th:block >
+                            <li class="post-list-item">
+                                <h3 class="post-list-title">
+                                    <a class="hvr-underline-from-center" >
+                                        <th:block ></th:block>
+                                        <a th:href="@{/login}">登陆</a>
+                                    </a>
+                                </h3>
+                                <p class="post-list-cover-img">
+                                    <a> <img alt=""></a>
+                                </p>
+                                <p class="post-list-meta">
+                                    <span class="octicon octicon-calendar"></span>
+                                </p>
+                            </li>
+                        </th:block>
+                    </th:block>
+                </ol>
+            </div>
+<!--<div class="content">
+    <div class="logo"></div>
+    <div class="login_box">
+        <div class="login_form">
+            <div class="login_title">
+                <div th:text="${username}"></div> <br/><br/>
+                <a  th:href="@{/signOut}" >退出</a>
+                <form id="bindingForm" method="post">
+                    <input id="method" type="hidden" name="_method" value="delete"/>
+                    <button id="bindingBut"></button>
+                </form>
+            </div>
+            <div class="other_login">
+                <div class="other_right" style="text-align: center;">
+                    <a id="bindingQq" href="javascript:void(0)"><i class="fa fa-qq fa-2x"></i></a>
+                    <a id="bindingWeixin" href="javascript:void(0)"><i class="fa fa-weixin fa-2x"></i></a>
+                    <a id="bindingWeibo" href="javascript:void(0)"><i class="fa fa-weibo fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+            <div class="col-md-4">
+                <h3 class="sidebar-title">点击最多</h3>
+                <div id="blog-categories">
+                    <ul class="list-group">
+                        <th:block>
+                            <th:block >
+                                <li class="list-group-item"><a >
+                                    <th:block></th:block>
+                                </a></li>
+                            </th:block>
+                        </th:block>
+                    </ul>
+                </div>
+                <h3 class="sidebar-title">最新发布</h3>
+                <div >
+                    <ul class="list-group">
+                        <th:block >
+                            <th:block>
+                                <li class="list-group-item"><a >
+                                    <th:block></th:block>
+                                </a></li>
+                            </th:block>
+                        </th:block>
+                    </ul>
+                </div>
+                <h3 class="sidebar-title">标签栏</h3>
+                <div >
+                    <ul class="list-group">
+                        <th:block>
+                            <th:block>
+                                <li class="list-group-item"><a>
+                                    <th:block></th:block>
+                                    <span class="badge">1</span>
+                                </a></li>
+                            </th:block>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(function () {
+        $.ajax({
+            url: "connect",
+            type: "get",
+            async: true,
+            dataType: "json",
+            success: function (res) {
+               /* {"weixin":false,"weibo":false,"qq":false}*/
+                    if (res.qq) {
+                        //解绑
+                        $("#bindingQq").attr("title", "解绑")
+                        $(".fa-qq").addClass("social_title");
+                    } else {
+                        //绑定
+                        $("#bindingQq").attr("title", "绑定")
+                        $(".fa-qq").removeClass("social_title");
+                    }
+                    if (res.weixin) {
+                        //解绑
+                        $("#bindingWeixin").attr("title", "解绑")
+                        $(".fa-weixin").addClass("social_title");
+                    } else {
+                        //绑定
+                        $("#bindingWeixin").attr("title", "绑定")
+                        $(".fa-weixin").removeClass("social_title");
+                    }
+                    if (res.weibo) {
+                        //解绑
+                        $("#bindingWeibo").attr("title", "解绑")
+                        $(".fa-weibo").addClass("social_title");
+                    } else {
+                        //绑定
+                        $("#bindingWeibo").attr("title", "绑定")
+                        $(".fa-weibo").removeClass("social_title");
+                    }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus); // paser error;
+            }
+
+        });
+
+        $("#bindingQq").click(function () {
+            var title = $("#bindingQq").attr("title");
+            $("#bindingForm").attr("action","connect/callback.do");
+            if ("绑定" === title) {
+                //执行绑定炒作
+                $("#method").val("post");
+                $("#bindingForm").submit();
+            } else {
+                //执行解绑事件
+                $("#method").val("delete");
+                $("#bindingForm").submit();
+            }
+        });
+        $("#bindingWeixin").click(function () {
+            var title = $("#bindingWeixin").attr("title");
+            $("#bindingForm").attr("action","connect/weixin");
+            if ("绑定" === title) {
+                //执行绑定炒作
+                $("#method").val("post");
+                $("#bindingForm").submit();
+            } else {
+                //执行解绑事件
+                $("#method").val("delete");
+                $("#bindingForm").submit();
+            }
+        });
+        $("#bindingWeibo").click(function () {
+            var title = $("#bindingWeibo").attr("title");
+            $("#bindingForm").attr("action","connect/weibo");
+            if ("绑定" === title) {
+                //执行绑定炒作
+                $("#method").val("post");
+                $("#bindingForm").submit();
+            } else {
+                //执行解绑事件
+                $("#method").val("delete");
+                $("#bindingForm").submit();
+            }
+        });
+    });
+</script>
+</body>
+<div th:replace="footer::footer"></div>
+</html>

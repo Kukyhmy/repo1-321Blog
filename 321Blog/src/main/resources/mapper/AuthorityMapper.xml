@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuky.blog.basics.dao.AuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.kuky.blog.basics.entity.Authority">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, name
+  </sql>
+<select id="getAuthorityById" resultType="com.kuky.blog.basics.entity.Authority" parameterType="long">
+  select <include refid="Base_Column_List" />
+  from authority where id = #{id}
+</select>
+</mapper>

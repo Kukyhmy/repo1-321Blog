@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+文件上传成功 ！！！
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="alert alert-dismissable alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4>
+                    成功!
+                </h4> <strong th:text="${msg}" ></strong><a href="/" class="alert-link">3s后自动跳转</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script>
+    setTimeout('location.href="/"', 3000);
+</script>
+
+</html>

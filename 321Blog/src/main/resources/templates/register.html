@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>personal blog | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" th:href="@{/admin/dist/img/favicon.png}"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/admin/dist/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" th:href="@{/admin/dist/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
+    <style>
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+        #particles {
+            background-color: #F7FAFC;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .xian{
+            width: 98%;
+            margin-left: 2%;
+            height: 1px;
+            background: #999;
+            margin-top: 5%;
+            margin-bottom: 15px;
+        }
+        .fotlogin span{
+            font-size: 16px!important;
+        }
+    </style>
+</head>
+<body class="hold-transition register-page">
+<div id="particles">
+</div>
+<div class="register-box">
+    <div class="register-logo" style="color: #007bff;">
+        <h1>personal blog</h1>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="register-box-msg">your personal blog , enjoy it</p>
+
+            <form th:action="@{/register}"  method="post">
+                <h2 class="form-signin-heading">注册成为博主</h2>
+
+                <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <label for="username" class="col-form-label">账号</label>
+                    <input type="text"  required="true" class="form-control" id="username" name="username" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
+                    <br>
+                    <i class="Notice" style="color:red;"></i>
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <label for="password" class="col-form-label">密码</label>
+                    <input type="password"  required="true"  class="form-control" id="password" name="password" maxlength="30" placeholder="请输入密码，字母或特殊符号和数字结合" >
+                     <br> <i class="Password">您的密码必须至少包含9个字符，不包含空格与特殊符号。请记住，您的密码区分大小写</i>
+                </div>
+                <div class="form-group has-feedback">
+                <li><span>确认密码</span><input type="password" id="user_pwds" required="required">
+                    <br>
+                    <i class="Confirm_Password" style="color:red"></i>
+                </li>
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <label for="name" class="col-form-label">姓名</label>
+                    <input type="text"   required="true" class="form-control" id="name" name="name" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <label for="email" class="col-form-label">邮箱</label>
+                    <input type="email"  required="true" class="form-control" id="email" name="email" maxlength="50" placeholder="请输入邮箱">
+                    <br>
+                    <i class="UserEmail" style="color:red"></i>
+                </div>
+               <!-- <div class="form-group has-feedback">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <li><label for="sex" class="col-form-label">性  别</label>
+                        <label for="nan">男</label><input type="radio" name="radio" value="男" checked="checked" id="nan">
+                        <label for="nv">女</label><input type="radio" name="radio" value="女" id="nv">
+                    </li>
+                </div>-->
+               <!-- <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <label  class="col-form-label">手机号</label>
+                    <input type="phone"  required="true" class="form-control" id="phone" name="phone" maxlength="50" placeholder="请输入手机号码">
+                    <br>
+                    <i class="phone" style="color:red"></i>
+                </div>
+                <div class="row">
+                <div class="col-6">
+                    <input type="text" class="form-control" name="verifyCode" placeholder="请输入验证码" required="true">
+                    <br>
+                    <i class="Verification_Code" style="color:red"></i>
+                </div>
+                <div class="col-6">
+                    <input type="button" id="getting" onclick="getCode()" value="免费获取短信验证码">
+                </div>
+            </div>
+-->
+
+
+                <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <label for="phone" class="col-form-label">手机号码</label>
+                    <input type="phone"  required="true" class="form-control" style="width: 260px" id="phone" name="phone" maxlength="50" placeholder="请输入手机号码">
+                    <input type="button" id="getting" onclick="getCode()" value="免费获取手机短信验证码">
+                    <br>
+                    <i class="phone" style="color:red"></i>
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <label for="phone" class="col-form-label">验证码</label>
+                    <input type="text" id="user_yanzheng" onfocus="Verification_Email();">
+                    <br>
+                    <i class="Verification_Code" style="color:red"></i>
+                </div>
+
+                <div class="form-group has-feedback"></div>
+                <div class="row">
+
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" onclick="enrCheck()">注册
+                        </button>
+                        <!--<div class=" col-md-5" th:if="${loginError}">
+                            <p class="blog-label-error" th:text="${errorMsg}"></p>
+                        </div>-->
+                    </div>
+                </div>
+            </form>
+            <div class="xian"></div>
+            <p class="fotlogin"><span>已经有一个博客帐户？<a href="/login" style="color: #39c1de;">登录</a></span></p>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/admin/dist/js/plugins/particles.js}"></script>
+<script th:src="@{/admin/dist/js/plugins/login-bg-particles.js}"></script>
+
+    <script>
+        function GetPhoneIsTrue(){
+            var text = $("#phone").val();
+            var regex1 = /^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$/g;
+            var regex2 = /^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\d{8}$/g;
+            if (text.match(/^\s+$/) || text.match(/^[ ]+$/)
+                || text.match(/^[ ]/)
+                || text.match(/^[ ]*$/)
+                || text.match(/^\s*$/)) {
+                return false;
+            } else {
+                if(text.length>85){
+                    return false;
+                }else{
+
+                    if (regex1.test(text)||regex2.test(text)) {
+                        $(".phone").html("");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        function getCode() {
+            var text = $("#phone").val();
+            if (!GetPhoneIsTrue()) {
+                $(".phone").html("手机号输入错误");
+            } else {
+                //格式输入正确,禁止按钮60s
+                time();
+                $.ajax({
+                    data: {
+                        "phone": text,
+                    },
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    scriptCharset: 'utf-8',
+                    url: "/user/code",
+                    success: function (data) {
+                       /* {"success":false,"message":"验证码发送失败","body":null}*/
+                                if (data.success == "true") {
+                                    setCookie("PhoneVerification_Code",datas.body);
+                                } else {
+                                    $(".phone").html("发送失败");
+                                }
+                    }
+                });
+            }
+             //获取用户名
+            $("#username").change(function (){
+                var  username = $("#username").val();
+                $.ajax({
+                    type : "POST",
+                    contentType : "application/x-www-form-urlencoded;charset=utf-8",
+                    scriptCharset : 'utf-8',
+                    url : "/user/check/"+username+"/"+1,
+                    success : function(data) {
+                       if(data == true) {
+                           $(".Notice").html("用户名已存在，请更换。");
+                           return false;
+                       }else{
+                           return true;
+                       }
+                    }
+                });
+            });
+            $("#phone").change(function(){
+                var  phone = $("#phone").val();
+                $.ajax({
+                    type : "POST",
+                    contentType : "application/x-www-form-urlencoded;charset=utf-8",
+                    scriptCharset : 'utf-8',
+                    url : "/user/check/"+phone+"/"+2,
+                    success : function(data) {
+                       if(data == true) {
+                           $(".Notice").html("手机号已存在，请更换。");
+                           return false;
+                       }else{
+                           return true;
+                       }
+                    }
+                });
+            });
+            //验证用户名是否存在
+            function Verifying_Username() {
+                if ($("#user_name").val().length > 4) {
+                    $(".Notice").html("");
+                    if (UserNameIsEmpty() == true) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    $(".Notice").html("用户名必须至少有5个字符长。");
+                    return false;
+                }
+            }
+
+            //验证邮箱是否存在
+            function UserEmail_IsEmpty() {
+                var IsEmpty = false;
+                $.ajax({
+                    data: {
+                        "User_Email": $("#user_email").val()
+                    },
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    scriptCharset: 'utf-8',
+                    cache: false,
+                    async: false,
+                    url: "/UserInfo/UserEmail_IsEmpty",
+                    success: function (JSONdata) {
+
+                        //解析JSON数据
+                        $.each(JSON.parse(JSONdata), function (i, data) {
+                            if (data.IsEmpty == "true") {
+                                IsEmpty = true;
+                            }
+                        });
+                    }
+                });
+                return IsEmpty;
+            }
+
+
+
+            //设置禁止60秒
+        var wait = 60;
+
+        function time() {
+            if (wait == 0) {
+                $('#getting').attr("disabled", false);
+                $("#getting").val("免费获取手机短信验证码");
+                wait = 60;
+            } else {
+                $('#getting').attr("disabled", true);
+                $("#getting").val(wait + "秒后可以重新发送");
+                wait--;
+                setTimeout(function () {
+                    time()
+                }, 1000)
+            }
+        }
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuky.blog.basics.dao.AdminUserMapper">
+  <resultMap id="BaseResultMap" type="com.kuky.blog.basics.entity.AdminUser">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="login_user_name" jdbcType="VARCHAR" property="loginUserName" />
+    <result column="login_password" jdbcType="VARCHAR" property="loginPassword" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="locked" jdbcType="TINYINT" property="locked" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
+    <collection property="authorityList" ofType="com.kuky.blog.basics.entity.Authority">
+      <result column="name" property="name"/>
+    </collection>
+
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, login_user_name, login_password, nick_name, locked, avatar, email, phone, detail
+  </sql>
+
+  <select id="findByUserName" parameterType="String" resultMap="BaseResultMap">
+         SELECT u.*
+  ,r.name
+  FROM tb_admin_user u
+  LEFT JOIN tb_user_authority sru ON u.id= sru.user_id
+  LEFT JOIN tb_authority r ON sru.authority_id=r.id
+  WHERE u.login_user_name= #{username}
+  </select>
+  <select id="findAuthorityByUserName" parameterType="String" resultMap="BaseResultMap">
+         SELECT
+  r.name
+  FROM tb_admin_user u
+  LEFT JOIN tb_user_authority sru ON u.id= sru.user_id
+  LEFT JOIN tb_authority r ON sru.authority_id=r.id
+  WHERE login_user_name= #{username}
+  </select>
+
+  <select id="getUserByName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_admin_user
+    where login_user_name = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="countByUsername" parameterType="string" resultType="int">
+    SELECT COUNT(login_user_name) FROM tb_admin_user
+    <where>
+      <if test="loginUserName != null and loginUserName != ''">
+        and login_user_name =#{data}
+      </if>
+    </where>
+  </select>
+  <select id="countByEmail" parameterType="string" resultType="int">
+    SELECT COUNT(email) FROM tb_admin_user
+    <where>
+      <if test="email != null and email != ''">
+        and email =#{data}
+      </if>
+    </where>
+  </select>
+  <insert id="insert" parameterType="com.kuky.blog.basics.entity.AdminUser">
+    insert into tb_admin_user (id, login_user_name, login_password,
+      nick_name, locked, avatar, 
+      email, phone, detail
+      )
+    values (#{id,jdbcType=BIGINT}, #{loginUserName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
+      #{nickName,jdbcType=VARCHAR}, #{locked,jdbcType=TINYINT}, #{avatar,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{detail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kuky.blog.basics.entity.AdminUser">
+    insert into tb_admin_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loginUserName != null">
+        login_user_name,
+      </if>
+      <if test="loginPassword != null">
+        login_password,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="locked != null">
+        locked,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loginUserName != null">
+        #{loginUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=TINYINT},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+
+
+</mapper>

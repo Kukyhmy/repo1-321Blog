@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuky.blog.basics.dao.UserAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.kuky.blog.basics.entity.UserAuthority">
+    <id column="id" property="id"/>
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="authority_id" jdbcType="BIGINT" property="authorityId" />
+
+    <association property="users" javaType="com.kuky.blog.basics.entity.AdminUser">
+      <id column="id" property="id" />
+      <result column="login_user_name" property="loginUserName" />
+      <result column="login_password" property="loginPassword" />
+    </association>
+    <association property="roles" javaType="com.kuky.blog.basics.entity.Authority">
+      <id column="id" property="id" />
+      <result column="name" property="name" />
+    </association>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, user_id, authority_id
+  </sql>
+
+
+  <select id="selectUserWithAuthoritys" resultMap="BaseResultMap" parameterType="long">
+    select a.name
+    from tb_user_authority ua
+    LEFT JOIN `tb_admin_user` u on u.id=ua.user_id
+    LEFT join tb_authority a on
+    a.id=ua.authority_id
+    where
+    user_id=#{user_id}
+  </select>
+  <insert id="insertSelective" parameterType="com.kuky.blog.basics.entity.UserAuthority">
+    insert into tb_user_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="authorityId != null">
+        authority_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null">
+        #{authorityId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

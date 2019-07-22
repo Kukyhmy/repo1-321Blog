@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jquery实现网站注册页面验证信息</title>
+<link th:href="@{/css/regist/style.css}" type="text/css" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/regist/jquery.js}"></script>
+</head>
+<body>
+
+<div id="formbox">
+  <form id="formpersonal" method="post" onsubmit="return false;">
+    <div class="form">
+      <h3>帐户信息</h3>
+      <div class="item"> <span class="label"><span class="red">*</span>用户名：</span>
+        <div class="fl">
+          <input type="text" id="username" name="username" class="text" tabindex="1" />
+          <label id="username_succeed" class="blank"></label>
+          <span class="clear"></span>
+          <div id="username_error"></div>
+        </div>
+      </div>
+      <!--item end-->
+      <div id="o-password">
+        <div class="item"> <span class="label"><span class="red">*</span>设置密码：</span>
+          <div class="fl">
+            <input type="password" id="pwd" name="pwd" class="text" tabindex="2"/>
+            <label id="pwd_succeed" class="blank"></label>
+            <input type="checkbox" class="checkbox" id="viewpwd"/>
+            <label class="ftx23" for="viewpwd">显示密码字符</label>
+            <span class="clear"></span>
+            <label class="hide" id="pwdstrength"><span class="fl">安全程度：</span><b></b></label>
+            <label id="pwd_error"></label>
+          </div>
+        </div>
+        <!--item end-->
+        <div class="item"> <span class="label"><span class="red">*</span>确认密码：</span>
+          <div class="fl">
+            <input type="password" id="pwd2" name="pwd2" class="text" tabindex="3"/>
+            <label id="pwd2_succeed" class="blank"></label>
+            <span class="clear"></span>
+            <label id="pwd2_error"></label>
+          </div>
+        </div>
+        <!--item end-->
+      </div>
+      <!--o-password end-->
+      <div class="item"> <span class="label"><span class="red">*</span>邮箱：</span>
+        <div class="fl">
+          <input type="text" id="mail" name="mail" class="text" tabindex="4"/>
+          <label id="mail_succeed" class="blank"></label>
+          <span class="clear"></span>
+          <div id="mail_error"></div>
+        </div>
+      </div>
+
+      <!--item end-->
+      <div class="item"> <span class="label"><span class="red">*</span>验证码：</span>
+        <div class="fl">
+          <input type="text" id="authcode" name="authcode" class="text text-1" autocomplete="off" MaxLength="6" tabindex="6" />
+          <label class="img"><img id="JD_Verification1" Ver_ColorOfNoisePoint="#888888" src="http://www.mailuke.com/Inc/Code/adminCode.php?sesstr=regCode" onClick="chanageCode('regCode')" alt="" style="cursor:pointer;width:100px;height:26px;"/> </label>
+          <label>&nbsp;看不清？点击验证码图片更换</label>
+          <label id="authcode_succeed" class="blank invisible"></label>
+          <span class="clear"></span>
+          <label id="authcode_error"></label>
+        </div>
+      </div>
+
+      <!--item end-->
+      <div class="item"> <span class="label"><span class="red">*</span>固定电话：</span>
+        <div class="fl">
+          <input type="text" id="tel" name="tel" class="text" value="" tabindex="9" />
+          <label id="tel_succeed" class="blank"></label>
+          <span class="clear"></span>
+          <label id="tel_error"></label>
+        </div>
+      </div>
+      <!--item end-->
+      <div class="item"> <span class="label"><span class="red">*</span>公司网址：</span>
+        <div class="fl">
+          <input type="text" id="companysite" name="companysite" class="text" tabindex="14"/>
+          <label id="companysite_succeed" class="blank"></label>
+          <span class="clear"></span>
+          <label id="companysite_error"></label>
+        </div>
+      </div>
+      <!--item end-->
+      <div class="item"> <span class="label">&nbsp;</span>
+        <div class="fl">
+          <input type="checkbox" name="protocol" id="protocol" tabindex="7" />
+          <label for="protocol">网站用户注册协议</label>
+        </div>
+      </div>
+      <!--item end-->
+      <div class="item"> <span class="label">&nbsp;</span>
+        <input type="button" class="yellow_button disabled" id="registsubmit" value="提交注册信息" tabindex="8" disabled="disabled" />
+      </div>
+      <!--item end-->
+    </div>
+  </form>
+</div>
+<!--formbox end-->
+<script type="text/javascript" th:src="@{/js/regist/Validate.js}"></script>
+<script type="text/javascript" th:src="@{/js/regist/Validate.form.js}"></script>
+</body>
+</html>
