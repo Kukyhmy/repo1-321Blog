@@ -19,8 +19,7 @@ public interface SecurityConstants {
 	 * 默认登录页面
 	 * 
 	 */
-	public static final String DEFAULT_LOGIN_PAGE_URL = "/login.html";
-	//public static final String DEFAULT_LOGIN_PAGE_URL = "/imooc-signIn.html";
+	public static final String DEFAULT_LOGIN_PAGE_URL = "/321blog/mobanzhijia/user-login.html";
 	/**
 	 * session失效默认的跳转地址
 	 */

@@ -20,7 +20,38 @@
     comment_id, blog_id, commentator, email, website_url, comment_body, comment_create_time, 
     commentator_ip, reply_body, reply_create_time, comment_status, is_deleted
   </sql>
-
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_blog_comment
+    where comment_id = #{commentId,jdbcType=BIGINT} and is_deleted=0
+  </select>
+  <select id="getTotalBlogComments" parameterType="Map" resultType="int">
+    SELECT count(*) FROM tb_blog_comment
+    WHERE is_deleted=0
+    <if test="blogId!=null">
+      AND blog_id = #{blogId}
+    </if>
+    <if test="commentStatus!=null">
+      AND comment_status = #{commentStatus}
+    </if>
+  </select>
+  <select id="findBlogCommentList" parameterType="Map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM tb_blog_comment
+    where is_deleted=0
+    <if test="blogId!=null">
+      AND blog_id = #{blogId}
+    </if>
+    <if test="commentStatus!=null">
+      AND comment_status = #{commentStatus}
+    </if>
+    ORDER BY comment_id DESC
+    <if test="start!=null and limit!=null">
+      limit #{start},#{limit}
+    </if>
+  </select>
   <insert id="insert" parameterType="com.kuky.blog.basics.entity.BlogComment">
     insert into tb_blog_comment (comment_id, blog_id, commentator, 
       email, website_url, comment_body, 
@@ -112,5 +143,58 @@
       </if>
     </trim>
   </insert>
-
+  <update id="checkDone">
+    update tb_blog_comment
+    set comment_status=1 where comment_id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+    and comment_status = 0
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kuky.blog.basics.entity.BlogComment">
+    update tb_blog_comment
+    <set>
+      <if test="blogId != null">
+        blog_id = #{blogId,jdbcType=BIGINT},
+      </if>
+      <if test="commentator != null">
+        commentator = #{commentator,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteUrl != null">
+        website_url = #{websiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="commentBody != null">
+        comment_body = #{commentBody,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCreateTime != null">
+        comment_create_time = #{commentCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentatorIp != null">
+        commentator_ip = #{commentatorIp,jdbcType=VARCHAR},
+      </if>
+      <if test="replyBody != null">
+        reply_body = #{replyBody,jdbcType=VARCHAR},
+      </if>
+      <if test="replyCreateTime != null">
+        reply_create_time = #{replyCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentStatus != null">
+        comment_status = #{commentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+  <update id="deleteBatch">
+    update tb_blog_comment
+    set is_deleted=1 where comment_id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </update>
 </mapper>

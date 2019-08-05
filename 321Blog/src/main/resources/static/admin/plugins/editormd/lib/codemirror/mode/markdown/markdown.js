@@ -51,7 +51,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
   var codeDepth = 0;
 
-  var header   = 'header'
+  var header   = 'header1.html'
   ,   code     = 'comment'
   ,   quote    = 'quote'
   ,   list1    = 'variable-2'
@@ -139,12 +139,12 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       return null;
     } else if (match = stream.match(atxHeaderRE)) {
       state.header = match[0].length <= 6 ? match[0].length : 6;
-      if (modeCfg.highlightFormatting) state.formatting = "header";
+      if (modeCfg.highlightFormatting) state.formatting = "header1.html";
       state.f = state.inline;
       return getType(state);
     } else if (state.prevLineHasContent && (match = stream.match(setextHeaderRE))) {
       state.header = match[0].charAt(0) == '=' ? 1 : 2;
-      if (modeCfg.highlightFormatting) state.formatting = "header";
+      if (modeCfg.highlightFormatting) state.formatting = "header1.html";
       state.f = state.inline;
       return getType(state);
     } else if (stream.eat('>')) {
@@ -234,8 +234,8 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       for (var i = 0; i < state.formatting.length; i++) {
         styles.push(formatting + "-" + state.formatting[i]);
 
-        if (state.formatting[i] === "header") {
-          styles.push(formatting + "-" + state.formatting[i] + "-" + state.header);
+        if (state.formatting[i] === "header1.html") {
+          styles.push(formatting + "-" + state.formatting[i] + "-" + state.header1);
         }
 
         // Add `formatting-quote` and `formatting-quote-#` for blockquotes
@@ -272,7 +272,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
     if (state.code) { styles.push(code); }
 
-    if (state.header) { styles.push(header); styles.push(header + "-" + state.header); }
+    if (state.header1) { styles.push(header); styles.push(header + "-" + state.header1); }
 
     if (state.quote) {
       styles.push(quote);
@@ -334,8 +334,8 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     state.taskOpen = false;
     state.taskClosed = false;
 
-    if (state.header && stream.match(/^#+$/, true)) {
-      if (modeCfg.highlightFormatting) state.formatting = "header";
+    if (state.header1 && stream.match(/^#+$/, true)) {
+      if (modeCfg.highlightFormatting) state.formatting = "header1.html";
       return getType(state);
     }
 
@@ -692,7 +692,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         em: s.em,
         strong: s.strong,
         strikethrough: s.strikethrough,
-        header: s.header,
+        header: s.header1,
         taskList: s.taskList,
         list: s.list,
         listDepth: s.listDepth,

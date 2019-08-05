@@ -48,7 +48,7 @@ $('#commentSubmit').click(function () {
     console.log(data);
     $.ajax({
         type: 'POST',//方法类型
-        url: '/blog/comment',
+        url: '/321blog/comment',
         data: data,
         success: function (result) {
             if (result.resultCode == 200) {

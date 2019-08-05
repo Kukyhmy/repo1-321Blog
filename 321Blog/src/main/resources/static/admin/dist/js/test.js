@@ -1,6 +1,6 @@
 $(function () {
     new AjaxUpload('#uploadButton', {
-        action: '/admin/upload/file',
+        action: '/user/upload/file',
         name: 'file',
         autoSubmit: true,
         responseType: "json",

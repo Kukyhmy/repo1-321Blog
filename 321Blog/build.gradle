@@ -37,7 +37,7 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 
-group = 'com.kuky.blog'
+group = 'com.kuky.321blog'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -48,7 +48,7 @@ apply plugin: 'org.springframework.boot'
 
 // 打包的类型为 jar，并指定了生成的打包的文件名称和版本
 jar {
-	baseName = '321-blog'
+	baseName = '321-321blog'
 	version = '1.0.0'
 }
 
@@ -91,6 +91,9 @@ dependencies {
 
 	// 添加  Spring Data Elasticsearch 的依赖
 	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-elasticsearch
+	//compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch', version: '2.1.6.RELEASE'
+
 
 	// 添加  JNA 的依赖
 	compile('net.java.dev.jna:jna:4.3.0')

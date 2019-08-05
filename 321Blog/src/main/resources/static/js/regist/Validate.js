@@ -346,7 +346,7 @@ var validateFunction = {
                 if (nameold != option.value) {
                     nameold = option.value;
                     option.errorEle.html("<span style='color:#999'>检验中……</span>");
-                    $.getJSON("user/check/" + escape(option.value)+"/"+1, {},function (date) {
+                    $.getJSON("check/" + escape(option.value)+"/"+1, {},function (date) {
                         if (date) {
                             validateSettings.succeed.run(option);
                             namestate = true;
@@ -423,7 +423,7 @@ var validateFunction = {
                     if (emailold != option.value) {
                         emailold = option.value;
                         option.errorEle.html("<span style='color:#999'>检验中……</span>");
-                        $.getJSON("user/check/" + escape(option.value)+"/"+2, {},function (date) {
+                        $.getJSON("check/" + escape(option.value)+"/"+2, {},function (date) {
                             if (date) {
                                 validateSettings.succeed.run(option);
                                 emailstate = true;

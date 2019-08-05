@@ -33,6 +33,9 @@ public class BlogComment {
 
     private Byte isDeleted;
 
+
+
+
     public Long getCommentId() {
         return commentId;
     }

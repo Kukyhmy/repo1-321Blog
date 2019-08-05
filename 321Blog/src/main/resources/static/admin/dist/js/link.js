@@ -1,6 +1,6 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: '/admin/links/list',
+        url: '/user/links/list',
         datatype: "json",
         colModel: [
             {label: 'id', name: 'linkId', index: 'linkId', width: 50, key: true, hidden: true},
@@ -85,9 +85,9 @@ $('#saveButton').click(function () {
         return;
     }
     var params = $("#linkForm").serialize();
-    var url = '/admin/links/save';
+    var url = '/user/links/save';
     if (linkId != null && linkId > 0) {
-        url = '/admin/links/update';
+        url = '/user/links/update';
     }
     $.ajax({
         type: 'POST',//方法类型
@@ -125,7 +125,7 @@ function linkEdit() {
     }
     reset();
     //请求数据
-    $.get("/admin/links/info/" + id, function (r) {
+    $.get("/user/links/info/" + id, function (r) {
         if (r.resultCode == 200 && r.data != null) {
             //填充数据至modal
             $("#linkName").val(r.data.linkName);
@@ -161,7 +161,7 @@ function deleteLink() {
             if (flag) {
                 $.ajax({
                     type: "POST",
-                    url: "/admin/links/delete",
+                    url: "/user/links/delete",
                     contentType: "application/json",
                     data: JSON.stringify(ids),
                     success: function (r) {

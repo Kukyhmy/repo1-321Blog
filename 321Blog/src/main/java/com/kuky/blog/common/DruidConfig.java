@@ -36,7 +36,7 @@ public class DruidConfig {
         bean.setUrlMappings(Arrays.asList(urlArr)); //设置对本servlet的映射地址
         //还需要设置druid后台页面的一些基本东西，后台的登录用户名和密码，后台有哪些ip地址可以访问，哪些不可以
         Map<String,String> initParams = new HashMap<>();
-        initParams.put("loginUsername","admin");
+        initParams.put("loginUsername","user");
         initParams.put("loginPassword","123456");
         initParams.put("allow",""); //设置为空字符串就表示任何ip地址都可以访问druid的监控后台
         //initParams.put("deny","10.33.12.1");

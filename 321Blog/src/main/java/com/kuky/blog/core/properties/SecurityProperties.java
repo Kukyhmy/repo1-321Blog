@@ -6,7 +6,7 @@ package com.kuky.blog.core.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
-@ConfigurationProperties(prefix = "blog.security")
+@ConfigurationProperties(prefix = "321blog.security")
 public class SecurityProperties {
 	
 	private BrowserProperties browser = new BrowserProperties();

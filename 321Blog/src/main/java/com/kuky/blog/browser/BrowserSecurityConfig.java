@@ -5,8 +5,8 @@ package com.kuky.blog.browser;
 
 import javax.sql.DataSource;
 
+import com.kuky.blog.browser.filter.ValidateCodeFilter;
 import com.kuky.blog.core.authentication.AbstractChannelSecurityConfig;
-import com.kuky.blog.core.properties.SecurityConstants;
 import com.kuky.blog.core.properties.SecurityProperties;
 import com.kuky.blog.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+import org.springframework.social.connect.web.HttpSessionSessionStrategy;
+import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 
@@ -53,12 +56,15 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 
 	@Autowired
 	private LogoutSuccessHandler logoutSuccessHandler;
-	
+
+	@Autowired
+	private ValidateCodeFilter validateCodeFilter;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		applyPasswordAuthenticationConfig(http);
-		http
+		http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
 			.apply(blogSocialSecurityConfig)
 				.and()
 			.rememberMe().key(KEY)
@@ -67,30 +73,36 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 				.userDetailsService(userDetailsService)
 				.and()
 			.sessionManagement()
-				.invalidSessionStrategy(invalidSessionStrategy)
+				.invalidSessionStrategy(invalidSessionStrategy) //session无效处理策略
 				.maximumSessions(securityProperties.getBrowser().getSession().getMaximumSessions())
 				.maxSessionsPreventsLogin(securityProperties.getBrowser().getSession().isMaxSessionsPreventsLogin())
-				.expiredSessionStrategy(sessionInformationExpiredStrategy)
+				.expiredSessionStrategy(sessionInformationExpiredStrategy)//session过期处理策略
 				.and()
 				.and()
 				.logout()
 				.logoutUrl("/signOut")
-				//.logoutSuccessUrl("/blog-logout.html")
 				.logoutSuccessHandler(logoutSuccessHandler)
 				.deleteCookies("JSESSIONID")
 				.and()
 			.authorizeRequests()
-				.antMatchers(
+                .antMatchers("/admin/login").permitAll()
+                .antMatchers("/admin/dist/**").permitAll()
+                .antMatchers("/admin/plugins/**").permitAll()
+                .antMatchers("/bolg/comment").hasRole("USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest()
+                .permitAll()//所有的路径即可访问
+				/*.antMatchers(
 					SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
 					securityProperties.getBrowser().getLoginPage(),
 					securityProperties.getBrowser().getSignUpUrl(),
 					securityProperties.getBrowser().getSignOutUrl(),
 					securityProperties.getBrowser().getSession().getSessionInvalidUrl()+".json",
 					securityProperties.getBrowser().getSession().getSessionInvalidUrl()+".html",
-					"/","/index","/user/**","/goIndex","/fileUpload","/uploadFileToFast","/regist","/login","/admin/**","/blog/**","/common/**","/css/**","/js/**","/images/**","/static/**","/connect/**")
-					.permitAll()
-				.anyRequest()
-				.authenticated()
+					"/","/index","/user/**","/goIndex","/fileUpload","/uploadFileToFast","/regist","/login","/user/**","/321blog/**","/common/**","/css/**","/js/**","/images/**","/static/**","/connect/**")
+					.permitAll()*/
+				//.anyRequest()
+				//.authenticated()
 				.and()
 			.csrf().disable();
 		
@@ -118,6 +130,13 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 		auth.userDetailsService(myUserDetailsService);
 	}
 
+
+
+	@Bean("sessionStrategy")
+	public SessionStrategy registBean() {
+		SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+		return sessionStrategy;
+	}
 
 	
 }

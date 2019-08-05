@@ -10,22 +10,22 @@ $('#blogTags').tagsInput({
 $('.select2').select2()
 
 $(function () {
-    blogEditor = editormd("blog-editormd", {
+    blogEditor = editormd("321blog-editormd", {
         width: "100%",
         height: 640,
         syncScrolling: "single",
-        path: "/admin/plugins/editormd/lib/",
+        path: "/user/plugins/editormd/lib/",
         toolbarModes: 'full',
         /**图片上传配置*/
         imageUpload: true,
         imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"], //图片上传格式
-        imageUploadURL: "/admin/blogs/md/uploadfile",
+        imageUploadURL: "/user/blogs/md/uploadfile",
         onload: function (obj) { //上传成功之后的回调
         }
     });
 
     new AjaxUpload('#uploadCoverImage', {
-        action: '/admin/upload/file',
+        action: '/user/upload/file',
         name: 'file',
         autoSubmit: true,
         responseType: "json",
@@ -120,7 +120,7 @@ $('#saveButton').click(function () {
         });
         return;
     }
-    var url = '/admin/blogs/save';
+    var url = '/user/blogs/save';
     var swlMessage = '保存成功';
     var data = {
         "blogTitle": blogTitle, "blogSubUrl": blogSubUrl, "blogCategoryId": blogCategoryId,
@@ -128,7 +128,7 @@ $('#saveButton').click(function () {
         "enableComment": enableComment
     };
     if (blogId > 0) {
-        url = '/admin/blogs/update';
+        url = '/user/blogs/update';
         swlMessage = '修改成功';
         data = {
             "blogId": blogId,
@@ -159,7 +159,7 @@ $('#saveButton').click(function () {
                     confirmButtonClass: 'btn btn-success',
                     buttonsStyling: false
                 }).then(function () {
-                    window.location.href = "/admin/blogs";
+                    window.location.href = "/user/blogs";
                 })
             }
             else {
@@ -179,7 +179,7 @@ $('#saveButton').click(function () {
 });
 
 $('#cancelButton').click(function () {
-    window.location.href = "/admin/blogs";
+    window.location.href = "/user/blogs";
 });
 
 /**
@@ -187,6 +187,6 @@ $('#cancelButton').click(function () {
  */
 $('#randomCoverImage').click(function () {
     var rand = parseInt(Math.random() * 40 + 1);
-    $("#blogCoverImage").attr("src", '/admin/dist/img/rand/' + rand + ".jpg");
+    $("#blogCoverImage").attr("src", '/user/dist/img/rand/' + rand + ".jpg");
     $("#blogCoverImage").attr("style", "width:160px ;height: 120px;display:block;");
 });

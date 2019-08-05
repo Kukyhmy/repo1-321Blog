@@ -8,10 +8,11 @@ import com.kuky.blog.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import static com.kuky.blog.core.properties.SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM;
 
 
 public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -28,8 +29,8 @@ public class AbstractChannelSecurityConfig extends WebSecurityConfigurerAdapter 
 	protected void applyPasswordAuthenticationConfig(HttpSecurity http) throws Exception {
 		http.formLogin()
 
-			.loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL).failureUrl("/login-error")
-				.loginProcessingUrl(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
+			.loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL).failureUrl("/login?error=true")
+				.loginProcessingUrl(DEFAULT_LOGIN_PROCESSING_URL_FORM)
 			.successHandler(imoocAuthenticationSuccessHandler)
 			.failureHandler(imoocAuthenticationFailureHandler);
 	}

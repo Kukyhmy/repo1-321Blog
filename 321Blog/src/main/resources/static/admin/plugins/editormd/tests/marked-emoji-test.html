@@ -191,7 +191,7 @@ This  :fa-save::  :fa-truck:is an H2 :100:
                 
                 markedRenderer.tablecell = function (content,flags){
                     console.log(content);
-                    var type=flags.header?"th":"td";
+                    var type=flags.header1?"th":"td";
                     var tag=flags.align?"<"+type+' style="text-align:'+flags.align+'">':"<"+type+">";
                     return tag+this.emoji(content)+"</"+type+">\n";
                 }

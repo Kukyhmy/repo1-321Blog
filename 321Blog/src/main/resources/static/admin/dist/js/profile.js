@@ -9,7 +9,7 @@ $(function () {
             var params = $("#userNameForm").serialize();
             $.ajax({
                 type: "POST",
-                url: "/admin/profile/name",
+                url: "/user/profile/name",
                 data: params,
                 success: function (r) {
                     console.log(r);
@@ -31,13 +31,13 @@ $(function () {
             var params = $("#userPasswordForm").serialize();
             $.ajax({
                 type: "POST",
-                url: "/admin/profile/password",
+                url: "/user/profile/password",
                 data: params,
                 success: function (r) {
                     console.log(r);
                     if (r == 'success') {
                         alert('修改成功');
-                        window.location.href = '/admin/login';
+                        window.location.href = '/user/login';
                     } else {
                         alert('修改失败');
                     }

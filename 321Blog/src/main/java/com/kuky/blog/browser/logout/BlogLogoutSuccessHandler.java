@@ -2,7 +2,6 @@ package com.kuky.blog.browser.logout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kuky.blog.basics.vo.Response;
-import com.kuky.blog.core.properties.SecurityProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

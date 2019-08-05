@@ -3710,7 +3710,7 @@
         };
 
         markedRenderer.tablecell = function(content, flags) {
-            var type = (flags.header) ? "th" : "td";
+            var type = (flags.header1) ? "th" : "td";
             var tag  = (flags.align)  ? "<" + type +" style=\"text-align:" + flags.align + "\">" : "<" + type + ">";
             
             return tag + this.atLink(this.emoji(content)) + "</" + type + ">\n";

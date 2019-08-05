@@ -20,6 +20,8 @@ public class BlogCategory {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
+    private AdminUser adminUser;
+
     public Integer getCategoryId() {
         return categoryId;
     }

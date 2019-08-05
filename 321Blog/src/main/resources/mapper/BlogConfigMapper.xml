@@ -11,7 +11,11 @@
   <sql id="Base_Column_List">
     config_name, config_value, create_time, update_time
   </sql>
-
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_config
+  </select>
   <insert id="insert" parameterType="com.kuky.blog.basics.entity.BlogConfig">
     insert into tb_config (config_name, config_value, create_time, 
       update_time)

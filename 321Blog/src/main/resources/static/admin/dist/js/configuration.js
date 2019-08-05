@@ -6,7 +6,7 @@ $(function () {
         var params = $("#websiteForm").serialize();
         $.ajax({
             type: "POST",
-            url: "/admin/configurations/website",
+            url: "/user/configurations/website",
             data: params,
             success: function (result) {
                 if (result.resultCode == 200 && result.data) {
@@ -34,7 +34,7 @@ $(function () {
         var params = $("#userInfoForm").serialize();
         $.ajax({
             type: "POST",
-            url: "/admin/configurations/userInfo",
+            url: "/user/configurations/userInfo",
             data: params,
             success: function (result) {
                 if (result.resultCode == 200&& result.data) {
@@ -62,7 +62,7 @@ $(function () {
         var params = $("#footerForm").serialize();
         $.ajax({
             type: "POST",
-            url: "/admin/configurations/footer",
+            url: "/user/configurations/footer",
             data: params,
             success: function (result) {
                 if (result.resultCode == 200&& result.data) {

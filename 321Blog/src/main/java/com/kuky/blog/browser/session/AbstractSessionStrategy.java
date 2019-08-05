@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kuky.blog.browser.session;
 
 import java.io.IOException;
@@ -43,7 +40,6 @@ public class AbstractSessionStrategy {
 
 	/**
 	 * @param invalidSessionUrl
-	 * @param invalidSessionHtmlUrl
 	 */
 	public AbstractSessionStrategy(String invalidSessionUrl) {
 		Assert.isTrue(UrlUtils.isValidRedirectUrl(invalidSessionUrl), "url must start with '/' or with 'http(s)'");

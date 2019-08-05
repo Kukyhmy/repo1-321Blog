@@ -112,7 +112,7 @@ CodeMirror.defineMode("tiddlywiki", function () {
     if (sol && /[\/\*!#;:>|]/.test(ch)) {
       if (ch == "!") { // tw header
         stream.skipToEnd();
-        return ret("header", "header");
+        return ret("header1.html", "header1.html");
       }
       if (ch == "*") { // tw list
         stream.eatWhile('*');
@@ -135,7 +135,7 @@ CodeMirror.defineMode("tiddlywiki", function () {
         return ret("quote", "quote");
       }
       if (ch == '|') {
-        return ret('table', 'header');
+        return ret('table', 'header1.html');
       }
     }
 

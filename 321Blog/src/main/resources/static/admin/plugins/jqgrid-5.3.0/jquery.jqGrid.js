@@ -6818,7 +6818,7 @@ $.extend($.jgrid,{
 		mw.className= "ui-jqdialog " + classes.modal;
 		mw.id = aIDs.themodal;
 		var mh = document.createElement('div');
-		mh.className = "ui-jqdialog-titlebar " + classes.header;
+		mh.className = "ui-jqdialog-titlebar " + classes.header1;
 		mh.id = aIDs.modalhead;
 		$(mh).append("<span class='ui-jqdialog-title'>"+p.caption+"</span>");
 		var ahr= $("<a class='ui-jqdialog-titlebar-close "+common.cornerall+"'></a>")
@@ -12059,7 +12059,7 @@ $.jgrid.extend({
 				if( !(typeof grpTextStr ==='string' || typeof grpTextStr ==='number' ) ) {
 					grpTextStr = gv;
 				}
-				if(grp.groupSummaryPos[n.idx] === 'header')  {
+				if(grp.groupSummaryPos[n.idx] === 'header1.html')  {
 					str += "<tr id=\""+hid+"\"" +(grp.groupCollapse && n.idx>0 ? " style=\"display:none;\" " : " ") + "role=\"row\" class= \"" + common.content + " jqgroup ui-row-"+$t.p.direction+" "+clid+"\"><td style=\"padding-left:"+(n.idx * 12) + "px;"+"\"" + mul +">" + icon+grpTextStr + "</td>";
 					str += buildSummaryTd(i, 0, grp.groups, grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2) );
 					str += "</tr>";
@@ -12080,7 +12080,7 @@ $.jgrid.extend({
 						if(!grdata[kk - offset]) { break; }
 						str += grdata[kk - offset].join('');
 					}
-					if(grp.groupSummaryPos[n.idx] !== 'header') {
+					if(grp.groupSummaryPos[n.idx] !== 'header1.html') {
 						var jj;
 						if (gg !== undefined) {
 							for (jj = 0; jj < grp.groupField.length; jj++) {
@@ -14318,7 +14318,7 @@ $.jgrid.extend({
 			// summary columns
 			colTotals : false,
 			groupSummary : true,
-			groupSummaryPos :  'header',
+			groupSummaryPos :  'header1.html',
 			frozenStaticCols : false
 		}, options || {});
 		this.each(function(){
@@ -17548,7 +17548,7 @@ $.jgrid.extend({
 						grpTextStr = gv;
 					}
 					var arr;
-					if(grp.groupSummaryPos[n.idx] === 'header')  {
+					if(grp.groupSummaryPos[n.idx] === 'header1.html')  {
 						arr = buildSummaryTd(i, 0, grp.groups, 0 /*grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2)*/ );
 					} else {
 						arr = new Array(p.collen);
@@ -17573,7 +17573,7 @@ $.jgrid.extend({
 							str += arr.join( p.separator ) + p.newLine;
 						}
 
-						if(grp.groupSummaryPos[n.idx] !== 'header') {
+						if(grp.groupSummaryPos[n.idx] !== 'header1.html') {
 							var jj;
 							if (gg !== undefined) {
 								for (jj = 0; jj < grp.groupField.length; jj++) {
@@ -17968,7 +17968,7 @@ $.jgrid.extend({
 						grpTextStr = gv;
 					}
 					var arr;
-					if(grp.groupSummaryPos[n.idx] === 'header')  {
+					if(grp.groupSummaryPos[n.idx] === 'header1.html')  {
 						arr = buildSummaryTd(i, 0, grp.groups, 0 /*grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2)*/ );
 					} else {
 						arr = emptyData(data.header);
@@ -17986,7 +17986,7 @@ $.jgrid.extend({
 							addRow( to, false );
 						}
 
-						if(grp.groupSummaryPos[n.idx] !== 'header') {
+						if(grp.groupSummaryPos[n.idx] !== 'header1.html') {
 							var jj;
 							if (gg !== undefined) {
 								for (jj = 0; jj < grp.groupField.length; jj++) {
@@ -18252,7 +18252,7 @@ $.jgrid.extend({
 						grpTextStr = gv;
 					}
 					var arr;
-					if(grp.groupSummaryPos[n.idx] === 'header')  {
+					if(grp.groupSummaryPos[n.idx] === 'header1.html')  {
 						arr = buildSummaryTd(i, 0, grp.groups, 0 /*grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2)*/ );
 					} else {
 						arr = emptyData(def);
@@ -18270,7 +18270,7 @@ $.jgrid.extend({
 							rows.push( constructRow (to, true) );
 						}
 
-						if(grp.groupSummaryPos[n.idx] !== 'header') {
+						if(grp.groupSummaryPos[n.idx] !== 'header1.html') {
 							var jj;
 							if (gg !== undefined) {
 								for (jj = 0; jj < grp.groupField.length; jj++) {
@@ -18650,7 +18650,7 @@ $.jgrid.extend({
 						grpTextStr = gv;
 					}
 					var arr, colSpan = false;
-					if(grp.groupSummaryPos[n.idx] === 'header')  {
+					if(grp.groupSummaryPos[n.idx] === 'header1.html')  {
 						arr = buildSummaryTd(i, 0, grp.groups, 0 /*grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2)*/ );
 					} else {
 						arr = emptyData(data.header);
@@ -18670,7 +18670,7 @@ $.jgrid.extend({
 							//addRow( to, false );
 						}
 
-						if(grp.groupSummaryPos[n.idx] !== 'header') {
+						if(grp.groupSummaryPos[n.idx] !== 'header1.html') {
 							var jj;
 							if (gg !== undefined) {
 								for (jj = 0; jj < grp.groupField.length; jj++) {

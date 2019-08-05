@@ -14,11 +14,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,8 +34,10 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Autowired
     private UserAuthorityMapper userAuthorityMapper;
-    @Resource
-    private AdminUserMapper amdminUserMapper;
+
+    @Autowired
+    private AdminUserMapper adminUserMapper;
+
 
     @Override
     public String createSmsCode(String phone) throws ClientException {
@@ -73,24 +72,84 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     @Transactional
     public void saveUser(AdminUser user) {
-        Long id = Long.valueOf(UUID.randomUUID().toString());
-        user.setId(id);
-        user.setLoginPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        long min = 1;
+        long max = 1000000000;
+        long rangeLong = min + (((long) (new Random().nextDouble() * (max - min))));
+        user.setId(rangeLong);
+        user.setLoginPassword(bCryptPasswordEncoder.encode(user.getLoginPassword()));
         UserAuthority ua = new UserAuthority();
-        ua.setUserId(id);
-        ua.setAuthorityId(Long.valueOf("1"));
+        ua.setUserId(rangeLong);
+        ua.setAuthorityId(Long.valueOf("2"));
+        adminUserMapper.insertSelective(user);
         userAuthorityMapper.insertSelective(ua);
-        amdminUserMapper.insertSelective(user);
     }
+
+    @Override
+    public void updateUser(AdminUser originalUser) {
+        adminUserMapper.updateByPrimaryKeySelective(originalUser);
+    }
+
+    @Override
+    public AdminUser getUserById(Long id) {
+        return adminUserMapper.findByUserId(id);
+    }
+
     @Override
     public Boolean checkData(String data, Integer type) {
         switch (type){
             case 1:
-                return amdminUserMapper.countByUsername(data)==0;
+                return adminUserMapper.countByUsername(data)==0;
             case 2:
-                return amdminUserMapper.countByEmail(data)==0;
+                return adminUserMapper.countByEmail(data)==0;
             default:
         }
         return null;
+    }
+
+    @Override
+    public AdminUser getUserDetailByUsername(String username) {
+        return adminUserMapper.findByUserName(username)  ;
+    }
+
+    @Override
+    public boolean updatePassword(String username, String originalPassword, String newPassword) {
+      AdminUser adminUser =   adminUserMapper.findByUserName(username);
+        //当前用户非空才可以进行更改
+        if (adminUser != null) {
+            String originalPasswordEncoded = bCryptPasswordEncoder.encode(originalPassword);
+
+            String newPasswordMd5Encoded = bCryptPasswordEncoder.encode(newPassword);
+            //比较原密码是否正确
+            if (originalPasswordEncoded.equals(adminUser.getLoginPassword())) {
+                //设置新密码并修改
+                adminUser.setLoginPassword(newPasswordMd5Encoded);
+                if (adminUserMapper.updateByPrimaryKeySelective(adminUser) > 0) {
+                    //修改成功则返回true
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateName(String username, String loginUserName, String nickName) {
+        AdminUser adminUser =   adminUserMapper.findByUserName(username);
+        //当前用户非空才可以进行更改
+        if (adminUser != null) {
+            //设置新密码并修改
+            adminUser.setLoginUserName(loginUserName);
+            adminUser.setNickName(nickName);
+            if (adminUserMapper.updateByPrimaryKeySelective(adminUser) > 0) {
+                //修改成功则返回true
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public List<AdminUser> listUsersByUsernames(List<String> usernamelist) {
+        return adminUserMapper.listUsersByUsernames(usernamelist);
     }
 }

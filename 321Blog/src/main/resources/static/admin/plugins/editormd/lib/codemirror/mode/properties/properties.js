@@ -46,7 +46,7 @@ CodeMirror.defineMode("properties", function() {
       } else if (sol && ch === "[") {
         state.afterSection = true;
         stream.skipTo("]"); stream.eat("]");
-        return "header";
+        return "header1.html";
       } else if (ch === "=" || ch === ":") {
         state.position = "quote";
         return null;

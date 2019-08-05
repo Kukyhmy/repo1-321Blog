@@ -1,6 +1,6 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: '/admin/blogs/list',
+        url: '/user/blogs/list',
         datatype: "json",
         colModel: [
             {label: 'id', name: 'blogId', index: 'blogId', width: 50, key: true, hidden: true},
@@ -76,7 +76,7 @@ function search() {
     //点击搜索按钮默认都从第一页开始
     $("#jqGrid").jqGrid("setGridParam", {page: 1});
     //提交post并刷新表格
-    $("#jqGrid").jqGrid("setGridParam", {url: '/admin/blogs/list'}).trigger("reloadGrid");
+    $("#jqGrid").jqGrid("setGridParam", {url: '/user/blogs/list'}).trigger("reloadGrid");
 }
 
 /**
@@ -90,7 +90,7 @@ function reload() {
 }
 
 function addBlog() {
-    window.location.href = "/admin/blogs/edit";
+    window.location.href = "/user/blogs/edit";
 }
 
 function editBlog() {
@@ -98,12 +98,13 @@ function editBlog() {
     if (id == null) {
         return;
     }
-    window.location.href = "/admin/blogs/edit/" + id;
+    window.location.href = "/user/blogs/edit/" + id;
 }
 
 function deleteBlog() {
     var ids = getSelectedRows();
     if (ids == null) {
+        toastr.error("请选择您要删除的blog");
         return;
     }
     swal({
@@ -116,7 +117,7 @@ function deleteBlog() {
             if (flag) {
                 $.ajax({
                     type: "POST",
-                    url: "/admin/blogs/delete",
+                    url: "/user/blogs/delete",
                     contentType: "application/json",
                     data: JSON.stringify(ids),
                     success: function (r) {

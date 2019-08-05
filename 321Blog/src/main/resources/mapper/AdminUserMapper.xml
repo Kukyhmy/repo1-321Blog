@@ -20,7 +20,21 @@
   <sql id="Base_Column_List">
     id, login_user_name, login_password, nick_name, locked, avatar, email, phone, detail
   </sql>
-
+  <select id="listUsersByUsernames" resultType="com.kuky.blog.basics.entity.AdminUser">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_admin_user
+    where id IN
+    <foreach collection="usernamelist" item="item" index="index"
+             open="(" separator="," close=")">#{item}
+    </foreach>
+  </select>
+  <select id="findByUserId" parameterType="long" resultType="com.kuky.blog.basics.entity.AdminUser">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_admin_user
+    where id = #{id}
+  </select>
   <select id="findByUserName" parameterType="String" resultMap="BaseResultMap">
          SELECT u.*
   ,r.name
@@ -133,7 +147,24 @@
     </trim>
   </insert>
 
-
+  <update id="updateByPrimaryKeySelective" parameterType="com.kuky.blog.basics.entity.AdminUser">
+    update tb_admin_user
+    <set>
+      <if test="loginUserName != null">
+        login_user_name = #{loginUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 
 
 </mapper>

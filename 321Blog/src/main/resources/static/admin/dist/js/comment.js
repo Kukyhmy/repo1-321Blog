@@ -1,6 +1,6 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: '/admin/comments/list',
+        url: '/user/comments/list',
         datatype: "json",
         colModel: [
             {label: 'id', name: 'commentId', index: 'commentId', width: 50, key: true, hidden: true},
@@ -79,7 +79,7 @@ function checkDoneComments() {
             if (flag) {
                 $.ajax({
                     type: "POST",
-                    url: "/admin/comments/checkDone",
+                    url: "/user/comments/checkDone",
                     contentType: "application/json",
                     data: JSON.stringify(ids),
                     success: function (r) {
@@ -118,7 +118,7 @@ function deleteComments() {
             if (flag) {
                 $.ajax({
                     type: "POST",
-                    url: "/admin/comments/delete",
+                    url: "/user/comments/delete",
                     contentType: "application/json",
                     data: JSON.stringify(ids),
                     success: function (r) {
@@ -166,7 +166,7 @@ $('#saveButton').click(function () {
         });
         return;
     } else {
-        var url = '/admin/comments/reply';
+        var url = '/user/comments/reply';
         var id = getSelectedRow();
         var params = {"commentId": id, "replyBody": replyBody}
         $.ajax({

@@ -1,14 +1,21 @@
 package com.kuky.blog.basics.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kuky.blog.basics.entity.BlogVote;
 import lombok.Data;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.Date;
+import java.util.List;
+
 @Data
+@Document(indexName = "blog", type = "blog")
 public class Blog {
     private Long blogId;
 
     private String blogTitle;
+
+    private String blogSummary;
 
     private String blogSubUrl;
 
@@ -28,12 +35,21 @@ public class Blog {
 
     private Byte isDeleted;
 
+    private Integer blogVoteSize = 0;  // 点赞量
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     private Date updateTime;
 
     private String blogContent;
+
+    private List<BlogVote> votes;
+
+private BlogCategory blogCategory;
+
+
+
 
     public Long getBlogId() {
         return blogId;

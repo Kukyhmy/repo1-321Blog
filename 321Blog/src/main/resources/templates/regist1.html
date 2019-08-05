@@ -47,7 +47,7 @@
 
 <div class="register-box" id="formbox">
   <div class="register-logo" style="color: #007bff;">
-    <h1>注册成为博主</h1>
+    <h1>SignUp</h1>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -61,7 +61,7 @@
           <div class="form-group has-feedback item">
             <span class="fa fa-user  label"><span class="red">*</span>账号：</span>
             <div class="fl">
-            <input type="text"  required="true" class="form-control text"  tabindex="1" id="username" name="username" >
+            <input type="text"  required="true" class="form-control text"  tabindex="1" id="username" name="loginUserName" >
               <label id="username_succeed" class="blank"></label>
               <span class="clear"></span>
               <div id="username_error"></div>
@@ -72,7 +72,7 @@
             <div class="item">
             <span class="fa fa-lock label" ><span class="red">*</span>设置密码：</span>
               <div class="fl">
-            <input type="password"  required="true" tabindex="2" class="form-control text" id="pwd" name="password" >
+            <input type="password"  required="true" tabindex="2" class="form-control text" id="pwd" name="loginPassword" >
                 <label id="pwd_succeed" class="blank"></label>
                 <input type="checkbox" class="checkbox" id="viewpwd"/>
                 <label class="ftx23" for="viewpwd">显示密码字符</label>
@@ -96,7 +96,7 @@
           <div class="form-group has-feedback item">
             <span class="fa fa-user label"><span class="red">*</span>个人昵称：</span>
             <div class="fl">
-            <input type="text" required="true" id="realname" class="form-control text" tabindex="7" name="name">
+            <input type="text" required="true" id="realname" class="form-control text" tabindex="7" name="nickName">
               <label id="realname_succeed" class="blank"></label>
               <span class="clear"></span>
               <label id="realname_error"></label>
@@ -126,7 +126,7 @@
           <div class="form-group has-feedback item">
             <span class="fa fa-user label"><span class="red">*</span>验证码：</span>
             <div class="fl">
-              <input type="text" id="authcode"onchange="Verification_Smscode()" name="smscode" class="text text-1" autocomplete="off" MaxLength="6" tabindex="6" />
+              <input type="text" id="authcode"  name="smscode" class="text text-1" autocomplete="off" MaxLength="6" tabindex="6" /> <!--onchange="Verification_Smscode()"-->
               <label id="authcode_succeed" class="blank invisible"></label>
               <span class="clear"></span>
               <label id="authcode_error"></label>
@@ -151,12 +151,12 @@
           </div>
 
       <!--item end-->
-      <div class="item"> <span class="label">&nbsp;</span>
-        <input type="button" class="yellow_button disabled" id="registsubmit" value="提交注册信息" tabindex="8" disabled="disabled" />
-      </div>
-      <!--item end-->
-    </div>
-  </form>
+          <div class="item"> <span class="label">&nbsp;</span>
+            <input type="button" class="yellow_button disabled" id="registsubmit" value="提交注册信息" tabindex="8" disabled="disabled" />
+          </div>
+          <!--item end-->
+        </div>
+      </form>
       <div class="xian"></div>
       <p class="fotlogin"><span>已经有一个博客帐户？<a href="/login" style="color: #39c1de;">登录</a></span></p>
 </div>
@@ -208,7 +208,7 @@
         type: "POST",
         contentType: "application/x-www-form-urlencoded;charset=utf-8",
         scriptCharset: 'utf-8',
-        url: "/user/code",
+        url: "/code",
         success: function (data) {
           /* {"success":false,"message":"验证码发送失败","body":null}*/
           if (data.success == "true") {

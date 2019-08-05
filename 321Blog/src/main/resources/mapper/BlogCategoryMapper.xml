@@ -14,6 +14,43 @@
     category_id, category_name, category_icon, category_rank, is_deleted, create_time
   </sql>
 
+  <select id="selectByCategoryIds" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_blog_category
+    where category_id IN
+    <foreach collection="categoryIds" item="item" index="index"
+             open="(" separator="," close=")">#{item}
+    </foreach>
+    AND is_deleted = 0
+  </select>
+  <select id="getTotalCategories" parameterType="Map" resultType="int">
+    select count(*)  from tb_blog_category
+    where is_deleted=0
+    </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_blog_category
+    where category_id = #{categoryId} AND is_deleted = 0
+  </select>
+
+  <select id="findCategoryList" parameterType="Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_blog_category
+    where is_deleted=0
+    order by category_rank desc,create_time desc
+    <if test="start!=null and limit!=null">
+      limit #{start},#{limit}
+    </if>
+  </select>
+  <select id="selectByCategoryName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_blog_category
+    where category_name = #{categoryName} AND is_deleted = 0
+  </select>
   <insert id="insert" parameterType="com.kuky.blog.basics.entity.BlogCategory">
     insert into tb_blog_category (category_id, category_name, category_icon, 
       category_rank, is_deleted, create_time
@@ -65,6 +102,32 @@
       </if>
     </trim>
   </insert>
-
-
+  <update id="updateByPrimaryKeySelective" parameterType="com.kuky.blog.basics.entity.BlogCategory">
+    update tb_blog_category
+    <set>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryIcon != null">
+        category_icon = #{categoryIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryRank != null">
+        category_rank = #{categoryRank,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <update id="deleteBatch">
+    update tb_blog_category
+    set is_deleted=1 where category_id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </update>
 </mapper>

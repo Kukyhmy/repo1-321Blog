@@ -7,6 +7,9 @@ import java.util.List;
  * @author Kuky
  * @create 2019/7/20 19:28
  * 分页工具类
+ * 封装分页后的数据格式(当前端使用了jqueryGrid的分页插件的时候，
+ * 必须返回该对类的实例化对象的JSON串，并且属性名是固定的，这样才能够被前端的jquerygrid给识别，
+ * 然后页面才能成功渲染)
  */
 public class PageResult implements Serializable {
 

@@ -62,30 +62,9 @@ $.extend(validateFunction, {
             validateSettings.succeed.run(option);
         }
     },
-    mobile:function(option) {
-        var format = validateRules.isMobile(option.value);
-        if (!format) {
-            validateSettings.error.run(option, option.prompts.error);
-        }
-        else {
-            validateSettings.succeed.run(option);
-        }
-    },
 
-    companysite:function(option) {
-        var length = validateRules.betweenLength(option.value, 0, 80);
-        var format = validateRules.isCompanysite(option.value);
-        if (!length) {
-            validateSettings.error.run(option, option.prompts.error.badLength);
-        } else {
-            if (!format) {
-                validateSettings.error.run(option, option.prompts.error.badFormat);
-            }
-            else {
-                validateSettings.succeed.run(option);
-            }
-        }
-    },
+
+
     FORM_validate:function() {
         $("#username").jdValidate(validatePrompt.username, validateFunction.username, true);
         $("#pwd").jdValidate(validatePrompt.pwd, validateFunction.pwd, true)
@@ -94,9 +73,7 @@ $.extend(validateFunction, {
         $("#realname").jdValidate(validatePrompt.realname, validateFunction.realname, true);
         $("#department").jdValidate(validatePrompt.department, validateFunction.department, true);
         $("#tel").jdValidate(validatePrompt.tel, validateFunction.tel, true);
-        $("#mobile").jdValidate(validatePrompt.mobile,validateFunction.mobile,true);
         $("#mail").jdValidate(validatePrompt.mail, validateFunction.mail, true);
-        $("#companysite").jdValidate(validatePrompt.companysite,validateFunction.companysite,true);
         return validateFunction.FORM_submit(["#username","#pwd","#pwd2","#mail","#realname","#tel"]);
     }
 });
@@ -177,14 +154,13 @@ $("#registsubmit").click(function() {
         $(this).attr({"disabled":"disabled"}).attr({"value":"提交中,请稍等"});
         $.ajax({
             type: "POST",
-            url: "http://www.pinzhi365.com/user/regist/"+$("#authcode").val(),
+            url: "http://www.pinzhi365.com/regist/"+$("#authcode").val(),
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             data: $("#formpersonal").serialize(),
             success: function(result) {
-                if (result == "true") {
+                if (result) {
                     alert("注册成功");
-                    alert(result);
-                    window.location = "http://www.pinzhi365.com/";
+                    window.location = "http://www.pinzhi365.com/index";
                 }else{
                     alert("注册失败");
                     alert(result);
