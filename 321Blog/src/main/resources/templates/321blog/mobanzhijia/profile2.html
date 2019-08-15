@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<div th:replace="321blog/mobanzhijia/header2::header2('个人详情页','个人设置')"></div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Moonlight CSS Template</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+      <!--  <link rel="stylesheet" th:href="@{/profile/css/bootstrap.min.css}">-->
+        <link rel="stylesheet" th:href="@{/profile/css/bootstrap-theme.min.css}">
+        <link rel="stylesheet" th:href="@{/profile/css/fontAwesome.css}">
+        <link rel="stylesheet" th:href="@{/profile/css/light-box.css}">
+        <link rel="stylesheet" th:href="@{/profile/css/templatemo-main.css}">
+
+
+        <!-- jQuery image cropping plugin CSS -->
+        <link  th:href="@{/css/cropbox.css}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+        <script th:src="@{/profile/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"></script>
+    </head>
+
+<body>
+    
+    <div class="sequence">
+  
+      <div class="seq-preloader">
+        <svg width="39" height="16" viewBox="0 0 39 16" xmlns="http://www.w3.org/2000/svg" class="seq-preload-indicator"><g fill="#F96D38"><path class="seq-preload-circle seq-preload-circle-1" d="M3.999 12.012c2.209 0 3.999-1.791 3.999-3.999s-1.79-3.999-3.999-3.999-3.999 1.791-3.999 3.999 1.79 3.999 3.999 3.999z"/><path class="seq-preload-circle seq-preload-circle-2" d="M15.996 13.468c3.018 0 5.465-2.447 5.465-5.466 0-3.018-2.447-5.465-5.465-5.465-3.019 0-5.466 2.447-5.466 5.465 0 3.019 2.447 5.466 5.466 5.466z"/><path class="seq-preload-circle seq-preload-circle-3" d="M31.322 15.334c4.049 0 7.332-3.282 7.332-7.332 0-4.049-3.282-7.332-7.332-7.332s-7.332 3.283-7.332 7.332c0 4.05 3.283 7.332 7.332 7.332z"/></g></svg>
+      </div>
+      
+    </div>
+    
+  
+        <nav>
+          <div class="logo">
+              <img th:src="@{/profile/img/logo.png}" alt="">
+          </div>
+          <div class="mini-logo">
+              <img th:src="@{/profile/img/mini_logo.png}"alt="">
+          </div>
+          <ul>
+            <li><a href="#1"><i class="fa fa-home"></i> <em>Home</em></a></li>
+            <li><a href="#2"><i class="fa fa-user"></i> <em>About</em></a></li>
+            <li><a href="#3"><i class="fa fa-pencil"></i> <em>Entries</em></a></li>
+            <li><a href="#4"><i class="fa fa-image"></i> <em>Work</em></a></li>
+            <li><a href="#5"><i class="fa fa-envelope"></i> <em>Contact</em></a></li>
+          </ul>
+        </nav>
+        
+        <div class="slides">
+          <div class="slide" id="1">
+            <div class="content first-content blog-content-container">
+              <div class="container-fluid">
+                  <div class="col-md-3">
+                      <div class="author-image">
+                          <a class="blog-edit-avatar" data-toggle="modal"
+                                                    data-target="#flipFlop" role="button"
+                                                    data-th-attr="userName=${userModel.user.loginUserName}">
+                          <img th:src="${userModel.user.avatar} == null ? '/images/avatar-defualt.jpg' : ${userModel.user.avatar}" class="blog-avatar blog-avatar-230">
+
+                          </a>
+                      </div>
+                  </div>
+                  <div class="col-md-9">
+                      <h2>Mingalar par</h2>
+                      <form th:action="'/u/'+${userModel.user.loginUserName}+'/profile'" method="post" th:object="${userModel.user}" id="userForm">
+                          <input type="hidden" name="id" id="userId" th:value="*{id}" >
+
+                          <div class="form-group ">
+                              <label for="username" class="col-form-label">账号</label>
+                              <input type="text" class="form-control" id="username" name="loginUserName"  th:value="*{loginUserName}" readonly="readonly">
+
+                          </div>
+                          <div class="form-group">
+                              <label for="email" class="col-form-label">邮箱</label>
+                              <input type="email" class="form-control" id="email" name="email" th:value="*{email}" maxlength="50" placeholder="请输入邮箱">
+                          </div>
+                          <div class="form-group">
+                              <label for="name" class="col-form-label">姓名</label>
+                              <input type="text" class="form-control" id="name" name="nickName" th:value="*{nickName}" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
+                          </div>
+                          <div class="form-group">
+                              <label for="password" class="col-form-label">密码</label>
+                              <input type="password" class="form-control" id="password" name="loginPassword"  th:value="*{loginPassword}" maxlength="30" placeholder="请输入密码，至少3个字符，至多30个" >
+                          </div>
+                          <div class="form-group">
+
+                              <div class="main-btn"><a href="#2">保存</a></div>
+                          </div>
+                      </form>
+                      <p>Lorem ipsum <em>dolor sit amet</em>, consectetur adipiscing elit. <em>Sed vehicula blandit augue,</em> eu maximus odio tempus vitae.</p>
+                      <div class="fb-btn"><a href="#/" target="_blank">Our FB Page</a></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide" id="2">
+            <div class="content second-content">
+                <div class="container-fluid">
+                    <div class="col-md-6">
+                        <div class="left-content">
+                            <h2>My Detail</h2>
+
+                            <div style="height: 150px;">
+                                <p style="color: #fdfdfe " th:text="${userModel.user!=null and userModel.user.detail!=null}?${userModel.user.detail}:''" >本文介绍如何使用logstash同步mysql数据库信息到ElasticSearch.1.准备工作1.1 安装JDK网上文章比较多，可以参考：https://www.dalaoyang.cn/&amp;amp...</p>
+                            </div>
+
+                            <p>Nulla vitae interdum libero, vel posuere ipsum. Phasellus interdum est et dapibus tempus. Vestibulum malesuada lorem condimentum mauris ornare dapibus. Curabitur tempor ligula et <a href="#">placerat</a> molestie.</p>
+                            <p>Aliquam efficitur eu purus in interdum. <a href="#">Etiam tincidunt</a> magna ex, sit amet lobortis felis bibendum id. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                          <div class="main-btn"><a href="#3">Read More</a></div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="right-image">
+                          <img th:src="@{/profile/img/about_image.jpg}" alt="">
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="slide" id="3">
+            <div class="content third-content">
+                <div class="container-fluid">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="first-section">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="left-content">
+                                                <h2>Quisque commodo quam</h2>
+                                                <p>Vestibulum augue ex, finibus sit amet nisi id, maximus ultrices ipsum. Maecenas rhoncus nibh in mauris lobortis, a maximus diam faucibus. In et eros urna. Suspendisse potenti. Pellentesque commodo, neque nec molestie tempus, purus ante feugiat augue.</p>
+                                                <div class="main-btn"><a href="#4">Continue Reading</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="right-image">
+                                                <img th:src="@{/profile/img/first_service.jpg}" alt="first service">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="second-section">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="left-image">
+                                                <img  th:src="@{/profile/img/second_service.jpg}"  alt="second service">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="right-content">
+                                                <h2>Maecenas eu purus eu sapien</h2>
+                                                <p>Sed vitae felis in lorem mollis mollis eget in leo. Donec commodo, ex nec rutrum venenatis, nisi nisl malesuada magna, sed semper ipsum enim a ipsum. Aenean in ante vel mi molestie bibendum. Quisque sit amet lacus in diam pretium faucibus. Cras vel justo lorem.</p>
+                                                <div class="main-btn"><a href="#4">Continue Reading</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="tlinks">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
+          <div class="slide" id="4">
+            <div class="content fourth-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/first_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number One</h2>
+                                            <p>Quisque sit amet lacus in diam pretium faucibus. Cras vel justo lorem.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                       <!-- <img th:src="@{/profile/img/first_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/second_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Two</h2>
+                                            <p>Donec eget dictum tellus. Curabitur a interdum diam. Nulla vestibulum porttitor porta.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                      <!--  <img th:src="@{/profile/img/second_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/third_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Three</h2>
+                                            <p>Cras varius dolor et augue fringilla, eu commodo sapien iaculis.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+<!--                                        <img th:src="@{/peofile/img/third_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/fourth_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Four</h2>
+                                            <p>Vestibulum augue ex, finibus sit amet nisi id, maximus ultrices ipsum.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                       <!-- <img th:src="@{/peofile/img/fourth_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/fifth_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Fifth Item</h2>
+                                            <p>Donec commodo, ex nec rutrum venenatis, nisi nisl malesuada magna.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <!--<img th:src="@{/peofile/img/fifth_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/sixth_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Sixth Item</h2>
+                                            <p>Maecenas dapibus neque sed nisl consectetur, id semper nisi egestas.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+<!--                                        <img th:src="@{/peofile/img/sixth_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/seventh_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Seven</h2>
+                                            <p>Etiam aliquet, est id varius fringilla, eros libero pellentesque lectus.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                      <!--  <img th:src="@{/peofile/img/seventh_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/eight_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Eight</h2>
+                                            <p>Vestibulum augue ex, finibus sit amet nisi id, maximus ultrices ipsum.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <!--<img  th:src="@{/peofile/img/eight_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/ninth_big_item.jpg}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Nine</h2>
+                                            <p>Orci varius natoque penatibus et magnis dis parturient montes.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                      <!--  <img th:src="@{/peofile/img/ninth_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/fifth_big_item.jpg}"  data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Ten</h2>
+                                            <p>Vestibulum augue ex, finibus sit amet nisi id, maximus ultrices ipsum.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                      <!--  <img th:src="@{/peofile/img/fifth_item.jpg}" >-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/first_big_item.jpg}"  data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Eleventh Item</h2>
+                                            <p>Cras varius dolor et augue fringilla, eu commodo sapien iaculis.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                      <!--  <img th:src="@{/peofile/img/first_item.jpg}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a th:href="@{/profile/img/second_big_item.jpg}"  data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Twelvth Item</h2>
+                                            <p>Etiam tincidunt magna ex, sit amet lobortis felis bibendum id.</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                       <!-- <img th:src="@{/peofile/img/second_item.jpg}" >-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="slide" id="5">
+            <div class="content fifth-content">
+                <div class="container-fluid">
+                    <div class="col-md-6">
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <form id="contact" action="" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                  </fieldset>
+                                </div>
+                                 <div class="col-md-12">
+                                  <fieldset>
+                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required></textarea>
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Send Now</button>
+                                  </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+
+    
+   <!-- <script>window.jQuery || document.write('<script th:src="@{/profile/js/vendor/jquery-1.11.2.min.js}"><\/script>')</script>-->
+
+   <!-- <script th:src="@{/profile/js/vendor/bootstrap.min.js}"></script>-->
+    
+    <script th:src="@{/profile/js/datepicker.js}"></script>
+    <script th:src="@{/profile/js/plugins.js}" ></script>
+    <script th:src="@{/profile/js/main.js}" ></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        
+
+        // navigation click actions 
+        $('.scroll-link').on('click', function(event){
+            event.preventDefault();
+            var sectionID = $(this).attr("data-id");
+            scrollToID('#' + sectionID, 750);
+        });
+        // scroll to top action
+        $('.scroll-top').on('click', function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop:0}, 'slow');         
+        });
+        // mobile nav toggle
+        $('#nav-toggle').on('click', function (event) {
+            event.preventDefault();
+            $('#main-nav').toggleClass("open");
+        });
+    });
+    // scroll function
+    function scrollToID(id, speed){
+        var offSet = 0;
+        var targetOffset = $(id).offset().top - offSet;
+        var mainNav = $('#main-nav');
+        $('html,body').animate({scrollTop:targetOffset}, speed);
+        if (mainNav.hasClass("open")) {
+            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+            mainNav.removeClass("open");
+        }
+    }
+    if (typeof console === "undefined") {
+        console = {
+            log: function() { }
+        };
+    }
+    </script>
+    <!-- The modal -->
+    <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
+         aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">编辑头像</h4>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="avatarFormContainer"></div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" id="submitEditAvatar">选择</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script  th:src="@{/js/regist/main.js}"></script>
+
+    <script th:src="@{/js/regist/cropbox.js}"></script>
+
+    <!-- ajaxupload -->
+    <script th:src="@{/admin/plugins/ajaxupload/ajaxupload.js}"></script>
+</body>
+<div th:replace="321blog/mobanzhijia/footer::footer"></div>
+</html>

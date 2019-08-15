@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      th:fragment="header2(title,keywords)"  class="no-js">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" href="../blog/assets/images/favicon.png"/>
+    <title th:text="|${configurations.get('websiteName')} - ${pageName}|">321kuky.com My Blog</title>
+    <meta name="description" th:content="${configurations.get('websiteDescription')}">
+    <link rel="shortcut icon" th:href="@{${configurations.get('websiteIcon')}}"/>
+
+
+
+    <script type="application/javascript" th:src="@{/blog/yummy-jekyll/plugins/jquery/dist/jquery.min.js}"></script>
+    <!-- Third-Party CSS -->
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/bootstrap/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/octicons/octicons/octicons.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/hover/css/hover-min.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/primer-markdown/dist/user-content.min.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/syntax.css}">
+    <!-- My CSS -->
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/common.css}">
+    <!-- CSS set in page -->
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/index.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/about.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/blog-page.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/open-source.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/sidebar-popular-repo.css}">
+    <script type="text/javascript" th:src="@{/blog/yummy-jekyll/plugins/bootstrap/dist/js/bootstrap.min.js}"></script>
+
+    <!-- bootstrap tags CSS -->
+    <link href="../../css/bootstrap-tagsinput.css" th:href="@{/css/jquery.tagsinput.min.css}" rel="stylesheet">
+</head>
+<body>
+<header class="site-header">
+    <div class="container">
+        <a id="site-header-brand" href="/" title="personal blog">
+            <span class="octicon octicon-rocket" th:text="| ${configurations.get('websiteName')}|"></span>
+        </a>
+        </div>
+</header>
+</body>
+</html>
+

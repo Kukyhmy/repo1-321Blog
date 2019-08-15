@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      th:fragment="header(title,keywords)"  >
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" href="../blog/assets/images/favicon.png"/>
+    <title th:text="|${configurations.get('websiteName')} - ${pageName}|">321kuky.com My Blog</title>
+    <meta name="description" th:content="${configurations.get('websiteDescription')}">
+    <link rel="shortcut icon" th:href="@{${configurations.get('websiteIcon')}}"/>
+
+
+
+    <script type="application/javascript" th:src="@{/blog/yummy-jekyll/plugins/jquery/dist/jquery.min.js}"></script>
+    <!-- Third-Party CSS -->
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/bootstrap/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/octicons/octicons/octicons.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/hover/css/hover-min.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/plugins/primer-markdown/dist/user-content.min.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/syntax.css}">
+    <!-- My CSS -->
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/common.css}">
+    <!-- CSS set in page -->
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/index.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/about.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/blog-page.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/open-source.css}">
+    <link rel="stylesheet" th:href="@{/blog/yummy-jekyll/assets/css/sidebar-popular-repo.css}">
+    <script type="text/javascript" th:src="@{/blog/yummy-jekyll/plugins/bootstrap/dist/js/bootstrap.min.js}"></script>
+
+    <!-- toastr CSS -->
+    <link th:href="@{/css/toastr.css}" rel="stylesheet">
+    <script th:src="@{/blog/mobanzhijia/js/toastr.min.js}"></script>
+
+    <!-- bootstrap tags CSS -->
+    <link th:href="@{/css/jquery.tagsinput.min.css}" rel="stylesheet">
+</head>
+<body>
+<header class="site-header">
+    <div class="container">
+        <a id="site-header-brand" href="/" title="personal blog">
+            <span class="octicon octicon-rocket" th:text="| ${configurations.get('websiteName')}|"></span>
+        </a>
+        <nav class="site-header-nav" role="navigation">
+            <a th:href="@{/index}" class=" site-header-nav-item hvr-underline-from-center">
+                Home
+            </a>
+            <a th:href="@{/categories}" class=" site-header-nav-item hvr-underline-from-center">
+                Categories
+            </a>
+            <a th:href="@{/link}" class=" site-header-nav-item hvr-underline-from-center">
+                Links
+            </a>
+            <a th:href="@{/about}" class=" site-header-nav-item hvr-underline-from-center">
+                About
+            </a>
+            <a href="https://github.com/Kukyhmy" class=" site-header-nav-item hvr-underline-from-center" target="_blank">
+                GitHub
+            </a>
+
+            <div sec:authorize="isAuthenticated()"  class="row" >
+                <a  th:href="'/' + ${#authentication.name} + '/blogs/edit'" class="btn btn-outline-success my-2 my-sm-0   site-header-nav-item hvr-underline-from-center">写博客</a>
+                <a class=" site-header-nav-item hvr-underline-from-center" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人中心</a>
+                <a th:href="@{/signOut}" class=" site-header-nav-item hvr-underline-from-center">
+                    退出登录
+                </a>
+            </div>
+
+            <div sec:authorize="isAnonymous()">
+            <a th:href="@{/login}" class=" site-header-nav-item hvr-underline-from-center">
+                登录
+            </a>
+                <a th:href="@{/regist}" class=" site-header-nav-item hvr-underline-from-center">
+                    注册
+                </a>
+           <!-- <a id="bindingQq" href="javascript:void(0)" class=" site-header-nav-item hvr-underline-from-center">
+                <i class="fa fa-qq fa-2x"></i>
+            </a>
+            <a id="bindingWeixin" href="javascript:void(0)" class=" site-header-nav-item hvr-underline-from-center">
+                <i class="fa fa-weixin fa-2x"></i>
+            </a>
+            <a id="bindingWeibo" href="javascript:void(0)" class=" site-header-nav-item hvr-underline-from-center">
+                <i class="fa fa-weibo fa-2x"></i>
+            </a>-->
+            </div>
+       </nav>
+    </div>
+
+  <!--  <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
+            <a class="btn big-register" href="/regist" >Register</a></div>
+        <div class="col-sm-4"></div>
+    </div>-->
+
+
+</header>
+</body>
+<!--<div th:replace="321blog/mobanzhijia/login-fragment::login('登录模态框','login')"></div>-->
+</html>
+

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  class="no-js"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<!--<div th:replace="blog/yummy-jekyll/header::header('首页','My Blog')"></div>-->
+<head>
+  <!-- META DATA -->
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<title>Home</title>
+	<link rel="stylesheet" th:href="@{/blog/amaze/css/base.css}"  type="text/css">
+	<!-- Bootstrap Core CSS -->
+    <link rel="stylesheet"  th:href="@{/blog/mobanzhijia/css/bootstrap.min.css}" type="text/css">
+	
+	<!-- Owl Carousel Assets -->
+    <link th:href="@{/blog/mobanzhijia/owl-carousel/owl.carousel.css}" rel="stylesheet">
+    <!-- <link href="owl-carousel/owl.theme.css" rel="stylesheet"> -->
+	
+	<!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/blog/mobanzhijia/css/style.css}"/>
+
+	<!-- Custom Fonts -->
+    <link rel="stylesheet" th:href="@{/blog/mobanzhijia/font-awesome-4.4.0/css/font-awesome.min.css}" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script type="text/javascript" th:src="@{/blog/mobanzhijia/js/html5shiv.js}"></script>
+        <script type="text/javascript" th:src="@{/blog/mobanzhijia/js/respond.min.js}"></script>
+    <![endif]-->
+	<script type="application/javascript" th:src="@{/blog/yummy-jekyll/plugins/jquery/dist/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/blog/yummy-jekyll/plugins/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<link th:href="@{/css/thymeleaf-bootstrap-paginator.css}" rel="stylesheet">
+	<script  th:src="@{/js/regist/thymeleaf-bootstrap-paginator.js}"></script>
+	<!-- JavaScript -->
+	<script th:src="@{/js/regist/index.js}"></script>
+	<!-- toastr CSS -->
+	<link th:href="@{/css/toastr.css}" rel="stylesheet">
+	<script th:src="@{/blog/mobanzhijia/js/toastr.min.js}"></script>
+	<style>
+		.haha{
+			margin-left: 20px;
+		}
+	</style>
+</head>
+ <body class="index-page">
+
+	<!-- /////////////////////////////////////////Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="index.html">321BLOG</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="navbar-nav mr-auto">
+					<!--<div class="btn-group" role="group" aria-label="...">-->
+						<li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)" th:attr="url='/blogs?order=new'" ><button type="button" class="btn btn-default">最新<span class="sr-only">(current)</span> </button></a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link" href="javascript:void(0)" th:attr="url='/blogs?order=hot'"><button type="button" class="btn btn-default">最热</button></a>
+						</li>
+					<!--</div>-->
+
+					<form class="form-inline mt-2 mt-md-0">
+						<input class="form-control mr-sm-2" type="text" placeholder="搜索" id="indexkeyword" th:value="${keyword}">
+						<a href="javascript:void(0)" class="btn btn-outline-secondary my-2 my-sm-0" id="indexsearch"><i class="fa fa-search"
+																														aria-hidden="true"></i></a>
+					</form>
+
+				</ul>
+                <ul class="nav navbar-nav navbar-right">
+					<li>
+                        <a class="page-scroll" th:href="@{/index}">Home</a>
+                    </li>
+					<li>
+                        <a class="page-scroll" th:href="@{/categories}">Categories</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" th:href="@{/link}">Links</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" th:href="@{/about}">About</a>
+                    </li>
+					<li>
+                        <a class="page-scroll" thref="https://github.com/Kukyhmy">GitHub</a>
+                    </li>
+					<div sec:authorize="isAnonymous()">
+						<a th:href="@{/login}" class=" page-scroll haha" >
+							<strong>登录</strong>
+						</a>
+						<a th:href="@{/regist}" class=" page-scroll haha" >
+							<strong>注册</strong>
+						</a>
+						<form id="bindingForm" method="post">
+							<input id="method" type="hidden" name="_method" value="delete"/>
+							<!--<button id="bindingBut"></button>-->
+						</form>
+						<a id="bindingQq" href="javascript:void(0)" onclick="login()" class=" haha" >
+							<strong><i class="fa fa-qq fa-2x"></i></strong>
+						</a>
+						<a id="bindingWeixin" href="javascript:void(0)"  onclick="login()" class=" haha">
+							<strong><i class="fa fa-weixin fa-2x"></i></strong>
+						</a>
+						<a id="bindingWeibo" href="javascript:void(0)" onclick="login()"  class=" haha">
+							<strong><i class="fa fa-weibo fa-2x"></i></strong>
+						</a>
+					</div>
+					<div sec:authorize="isAuthenticated()"  class="row" >
+						<!--th:href="'/' + ${#authentication.name} + '/blogs/edit'"-->
+						<a  href="javascript:void(0)" onclick="editBlog()"  class="page-scroll haha"><strong>写博客</strong></a>
+						<a class="page-scroll haha" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" ><strong>个人中心</strong></a>
+						<a th:href="@{/signOut}" class="page-scroll haha">
+							<strong>退出登录</strong>
+						</a>
+					</div>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+	<!-- Navigation -->
+
+	<!-- CAROUSEL -->
+	<div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel" data-interval="4000">
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<img  th:src="@{/blog/mobanzhijia/images/banner1.jpg}" alt="...">
+				<!-- Static Header -->
+				<div class="container">
+				<div class="header-text hidden-xs">
+					<div class="col-md-12 text-center">
+						<h1>WELCOME</h1>
+						<hr>
+						<p>本站所有文章均为本人日常学习历程或日常踩坑日记</p>
+					</div>
+				</div><!-- /header-text -->
+				</div>
+			</div>
+			<div class="item">
+				<img  th:src="@{/blog/mobanzhijia/images/banner2.jpg}" alt="...">
+				<!-- Static Header -->
+				<div class="header-text hidden-xs">
+					<div class="col-md-12 text-center">
+						<h1>WELCOME</h1>
+						<hr>
+						<p>我不怕千万人阻挡，只怕自己投降</p>
+					</div>
+				</div><!-- /header-text -->
+			</div>
+			
+		</div>
+		<!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+	</div> <!-- Carousel -->
+	
+	<header class="container">
+		<div class="site-branding">
+			<h1 class="site-title">
+				<a href="index.html">
+					<span>Kuky</span>
+				</a>
+			</h1>
+			<h2 class="site-description">Welcome to Us !</h2>
+		</div>
+
+		<div class="social-links">
+			<ul class="list-inline">
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+				<li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+				<li><a href="#"><i class="fa fa-rss"></i></a></li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- /////////////////////////////////////////Content -->
+	<div id="page-content">
+	
+		<!-- ////////////Content Box 01 -->
+		<section class="box-content box-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+
+						<div class="am-g am-g-fixed blog-fixed">
+						<!--<div th:replace="321blog/mobanzhijia/blog-list2::blog-list-fragment2"></div>-->
+							<main class="articles-list">
+								<div id="mainContainer">
+									<div id="mainContainerRepleace">
+
+										<th:block th:if="${null != blogList}">
+											<th:block th:each="blog : ${blogList}">
+												<article class="am-g blog-entry-article">
+													<div class="am-u-lg-6 am-u-lg-12 am-u-sm-12 blog-entry-text post-preview">
+														<div class="topic-header">
+															<div class="pull-left">
+																<div class="blog-flex-center">
+																	<div class="blog-flex0">
+																		<a href="/u/waylau" title="waylau" th:href="'/u/' + ${blog.username}"  th:title="${blog.username}">
+																			<img src="/images/avatar-defualt.jpg" th:src="${blog.avatar} == null ? '/images/avatar-defualt.jpg' : ${blog.avatar}"  class="link avatar avatar-image">
+																		</a>
+																	</div>
+																	<div class="author-lockup blog-flex1">
+																		<a class="link" href="javascript:;"
+																		   th:text="${configurations.get('yourName')}">Kuky</a>
+																		<span class="in">in</span>
+																		<span class="category-name">
+                                <a class="category-name" style="color: blue" rel="tag" th:href="@{'/category/' + ${blog.blogCategoryName}}"
+								   th:utext="${blog.blogCategoryName}">
+								</a>
+                            </span>
+																	</div>
+																</div>
+															</div>
+															<span class="pull-right time pc_time"
+																  th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd')}">2019-07</span>
+														</div>
+														<h1 class="post-index-title" >
+															<a itemtype="url" th:href="@{'/blog/' + ${blog.blogId}}" style="color: #fdfdfe">
+																<th:block th:text="${blog.blogTitle}" ></th:block>
+															</a>
+														</h1>
+														<div class="post-content-preview article-body">
+															<a th:href="@{'/blog/' + ${blog.blogId}}">
+																<img th:src="@{${blog.blogCoverImage}}" alt=""></a>
+
+															<div style="height: 150px;">
+																<p style="color: #fdfdfe " th:text="${blog.blogSummary}">本文介绍如何使用logstash同步mysql数据库信息到ElasticSearch.1.准备工作1.1 安装JDK网上文章比较多，可以参考：https://www.dalaoyang.cn/&amp;amp...</p>
+															</div>
+														</div>
+														<div class="clearfix topic-footer">
+															<span class="pull-left time mobile_time">2018-01</span>
+														</div>
+													</div>
+												</article>
+											</th:block>
+										</th:block>
+										<div th:replace="~{321blog/mobanzhijia/page :: page}">...</div>
+									</div>
+								</div>
+							</main>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+
+
+						<!--<h3 class="sidebar-title" style="color: #fdfdfe"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>当前用户</h3>
+						<div id="blog-categories">
+							<ul class="list-group">
+								<div sec:authorize="isAuthenticated()"  class="row" >
+								<a class="blog-edit-avatar" th:href="   @{'/u/' + ${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}+ '/profile'}" title="kuky" th:title="${user.loginUserName}">
+									<img th:src=" ${#authentication.principal.avatar}== null ? '/images/avatar-defualt.jpg' : ${user.avatar}" class="blog-avatar blog-avatar-230">
+								</a>
+								<li class="list-group-item">
+									<h2 class="card-text" th:text="${user.nickName}">haha</h2>
+									<h4 class="card-text" th:text="${user.loginUserName}">kuky</h4>
+								</li>
+								<li class="list-group-item">
+									<h5><i class="fa fa-envelope-o" aria-hidden="true"></i>
+										<a  th:href="'mailto:'+ ${user.email}" th:text="${user.email}">13336470132@163.com
+										</a>
+									</h5>
+								</li>
+								<li class="list-group-item">
+									<th:block th:text="${user.detail}"></th:block>
+								</li>
+								</div>
+
+							</ul>
+						</div>-->
+						<!--<h3 class="sidebar-title" style="color: #fdfdfe"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>当前用户</h3>
+						<div id="blog-categories">
+							<ul class="list-group">
+								<div sec:authorize="isAuthenticated()"  class="row" >
+									<a class="blog-edit-avatar" th:href="   @{'/u/' + ${user.nickname}+ '/profile'}" title="kuky" th:title="${user.nickname}">
+										<img th:src=" ${user.headimg}== null ? '/images/avatar-defualt.jpg' : ${user.headimg}" class="blog-avatar blog-avatar-230">
+									</a>
+									<li class="list-group-item">
+										<h2 class="card-text" th:text="${user.nickname}">haha</h2>
+									</li>
+									<li class="list-group-item">
+										<h5><i class="fa fa-envelope-o" aria-hidden="true"></i>
+											<a  th:href="'mailto:'+ ${user.email}" th:text="${user.email}">13336470132@163.com
+											</a>
+										</h5>
+									</li>
+									<li class="list-group-item">
+										<th:block th:text="${user.detail}"></th:block>
+									</li>
+								</div>
+
+							</ul>
+						</div>-->
+
+						<h3 class="sidebar-title" style="color: #fdfdfe"><i class="fa fa-fire" aria-hidden="true"></i>点击最多</h3>
+						<div id="blog-categories">
+							<ul class="list-group">
+								<th:block th:if="${null != hotBlogs}">
+									<th:block th:each="hotBlog : ${hotBlogs}">
+										<li class="list-group-item"><a th:href="@{'/blog/' + ${hotBlog.blogId}}">
+											<th:block th:text="${hotBlog.blogTitle}"></th:block>
+										</a></li>
+									</th:block>
+								</th:block>
+							</ul>
+						</div>
+						<h3 class="sidebar-title" style="color: #fdfdfe"><i class="fa fa-line-chart" aria-hidden="true"></i>最新发布</h3>
+						<div id="blog-categories">
+							<ul class="list-group">
+								<th:block th:if="${null != newBlogs}">
+									<th:block th:each="newBlog : ${newBlogs}">
+										<li class="list-group-item"><a th:href="@{'/blog/' + ${newBlog.blogId}}">
+											<th:block th:text="${newBlog.blogTitle}"></th:block>
+										</a></li>
+									</th:block>
+								</th:block>
+							</ul>
+						</div>
+						<h3 class="sidebar-title" style="color: #fdfdfe"><i class="fa fa-tags" aria-hidden="true"></i> 标签栏</h3>
+						<div id="blog-categories">
+							<ul class="list-group">
+								<th:block th:if="${null != hotTags}">
+									<th:block th:each="hotTag : ${hotTags}">
+										<li class="list-group-item"><a th:href="@{'/tag/' + ${hotTag.tagName}}">
+											<th:block th:text="${hotTag.tagName}"></th:block>
+											<span class="badge" th:text="${hotTag.tagCount}">1</span>
+										</a></li>
+									</th:block>
+								</th:block>
+							</ul>
+						</div>
+						<h3 class="sidebar-title" style="color: #fdfdfe"><i class="fa fa-users" aria-hidden="true"></i> 热门用户</h3>
+						<div id="blog-categories">
+							<ul class="list-group">
+								<span th:each="user: ${users}" th:object="${user}">
+				                  <a  th:href="@{'/u/' +  *{loginUserName} + '/profile'}" title="kuky" th:title="*{loginUserName}">
+				                    <img th:src="*{avatar} == null ? '/images/avatar-defualt.jpg' : *{avatar}" class="blog-avatar-50">
+				                  </a>
+				                </span>
+							</ul>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- FOOTER -->
+	<div th:replace="321blog/mobanzhijia/footer::footer"></div>
+  
+	<!-- Custom Theme JavaScript -->
+	<script  th:src="@{/blog/mobanzhijia/js/agency.js}"></script>
+
+	<!-- Plugin JavaScript -->
+	<script th:src="@{/blog/mobanzhijia/js/jquery.easing.min.js}"></script>
+	<script  th:src="@{/blog/mobanzhijia/js/classie.js}"></script>
+	<script th:src="@{/blog/mobanzhijia/js/cbpAnimatedHeader.js}"></script>
+	
+</body>
+<!--
+<script>
+	$(function () {
+		$.ajax({
+			url: "connect",
+			type: "get",
+			async: true,
+			dataType: "json",
+			success: function (res) {
+				/* {"weixin":false,"weibo":false,"qq":false}*/
+				if (res.qq) {
+					//解绑
+					$("#bindingQq").attr("title", "解绑")
+					$(".fa-qq").addClass("social_title");
+				} else {
+					//绑定
+					$("#bindingQq").attr("title", "绑定")
+					$(".fa-qq").removeClass("social_title");
+				}
+				if (res.weixin) {
+					//解绑
+					$("#bindingWeixin").attr("title", "解绑")
+					$(".fa-weixin").addClass("social_title");
+				} else {
+					//绑定
+					$("#bindingWeixin").attr("title", "绑定")
+					$(".fa-weixin").removeClass("social_title");
+				}
+				if (res.weibo) {
+					//解绑
+					$("#bindingWeibo").attr("title", "解绑")
+					$(".fa-weibo").addClass("social_title");
+				} else {
+					//绑定
+					$("#bindingWeibo").attr("title", "绑定")
+					$(".fa-weibo").removeClass("social_title");
+				}
+			},
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus); // paser error;
+			}
+
+		});
+
+		$("#bindingQq").click(function () {
+			var title = $("#bindingQq").attr("title");
+			$("#bindingForm").attr("action","connect/callback.do");
+			if ("绑定" === title) {
+				//执行绑定炒作
+				$("#method").val("post");
+				$("#bindingForm").submit();
+			} else {
+				//执行解绑事件
+				$("#method").val("delete");
+				$("#bindingForm").submit();
+			}
+		});
+		$("#bindingWeixin").click(function () {
+			var title = $("#bindingWeixin").attr("title");
+			$("#bindingForm").attr("action","connect/weixin");
+			if ("绑定" === title) {
+				//执行绑定炒作
+				$("#method").val("post");
+				$("#bindingForm").submit();
+			} else {
+				//执行解绑事件
+				$("#method").val("delete");
+				$("#bindingForm").submit();
+			}
+		});
+		$("#bindingWeibo").click(function () {
+			var title = $("#bindingWeibo").attr("title");
+			$("#bindingForm").attr("action","connect/weibo");
+			if ("绑定" === title) {
+				//执行绑定炒作
+				$("#method").val("post");
+				$("#bindingForm").submit();
+			} else {
+				//执行解绑事件
+				$("#method").val("delete");
+				$("#bindingForm").submit();
+			}
+		});
+	});
+</script>
+-->
+
+<script>
+	/*注册监听*/
+	function editBlog() {
+		toastr.info('用户发表博客功能暂未开放！');
+	}
+	function login() {
+		toastr.info('社交登录暂未开放！');
+	}
+	$(function(){    //自定义参数
+		toastr.options = {
+			closeButton: false,  	//是否显示关闭按钮（提示框右上角关闭按钮）。
+			debug: false,  			//是否为调试。
+			progressBar: true,  	//是否显示进度条（设置关闭的超时时间进度条）
+			positionClass: "toast-top-center",  	//消息框在页面显示的位置
+			onclick: null,  		//点击消息框自定义事件
+			showDuration: "300",  	//显示动作时间
+			hideDuration: "1000",  	//隐藏动作时间
+			timeOut: "2000",  		//自动关闭超时时间
+			extendedTimeOut: "1000",
+			showEasing: "swing",
+			hideEasing: "linear",
+			showMethod: "fadeIn",  	//显示的方式，和jquery相同
+			hideMethod: "fadeOut"  	//隐藏的方式，和jquery相同
+			//等其他参数
+		};
+	});
+
+</script>
+</html>

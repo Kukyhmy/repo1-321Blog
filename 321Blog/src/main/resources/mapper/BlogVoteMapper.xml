@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuky.blog.basics.dao.BlogVoteMapper">
+  <resultMap id="BaseResultMap" type="com.kuky.blog.basics.entity.BlogVote">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="blog_id" jdbcType="BIGINT" property="blogId" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, create_time, blog_id
+  </sql>
+
+
+
+
+  <insert id="insert" parameterType="com.kuky.blog.basics.entity.BlogVote">
+    insert into tb_vote (id, create_time, blog_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{blogId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kuky.blog.basics.entity.BlogVote">
+    insert into tb_vote
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="blogId != null">
+        blog_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blogId != null">
+        #{blogId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+
+
+</mapper>

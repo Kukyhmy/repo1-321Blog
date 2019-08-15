@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Login Form Template</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet"  th:href="@{/blog/mobanzhijia/assets/bootstrap/css/bootstrap.min.css}">
+        <link rel="stylesheet"  th:href="@{/blog/mobanzhijia/assets/font-awesome/css/font-awesome.min.css}">
+		<link rel="stylesheet"  th:href="@{/blog/mobanzhijia/assets/css/form-elements.css}">
+        <link rel="stylesheet"  th:href="@{/blog/mobanzhijia/assets/css/style.css}">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" ></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" th:href="@{/blog/mobanzhijia/assets/ico/favicon.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144"  th:href="@{/blog/mobanzhijia/assets/ico/apple-touch-icon-144-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114"  th:href="@{/blog/mobanzhijia/assets/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72"  th:href="@{/blog/mobanzhijia/assets/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon-precomposed"  th:href="@{/blog/mobanzhijia/assets/ico/apple-touch-icon-57-precomposed.png}">
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>321Blog to </strong> Login </h1>
+                            <div class="description">
+                            	<p>
+	                            	Welcome to kuky's blog,enjoy yourself,<strong>STUDY</strong> together!
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Login to our site</h3>
+                            		<p>Enter your username and password to log on:</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+                                <form th:action="@{/authentication/form}" method="post"  class="login-form" role="form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text"  name="username" placeholder="Username..." class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        </div>
+                                    <div class="form-group">
+                                        <tr>
+                                            <td colspan='2'><input name="remember-me" type="checkbox" value="true" />记住我</td>
+                                        </tr>
+			                        </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="verifyCode" placeholder="请输入验证码" required="true">
+                                        </div>
+                                        <div class="col-6">
+                                            <img alt="单击图片刷新！" class="pointer" th:src="@{/common/kaptcha}"
+                                                 onclick="this.src='/common/kaptcha?d='+new Date()*1">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign in!
+                                            </button>
+                                            <div class=" col-md-5" th:if="${loginError}">
+                                                <p class="blog-label-error" th:text="${errorMsg}"></p>
+                                            </div>
+                                            <!--<span class="help-block" style="color: red" th:if="${param.error}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span> -->
+                                            <!-- 以下为显示认证失败等提示信息（th:if=""一定要写 ） -->
+                                            <span class="help-block" style="color: red" th:if="${param.error}" th:text="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message}"></span>
+                                        </div>
+                                    </div>
+			                       <!-- <button type="submit" class="btn"></button>-->
+                                </form>
+                                <div class="xian"></div>
+                                <p class="fotlogin"><span>Don't have a 321Blog account yet?<a href="/regist" style="color: #39c1de;"> Create one!</a></span></p>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 social-login">
+                        	<h3>...or login with:</h3>
+                        	<div class="social-login-buttons">
+	                        	<a class="btn btn-link-1 btn-link-1-qq" onclick="login()" href="javascript:void(0)" >
+                                    <i class="fa fa-qq fa-2x"></i>QQ
+	                        	</a>
+	                        	<a class="btn btn-link-1 btn-link-1-weixin" onclick="login()" href="javascript:void(0)">
+                                    <i class="fa fa-weixin fa-2x"></i>WeChat
+	                        	</a>
+	                        	<a class="btn btn-link-1 btn-link-1-weibo" onclick="login()" href="javascript:void(0)">
+	                        		<i class="fa fa-weibo"></i> WeiBo
+	                        	</a>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Javascript -->
+        <script  th:src="@{/blog/mobanzhijia/assets/js/jquery-1.11.1.min.js}"></script>
+        <script  th:src="@{/blog/mobanzhijia/assets/bootstrap/js/bootstrap.min.js}"></script>
+        <script  th:src="@{/blog/mobanzhijia/assets/js/jquery.backstretch.min.js}"></script>
+        <script  th:src="@{/blog/mobanzhijia/assets/js/scripts.js}"></script>
+        
+        <!--[if lt IE 10]>
+            <script  th:src="@{/blog/mobanzhijia/assets/js/placeholder.js}"></script>
+        <![endif]-->
+        <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 164px; width: 1519px; z-index: -999999; position: fixed;">
+            <img th:src="@{/blog/mobanzhijia/assets/img/backgrounds/1.jpg}" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1519px; height: 1012.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -424.333px;">
+
+        </div>
+        <!-- toastr CSS -->
+        <link th:href="@{/css/toastr.css}" rel="stylesheet">
+        <script th:src="@{/blog/mobanzhijia/js/toastr.min.js}"></script>
+    </body>
+    <script>
+        function login() {
+            toastr.info('社交登录暂未开放！');
+        }
+        $(function(){    //自定义参数
+            toastr.options = {
+                closeButton: false,  	//是否显示关闭按钮（提示框右上角关闭按钮）。
+                debug: false,  			//是否为调试。
+                progressBar: true,  	//是否显示进度条（设置关闭的超时时间进度条）
+                positionClass: "toast-top-center",  	//消息框在页面显示的位置
+                onclick: null,  		//点击消息框自定义事件
+                showDuration: "300",  	//显示动作时间
+                hideDuration: "1000",  	//隐藏动作时间
+                timeOut: "2000",  		//自动关闭超时时间
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",  	//显示的方式，和jquery相同
+                hideMethod: "fadeOut"  	//隐藏的方式，和jquery相同
+                //等其他参数
+            };
+        });
+
+    </script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  class="no-js">
+<div th:fragment="blog-list-fragment2" class="am-u-lg-8 am-u-sm-12">
+    <main class="articles-list">
+        <div id="mainContainer">
+        <div id="mainContainerRepleace">
+
+            <th:block th:if="${null != blogList}">
+                <th:block th:each="blog : ${blogList}">
+                    <article class="am-g blog-entry-article">
+                        <div class="am-u-lg-6 am-u-lg-12 am-u-sm-12 blog-entry-text post-preview">
+                            <div class="topic-header">
+                                <div class="pull-left">
+                                    <div class="blog-flex-center">
+                                        <div class="blog-flex0">
+                                            <a href="/u/waylau" title="waylau" th:href="'/u/' + ${blog.username}"  th:title="${blog.username}">
+                                                <img src="/images/avatar-defualt.jpg" th:src="${blog.avatar} == null ? '/images/avatar-defualt.jpg' : ${blog.avatar}"  class="link avatar avatar-image">
+                                            </a>
+                                        </div>
+                                        <div class="author-lockup blog-flex1">
+                                            <a class="link" href="javascript:;"
+                                               th:text="${configurations.get('yourName')}">Kuky</a>
+                                            <span class="in">in</span>
+                                            <span class="category-name">
+                                <a class="category-name" style="color: blue" rel="tag" th:href="@{'/category/' + ${blog.blogCategoryName}}"
+                                   th:utext="${blog.blogCategoryName}">
+								</a>
+                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="pull-right time pc_time"
+                                      th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd')}">2019-07</span>
+                            </div>
+                            <h1 class="post-index-title" >
+                                <a itemtype="url" th:href="@{'/blog/' + ${blog.blogId}}" style="color: #fdfdfe">
+                                <th:block th:text="${blog.blogTitle}" ></th:block>
+                                </a>
+                            </h1>
+                            <div class="post-content-preview article-body">
+                                <a th:href="@{'/blog/' + ${blog.blogId}}">
+                                    <img th:src="@{${blog.blogCoverImage}}" alt=""></a>
+
+                                <div style="height: 150px;">
+                                    <p style="color: #fdfdfe " th:text="${blog.blogSummary}">本文介绍如何使用logstash同步mysql数据库信息到ElasticSearch.1.准备工作1.1 安装JDK网上文章比较多，可以参考：https://www.dalaoyang.cn/&amp;amp...</p>
+                                </div>
+                            </div>
+                            <div class="clearfix topic-footer">
+                                <span class="pull-left time mobile_time">2018-01</span>
+                            </div>
+                        </div>
+                    </article>
+                </th:block>
+            </th:block>
+            <div th:replace="~{321blog/mobanzhijia/page :: page}">...</div>
+        </div>
+        </div>
+    </main>
+</div>
+</html>
