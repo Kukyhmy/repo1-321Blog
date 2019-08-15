@@ -15,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+/**
+ * @author Kuky
+ * @create 2019/7/8 15:25
+ */
 @Controller
 public class ErrorPageController implements ErrorController {
 

@@ -20,6 +20,28 @@
   <sql id="Base_Column_List">
     id, login_user_name, login_password, nick_name, locked, avatar, email, phone, detail
   </sql>
+  <select id="login" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_admin_user
+    where login_user_name = #{userName,jdbcType=VARCHAR} AND login_password=#{password,jdbcType=VARCHAR} AND locked = 0
+  </select>
+
+  <select id="getTotalUsers" parameterType="Map" resultType="int">
+    select count(*)  from tb_admin_user
+    </select>
+
+  <select id="findUserList" parameterType="Map" resultMap="BaseResultMap">
+    select
+    u.id,u.login_user_name,u.nick_name,u.locked,u.avatar,u.email,u.phone,u.detail,a.id,a.name
+    from tb_admin_user u
+    left join tb_user_authority ua on u.id= ua.user_id
+    left join tb_authority a on a.id=ua.authority_id
+    <if test="start!=null and limit!=null">
+      limit #{start},#{limit}
+    </if>
+  </select>
+
   <select id="listUsersByUsernames" resultType="com.kuky.blog.basics.entity.AdminUser">
     select
     <include refid="Base_Column_List"/>
@@ -165,6 +187,20 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-
+  <delete id="deleteBatch" >
+delete
+    from tb_admin_user
+    where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+  <update id="edit0Batch" parameterType="long">
+    update tb_admin_user
+    set locked=1 where id =#{id}
+  </update>
+    <update id="edit1Batch" parameterType="long">
+    update tb_admin_user
+    set locked=0 where id = #{id}
+  </update>
 </mapper>

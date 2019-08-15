@@ -11,6 +11,21 @@ function isNull(obj) {
     }
     return false;
 }
+isEmpty = function (obj) {
+    //检验null和undefined
+    if (!obj && obj !== 0 && obj !== '') {
+        return true;
+    }
+    //检验数组
+    if (Array.prototype.isPrototypeOf(obj) && obj.length === 0) {
+        return true;
+    }
+    //检验对象
+    if (Object.prototype.isPrototypeOf(obj) && Object.keys(obj).length === 0) {
+        return true;
+    }
+    return false;
+}
 
 /**
  * 参数长度验证
@@ -64,6 +79,20 @@ function validUserName(userName) {
         return (false);
     }
 }
+/**
+ * 权限名称 验证8到10位（字母，下划线）
+ *AVV_SDD
+ * @param authorityName
+ * @returns {boolean}
+ */
+function validAuthorityName(authorityName) {
+    var pattern = /^[A-Z]+((_[^_])|[A-Z])*[A-Z]$/;
+    if (pattern.test(authorityName.trim())) {
+        return (true);
+    } else {
+        return (false);
+    }
+}
 
 /**
  * 正则匹配2-18位的中英文字符串
@@ -96,13 +125,13 @@ function validCN_ENString2_100(str) {
 }
 
 /**
- * 用户密码验证 最少6位，最多20位字母或数字的组合
+ * 用户密码验证 最少6位，最多20位字母或数字、特殊字符的组合
  *
  * @param password
  * @returns {boolean}
  */
 function validPassword(password) {
-    var pattern = /^[a-zA-Z0-9]{6,20}$/;
+    var pattern = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$)^.{6,20}$/;
     if (pattern.test(password.trim())) {
         return (true);
     } else {

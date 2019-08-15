@@ -21,6 +21,31 @@
     id, user_id, authority_id
   </sql>
 
+<select id="checkAuthority" parameterType="hashmap" resultType="com.kuky.blog.basics.entity.UserAuthority">
+  SELECT authority_id,user_id
+
+  FROM tb_user_authority
+
+  WHERE EXISTS(
+
+  SELECT authority_id,user_id
+
+  FROM tb_user_authority
+
+  WHERE
+  authority_id =
+  <foreach collection="keys" index="key" item="value" separator=",">#{key}</foreach>
+  AND
+  user_id =
+  <foreach collection="keys" index="key" item="value" separator=",">#{value}</foreach>
+  )
+</select>
+  <insert id="addAuthority" keyProperty="id" useGeneratedKeys="true" parameterType="hashmap">
+    INSERT INTO tb_user_authority (authority_id,user_id) VALUE
+    <foreach collection="keys" index="key" item="value" separator="," >
+      (#{key},#{value})
+    </foreach>
+  </insert>
 
   <select id="selectUserWithAuthoritys" resultMap="BaseResultMap" parameterType="long">
     select a.name
@@ -56,4 +81,9 @@
       </if>
     </trim>
   </insert>
+  <delete id="delete" parameterType="long">
+    delete
+    from tb_user_authority
+    where user_id = #{userId} and authority_id = #{authorityId}
+  </delete>
 </mapper>

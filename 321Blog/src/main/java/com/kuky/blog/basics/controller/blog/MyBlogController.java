@@ -8,6 +8,7 @@ import com.kuky.blog.basics.service.*;
 import com.kuky.blog.basics.utils.*;
 import com.kuky.blog.basics.vo.BlogDetailVO;
 import com.kuky.blog.basics.vo.TagVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Slf4j
 public class MyBlogController {
 
     public static String theme = "321blog/mobanzhijia/";
@@ -55,6 +57,9 @@ public class MyBlogController {
 
     @Autowired
     private EsBlogService esBlogService;
+
+    @Autowired
+    private AdminUserService adminUserService;
     /**
      * 首页
      *
@@ -62,8 +67,14 @@ public class MyBlogController {
      */
     @GetMapping({"/", "/index", "index.html"})
     public String index(HttpServletRequest request, @AuthenticationPrincipal UserDetails userDetails) {
-        return this.page(request, 1, userDetails);
+       // return this.page(request, 1, userDetails);
+        return "redirect:/blogs";
     }
+    @GetMapping({"/test"})
+    public String test() {
+        return theme+"test";
+    }
+
 
     @GetMapping("/blogs")
     public String listEsBlogs(
@@ -72,7 +83,8 @@ public class MyBlogController {
             @RequestParam(value="async",required=false) boolean async,
             @RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
             @RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
-            Model model) {
+            Model model,HttpServletRequest req,
+            @AuthenticationPrincipal UserDetails userDetails ) {
 
         Page<EsBlog> page = null;
         List<EsBlog> list = null;
@@ -101,7 +113,10 @@ public class MyBlogController {
         model.addAttribute("keyword", keyword);
         model.addAttribute("page", page);
         model.addAttribute("blogList", list);
-
+        req.setAttribute("newBlogs", blogService.getBlogListForIndexPage(1));
+        req.setAttribute("hotBlogs", blogService.getBlogListForIndexPage(0));
+        req.setAttribute("hotTags", tagService.getBlogTagCountForIndex());
+        req.setAttribute("configurations", configService.getAllConfigs());
         // 首次访问页面才加载
         if (!async && !isEmpty) {
             List<EsBlog> newest = esBlogService.listTop5NewestEsBlogs();
@@ -114,7 +129,7 @@ public class MyBlogController {
             model.addAttribute("users", users);
         }
 
-        return (async==true?"/index :: #mainContainerRepleace":"/index");
+        return (async==true?theme+"index :: #mainContainerRepleace":theme+"index");
     }
 
     @GetMapping("/newest")
@@ -136,7 +151,7 @@ public class MyBlogController {
      *
      * @return
      */
-    @GetMapping({"/page/{pageNum}"})
+   /* @GetMapping({"/page/{pageNum}"})
     public String page(HttpServletRequest req, @PathVariable("pageNum") int pageNum, @AuthenticationPrincipal UserDetails userDetails) {
         PageResult blogPageResult = blogService.getBlogsForIndexPage(pageNum);
         if (blogPageResult == null) {
@@ -152,7 +167,7 @@ public class MyBlogController {
         req.setAttribute("pageName", "首页");
         req.setAttribute("configurations", configService.getAllConfigs());
         return theme + "index";
-    }
+    }*/
 
 
     /**
@@ -181,19 +196,6 @@ public class MyBlogController {
             req.setAttribute("blogDetailVO", blogDetailVO);
             req.setAttribute("commentPageResult", commentService.getCommentPageByBlogIdAndPageNum(blogId, commentPage));
         }
-        // 判断操作用户的点赞情况
-       /* List<Vote> votes = blogDetailVO.getVotes();
-        Vote currentVote = null; // 当前用户的点赞情况
-
-        if (principal !=null) {
-            for (Vote vote : votes) {
-                vote.getUser().getUsername().equals(principal.getUsername());
-                currentVote = vote;
-                break;
-            }
-        }
-
-        req.setAttribute("currentVote",currentVote);*/
         req.setAttribute("pageName", "详情");
         req.setAttribute("configurations", configService.getAllConfigs());
         return theme + "detail";
@@ -337,10 +339,12 @@ public class MyBlogController {
                           @RequestParam Long blogId, @RequestParam String verifyCode,
                           @RequestParam String commentator, @RequestParam String email,
                           @RequestParam String websiteUrl, @RequestParam String commentBody) {
+        log.info("yan: "+verifyCode);
         if (StringUtils.isEmpty(verifyCode)) {
             return ResultGenerator.genFailResult("验证码不能为空");
         }
         String kaptchaCode = session.getAttribute("verifyCode") + "";
+        log.info("sess： "+kaptchaCode);
         if (StringUtils.isEmpty(kaptchaCode)) {
             return ResultGenerator.genFailResult("非法请求");
         }

@@ -1050,7 +1050,7 @@ $.extend($.jgrid,{
 		Bootstrap : {
 			common : {
 				disabled: "ui-disabled",
-				highlight : "success",
+				highlight : "msg-success.html",
 				hover : "active",
 				cornerall: "",
 				cornertop: "",
@@ -6422,7 +6422,7 @@ $.jgrid.extend({
 									complete: function (result, stat) {
 										$($t).jqGrid("progressBar", {method:"hide", loadtype : $t.p.loadui });
 										$t.grid.hDiv.loading = false;
-										if (stat === 'success') {
+										if (stat === 'msg-success.html') {
 											var ret = $($t).triggerHandler("jqGridAfterSubmitCell", [$t, result, postdata[idname], nm, v, iRow, iCol]) || [true, ''];
 											if (ret[0] === true && $.isFunction($t.p.afterSubmitCell)) {
 												ret = $t.p.afterSubmitCell.call($t, result, postdata[idname], nm, v, iRow, iCol);
@@ -12787,7 +12787,7 @@ $.extend($.jgrid,{
 					data: o.impData,
 					dataType:"xml",
 					complete: function(xml,stat) {
-						if(stat === 'success') {
+						if(stat === 'msg-success.html') {
 							xmlConvert(xml.responseXML,o);
 							$($t).triggerHandler("jqGridImportComplete", [xml, o]);
 							if($.isFunction(o.importComplete)) {
@@ -13284,7 +13284,7 @@ $.jgrid.extend({
 					async : false, //?!?
 					complete: function(res,stat){
 						$($t).jqGrid("progressBar", {method:"hide", loadtype : o.saveui, htmlcontent: o.savetext});
-						if (stat === "success"){
+						if (stat === "msg-success.html"){
 							var ret = true, sucret, k;
 							sucret = $($t).triggerHandler("jqGridInlineSuccessSaveRow", [res, rowid, o]);
 							if (!$.isArray(sucret)) {sucret = [true, tmp3];}

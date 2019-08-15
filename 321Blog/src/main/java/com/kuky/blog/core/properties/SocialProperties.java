@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kuky.blog.core.properties;
 
 public class SocialProperties {

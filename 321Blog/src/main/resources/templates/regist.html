@@ -2,105 +2,246 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>jquery实现网站注册页面验证信息</title>
-<link th:href="@{/css/regist/style.css}" type="text/css" rel="stylesheet" />
-<script type="text/javascript" th:src="@{/js/regist/jquery.js}"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>personal blog | Log in</title>
+  <link th:href="@{/css/regist/style.css}" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" th:src="@{/js/regist/jquery.js}"></script>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" th:href="@{/admin/dist/img/favicon.png}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/admin/dist/css/font-awesome.min.css}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" th:href="@{/admin/dist/css/ionicons.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
+  <style>
+    canvas {
+      display: block;
+      vertical-align: bottom;
+    }
+    #particles {
+      background-color: #F7FAFC;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .xian{
+      width: 98%;
+      margin-left: 2%;
+      height: 1px;
+      background: #999;
+      margin-top: 5%;
+      margin-bottom: 15px;
+    }
+    .fotlogin span{
+      font-size: 16px!important;
+    }
+  </style>
 </head>
-<body>
-
-<div id="formbox">
-  <form id="formpersonal" method="post" onsubmit="return false;">
-    <div class="form">
-      <h3>帐户信息</h3>
-      <div class="item"> <span class="label"><span class="red">*</span>用户名：</span>
-        <div class="fl">
-          <input type="text" id="username" name="username" class="text" tabindex="1" />
-          <label id="username_succeed" class="blank"></label>
-          <span class="clear"></span>
-          <div id="username_error"></div>
-        </div>
-      </div>
-      <!--item end-->
-      <div id="o-password">
-        <div class="item"> <span class="label"><span class="red">*</span>设置密码：</span>
-          <div class="fl">
-            <input type="password" id="pwd" name="pwd" class="text" tabindex="2"/>
-            <label id="pwd_succeed" class="blank"></label>
-            <input type="checkbox" class="checkbox" id="viewpwd"/>
-            <label class="ftx23" for="viewpwd">显示密码字符</label>
-            <span class="clear"></span>
-            <label class="hide" id="pwdstrength"><span class="fl">安全程度：</span><b></b></label>
-            <label id="pwd_error"></label>
-          </div>
-        </div>
-        <!--item end-->
-        <div class="item"> <span class="label"><span class="red">*</span>确认密码：</span>
-          <div class="fl">
-            <input type="password" id="pwd2" name="pwd2" class="text" tabindex="3"/>
-            <label id="pwd2_succeed" class="blank"></label>
-            <span class="clear"></span>
-            <label id="pwd2_error"></label>
-          </div>
-        </div>
-        <!--item end-->
-      </div>
-      <!--o-password end-->
-      <div class="item"> <span class="label"><span class="red">*</span>邮箱：</span>
-        <div class="fl">
-          <input type="text" id="mail" name="mail" class="text" tabindex="4"/>
-          <label id="mail_succeed" class="blank"></label>
-          <span class="clear"></span>
-          <div id="mail_error"></div>
-        </div>
-      </div>
-
-      <!--item end-->
-      <div class="item"> <span class="label"><span class="red">*</span>验证码：</span>
-        <div class="fl">
-          <input type="text" id="authcode" name="authcode" class="text text-1" autocomplete="off" MaxLength="6" tabindex="6" />
-          <label class="img"><img id="JD_Verification1" Ver_ColorOfNoisePoint="#888888" src="http://www.mailuke.com/Inc/Code/adminCode.php?sesstr=regCode" onClick="chanageCode('regCode')" alt="" style="cursor:pointer;width:100px;height:26px;"/> </label>
-          <label>&nbsp;看不清？点击验证码图片更换</label>
-          <label id="authcode_succeed" class="blank invisible"></label>
-          <span class="clear"></span>
-          <label id="authcode_error"></label>
-        </div>
-      </div>
-
-      <!--item end-->
-      <div class="item"> <span class="label"><span class="red">*</span>固定电话：</span>
-        <div class="fl">
-          <input type="text" id="tel" name="tel" class="text" value="" tabindex="9" />
-          <label id="tel_succeed" class="blank"></label>
-          <span class="clear"></span>
-          <label id="tel_error"></label>
-        </div>
-      </div>
-      <!--item end-->
-      <div class="item"> <span class="label"><span class="red">*</span>公司网址：</span>
-        <div class="fl">
-          <input type="text" id="companysite" name="companysite" class="text" tabindex="14"/>
-          <label id="companysite_succeed" class="blank"></label>
-          <span class="clear"></span>
-          <label id="companysite_error"></label>
-        </div>
-      </div>
-      <!--item end-->
-      <div class="item"> <span class="label">&nbsp;</span>
-        <div class="fl">
-          <input type="checkbox" name="protocol" id="protocol" tabindex="7" />
-          <label for="protocol">网站用户注册协议</label>
-        </div>
-      </div>
-      <!--item end-->
-      <div class="item"> <span class="label">&nbsp;</span>
-        <input type="button" class="yellow_button disabled" id="registsubmit" value="提交注册信息" tabindex="8" disabled="disabled" />
-      </div>
-      <!--item end-->
-    </div>
-  </form>
+<body class="hold-transition register-page">
+<div id="particles">
 </div>
+
+<div class="register-box" id="formbox">
+  <div class="register-logo" style="color: #007bff;">
+    <h1>SignUp</h1>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="register-box-msg">your personal blog , enjoy it</p>
+
+      <form th:action="@{/register}"  method="post" id="formpersonal" onsubmit="return false;">
+        <div class="form">
+        <h2 class="form-signin-heading"></h2>
+
+          <div class="form-group has-feedback item">
+            <span class="fa fa-user  label"><span class="red">*</span>账号：</span>
+            <div class="fl">
+            <input type="text"  required="true" class="form-control text"  tabindex="1" id="username" name="loginUserName" >
+              <label id="username_succeed" class="blank"></label>
+              <span class="clear"></span>
+              <div id="username_error"></div>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" id="o-password">
+            <div class="item">
+            <span class="fa fa-lock label" ><span class="red">*</span>设置密码：</span>
+              <div class="fl">
+            <input type="password"  required="true" tabindex="2" class="form-control text" id="pwd" name="loginPassword" >
+                <label id="pwd_succeed" class="blank"></label>
+                <input type="checkbox" class="checkbox" id="viewpwd"/>
+                <label class="ftx23" for="viewpwd">显示密码字符</label>
+                <span class="clear"></span>
+                <label class="hide" id="pwdstrength"><span class="fl">安全程度：</span><b></b></label>
+                <label id="pwd_error"></label>
+              </div>
+          </div>
+            <div class="form-group has-feedback item">
+              <span class="fa fa-lock label"><span class="red">*</span>确认密码：</span>
+              <div class="fl">
+              <input type="password"  required="true"  class="form-control text" id="pwd2"  tabindex="3" name="password">
+                <label id="pwd2_succeed" class="blank"></label>
+                <span class="clear"></span>
+                <label id="pwd2_error"></label>
+              </div>
+            </div>
+        <!--item end-->
+      </div>
+
+          <div class="form-group has-feedback item">
+            <span class="fa fa-user label"><span class="red">*</span>个人昵称：</span>
+            <div class="fl">
+            <input type="text" required="true" id="realname" class="form-control text" tabindex="7" name="nickName">
+              <label id="realname_succeed" class="blank"></label>
+              <span class="clear"></span>
+              <label id="realname_error"></label>
+            </div>
+          </div>
+          <div class="form-group has-feedback item">
+            <span class="fa fa-user label"><span class="red">*</span>邮箱：</span>
+            <div class="fl">
+              <input type="text" required="true" id="mail" class="form-control text" tabindex="4" name="email">
+              <label id="mail_succeed" class="blank"></label>
+              <span class="clear"></span>
+              <div id="mail_error"></div>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback item">
+            <span class="fa fa-user  label"><span class="red">*</span>手机号码：</span>
+            <div class="fl">
+              <input type="text"  id="tel"  required="true" class="form-control text" tabindex="9" name="phone"  >
+              <input type="button" id="getting" class="btn btn-info" onclick="getCode()" value="免费获取手机短信验证码">
+              <label id="tel_succeed" class="blank"></label>
+              <span class="clear"></span>
+              <label id="tel_error"></label>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback item">
+            <span class="fa fa-user label"><span class="red">*</span>验证码：</span>
+            <div class="fl">
+              <input type="text" id="authcode"  name="smscode" class="text text-1" autocomplete="off" MaxLength="6" tabindex="6" /> <!--onchange="Verification_Smscode()"-->
+              <label id="authcode_succeed" class="blank invisible"></label>
+              <span class="clear"></span>
+              <label id="authcode_error"></label>
+            </div>
+          </div>
+
+         <!-- <div class="form-group has-feedback item">
+            <span class="fa fa-user  label" ><span class="red">*</span>gitHub网址：</span>
+            <div class="fl">
+            <input type="text"   required="true" class="form-control text" id="companysite" name="site"  tabindex="14" >
+              <label id="companysite_succeed" class="blank"></label>
+              <span class="clear"></span>
+              <label id="companysite_error"></label>
+            </div>
+          </div>-->
+          <div class="form-group has-feedback item">
+            <span class="fa fa-user  label" > </span>
+            <div class="fl">
+              <input type="checkbox" name="protocol" id="protocol" tabindex="7" />
+              <label for="protocol">网站用户注册协议</label>
+            </div>
+          </div>
+
+      <!--item end-->
+          <div class="item"> <span class="label">&nbsp;</span>
+            <input type="button" class="yellow_button disabled" id="registsubmit" value="提交注册信息" tabindex="8" disabled="disabled" />
+          </div>
+          <!--item end-->
+        </div>
+      </form>
+      <div class="xian"></div>
+      <p class="fotlogin"><span>已经有一个博客帐户？<a href="/login" style="color: #39c1de;">登录</a></span></p>
+</div>
+  </div>
+</div>
+<!-- sweetalert -->
+<link rel="stylesheet" th:href="@{/admin/plugins/sweetalert/sweetalert.css}"/>
+<!-- sweetalert -->
+<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
 <!--formbox end-->
 <script type="text/javascript" th:src="@{/js/regist/Validate.js}"></script>
 <script type="text/javascript" th:src="@{/js/regist/Validate.form.js}"></script>
+
 </body>
+
+<script>
+
+
+  function GetPhoneIsTrue(){
+    var text = $("#tel").val();
+    var regex1 = /^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$/g;
+    var regex2 = /^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\d{8}$/g;
+    if (text.match(/^\s+$/) || text.match(/^[ ]+$/)
+            || text.match(/^[ ]/)
+            || text.match(/^[ ]*$/)
+            || text.match(/^\s*$/)) {
+      return false;
+    } else {
+      if(text.length>85){
+        return false;
+      }else{
+
+        if (regex1.test(text)||regex2.test(text)) {
+          $(".tel_error").html("");
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+
+  function getCode() {
+    var text = $("#tel").val();
+    if (!GetPhoneIsTrue()) {
+      $(".tel_error").html("手机号输入错误");
+    } else {
+      //格式输入正确,禁止按钮60s
+      time();
+      $.ajax({
+        data: {
+          "phone": text,
+        },
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded;charset=utf-8",
+        scriptCharset: 'utf-8',
+        url: "/code",
+        success: function (data) {
+          /* {"success":false,"message":"验证码发送失败","body":null}*/
+          if (data.msg == "true") {
+            setCookie("PhoneVerification_Code", datas.body);
+          } else {
+            $(".tel_error").html("发送失败");
+          }
+        }
+      });
+    }
+  }
+    //设置禁止60秒
+    var wait = 60;
+
+    function time() {
+      if (wait == 0) {
+        $('#getting').attr("disabled", false);
+        $("#getting").val("免费获取手机短信验证码");
+        wait = 60;
+      } else {
+        $('#getting').attr("disabled", true);
+        $("#getting").val(wait + "秒后可以重新发送");
+        wait--;
+        setTimeout(function () {
+          time()
+        }, 1000)
+      }
+    }
+
+</script>
 </html>

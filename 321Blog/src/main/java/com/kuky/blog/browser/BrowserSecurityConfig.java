@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kuky.blog.browser;
 
 import javax.sql.DataSource;
@@ -8,11 +5,14 @@ import javax.sql.DataSource;
 import com.kuky.blog.browser.filter.ValidateCodeFilter;
 import com.kuky.blog.core.authentication.AbstractChannelSecurityConfig;
 import com.kuky.blog.core.properties.SecurityProperties;
+import com.kuky.blog.core.social.BlogSpringSocialConfigurer;
 import com.kuky.blog.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -60,6 +60,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 	@Autowired
 	private ValidateCodeFilter validateCodeFilter;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -69,7 +72,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 				.and()
 			.rememberMe().key(KEY)
 				.tokenRepository(persistentTokenRepository())
-				.tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
+				.tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds()) // 有效时间：单位s
 				.userDetailsService(userDetailsService)
 				.and()
 			.sessionManagement()
@@ -81,17 +84,18 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 				.and()
 				.logout()
 				.logoutUrl("/signOut")
-				.logoutSuccessHandler(logoutSuccessHandler)
+				.logoutSuccessUrl("/")
+				//.logoutSuccessHandler(logoutSuccessHandler)
 				.deleteCookies("JSESSIONID")
 				.and()
 			.authorizeRequests()
                 .antMatchers("/admin/login").permitAll()
                 .antMatchers("/admin/dist/**").permitAll()
                 .antMatchers("/admin/plugins/**").permitAll()
-                .antMatchers("/bolg/comment").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest()
-                .permitAll()//所有的路径即可访问
+				.antMatchers("/bolg/comment").hasRole("USER")
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				.anyRequest()
+				.permitAll()//所有的路径即可访问
 				/*.antMatchers(
 					SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
 					securityProperties.getBrowser().getLoginPage(),
@@ -108,28 +112,35 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 		
 	}
 
+
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder();   // 使用 BCrypt 加密
 	}
-	
+	/**
+	 * 实现记住我登录
+	 * @return
+	 */
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository() {
 		JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
 		tokenRepository.setDataSource(dataSource);
+		// 如果token表不存在，使用下面语句可以初始化该表；若存在，请注释掉这条语句，否则会报错。
 //		tokenRepository.setCreateTableOnStartup(true);
 		return tokenRepository;
 	}
+
 	@Bean
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
 	}
+
 	@Autowired//注意这个方法是注入的
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(myUserDetailsService);
 	}
-
 
 
 	@Bean("sessionStrategy")
@@ -138,5 +149,13 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 		return sessionStrategy;
 	}
 
-	
+
+	/*@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService);
+		authenticationProvider.setPasswordEncoder(passwordEncoder); // 设置密码加密方式
+		return authenticationProvider;
+	}*/
+
 }

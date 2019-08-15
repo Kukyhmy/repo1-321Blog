@@ -15,6 +15,11 @@
     link_id, link_type, link_name, link_url, link_description, link_rank, is_deleted, 
     create_time
   </sql>
+
+    <select id="selectLink" resultMap="BaseResultMap">
+        select  <include refid="Base_Column_List"/>
+        from tb_link
+    </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

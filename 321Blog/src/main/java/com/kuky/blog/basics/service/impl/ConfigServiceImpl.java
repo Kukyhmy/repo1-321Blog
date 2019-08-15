@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,13 +28,13 @@ public class ConfigServiceImpl implements ConfigService {
     public static final String websiteLogo = "/user/dist/img/logo2.png";
     public static final String websiteIcon = "/user/dist/img/favicon.png";
 
-    public static final String yourAvatar = "/user/dist/img/kuky.png";
-    public static final String yourEmail = "739663514@qq.com";
-    public static final String yourName = "Kuky";
+    public static final String avatar = "/user/dist/img/kuky.png";
+    public static final String email = "739663514@qq.com";
+    public static final String name = "Kuky";
 
     public static final String footerAbout = "your personal 321blog. have fun.";
-    public static final String footerICP = "浙ICP备 xxxxxx-x号";
-    public static final String footerCopyRight = "@2019 十三";
+    public static final String footerICP = "ICP备 xxxxxx-x号";
+    public static final String footerCopyRight = "@2019 KUKY";
     public static final String footerPoweredBy = "321 321blog";
     public static final String footerPoweredByURL = "##";
 
@@ -60,13 +61,13 @@ public class ConfigServiceImpl implements ConfigService {
                 config.setValue(websiteIcon);
             }
             if ("yourAvatar".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(yourAvatar);
+                config.setValue(avatar);
             }
             if ("yourEmail".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(yourEmail);
+                config.setValue(email);
             }
             if ("yourName".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
-                config.setValue(yourName);
+                config.setValue(name);
             }
             if ("footerAbout".equals(config.getKey()) && StringUtils.isEmpty(config.getValue())) {
                 config.setValue(footerAbout);
@@ -86,4 +87,18 @@ public class ConfigServiceImpl implements ConfigService {
         }
         return configMap;
     }
+
+
+
+    @Override
+    public int updateConfig(String configName, String configValue) {
+        BlogConfig blogConfig = blogConfigMapper.selectByPrimaryKey(configName);
+        if (blogConfig != null) {
+            blogConfig.setConfigValue(configValue);
+            blogConfig.setUpdateTime(new Date());
+            return blogConfigMapper.updateByPrimaryKeySelective(blogConfig);
+        }
+        return 0;
+    }
+
 }

@@ -57,7 +57,7 @@
                 <div class="form-group has-feedback">
                     <span class="fa fa-user form-control-feedback"></span>
                     <label for="username" class="col-form-label">账号</label>
-                    <input type="text"  required="true" class="form-control" id="username" name="username" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
+                    <input type="text"  required="true" class="form-control" id="username" name="loginUserName" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
                     <br>
                     <i class="Notice" style="color:red;"></i>
                 </div>
@@ -197,7 +197,7 @@
                     url: "/user/code",
                     success: function (data) {
                        /* {"success":false,"message":"验证码发送失败","body":null}*/
-                                if (data.success == "true") {
+                                if (data.msg == "true") {
                                     setCookie("PhoneVerification_Code",datas.body);
                                 } else {
                                     $(".phone").html("发送失败");
@@ -212,7 +212,7 @@
                     type : "POST",
                     contentType : "application/x-www-form-urlencoded;charset=utf-8",
                     scriptCharset : 'utf-8',
-                    url : "/user/check/"+username+"/"+1,
+                    url : "/check/"+username+"/"+1,
                     success : function(data) {
                        if(data == true) {
                            $(".Notice").html("用户名已存在，请更换。");
@@ -229,7 +229,7 @@
                     type : "POST",
                     contentType : "application/x-www-form-urlencoded;charset=utf-8",
                     scriptCharset : 'utf-8',
-                    url : "/user/check/"+phone+"/"+2,
+                    url : "/check/"+phone+"/"+2,
                     success : function(data) {
                        if(data == true) {
                            $(".Notice").html("手机号已存在，请更换。");

@@ -1,6 +1,6 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: '/user/categories/list',
+        url: '/admin/categories/list',
         datatype: "json",
         colModel: [
             {label: 'id', name: 'categoryId', index: 'categoryId', width: 50, key: true, hidden: true},
@@ -83,10 +83,10 @@ $('#saveButton').click(function () {
         $('#edit-error-msg').html("请输入符合规范的分类名称！");
     } else {
         var params = $("#categoryForm").serialize();
-        var url = '/user/categories/save';
+        var url = '/admin/categories/save';
         var id = getSelectedRowWithoutAlert();
         if (id != null) {
-            url = '/user/categories/update';
+            url = '/admin/categories/update';
         }
         $.ajax({
             type: 'POST',//方法类型
@@ -96,7 +96,7 @@ $('#saveButton').click(function () {
                 if (result.resultCode == 200) {
                     $('#categoryModal').modal('hide');
                     swal("保存成功", {
-                        icon: "success",
+                        icon: "msg-success.html",
                     });
                     reload();
                 }
@@ -140,28 +140,28 @@ function deleteCagegory() {
         buttons: true,
         dangerMode: true,
     }).then((flag) => {
-            if (flag) {
-                $.ajax({
-                    type: "POST",
-                    url: "/user/categories/delete",
-                    contentType: "application/json",
-                    data: JSON.stringify(ids),
-                    success: function (r) {
-                        if (r.resultCode == 200) {
-                            swal("删除成功", {
-                                icon: "success",
-                            });
-                            $("#jqGrid").trigger("reloadGrid");
-                        } else {
-                            swal(r.message, {
-                                icon: "error",
-                            });
-                        }
+        if (flag) {
+            $.ajax({
+                type: "POST",
+                url: "/admin/categories/delete",
+                contentType: "application/json",
+                data: JSON.stringify(ids),
+                success: function (r) {
+                    if (r.resultCode == 200) {
+                        swal("删除成功", {
+                            icon: "msg-success.html",
+                        });
+                        $("#jqGrid").trigger("reloadGrid");
+                    } else {
+                        swal(r.message, {
+                            icon: "error",
+                        });
                     }
-                });
-            }
+                }
+            });
         }
-    );
+    }
+);
 }
 
 

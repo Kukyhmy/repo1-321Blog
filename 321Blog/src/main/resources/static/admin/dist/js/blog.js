@@ -1,8 +1,15 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: '/user/blogs/list',
+        url: '/admin/blogs/list',
         datatype: "json",
         colModel: [
+    /*
+    colModel:列名称对应的model，该model内的各个列要和colNames的各个列进行一一对应
+    可以对各个列设置属性，name属性药设置为json数据的key名称,也就是我们的Bean的对应属性名称，
+    width：宽度,editable代表是否可编辑，edittype代表编辑框的类型，可以是  text、select、texare、checkbox等类型,
+    formatter:格式化显示的数据，
+    unformat：处于编辑状态后反格式化到以前的数据
+    */
             {label: 'id', name: 'blogId', index: 'blogId', width: 50, key: true, hidden: true},
             {label: '标题', name: 'blogTitle', index: 'blogTitle', width: 140},
             {label: '预览图', name: 'blogCoverImage', index: 'blogCoverImage', width: 120, formatter: coverImageFormatter},
@@ -11,28 +18,28 @@ $(function () {
             {label: '博客分类', name: 'blogCategoryName', index: 'blogCategoryName', width: 60},
             {label: '添加时间', name: 'createTime', index: 'createTime', width: 90}
         ],
-        height: 700,
-        rowNum: 10,
-        rowList: [10, 20, 50],
+        height: 700,   //代表表格的高度
+        rowNum: 10,   //设置表格默认显示记录的条数，用于分页
+        rowList: [10, 20, 50],  //供用户选择每页显示的记录数
         styleUI: 'Bootstrap',
         loadtext: '信息读取中...',
         rownumbers: false,
         rownumWidth: 20,
         autowidth: true,
-        multiselect: true,
-        pager: "#jqGridPager",
-        jsonReader: {
+        multiselect: true,  //指是否可以进行多选
+        pager: "#jqGridPager",  //用指定表格的工具栏   #jqGridPager是页面某个DIV的ID
+        jsonReader: {              //  解析json数据的参数 很重要 定义了 后台分页参数的名字。
             root: "data.list",
             page: "data.currPage",
             total: "data.totalPage",
             records: "data.totalCount"
         },
-        prmNames: {
-            page: "page",
-            rows: "limit",
-            order: "order",
+        prmNames: {   //向后台交互时，所设置的参数名称对应的值
+            page: "page",   //// 表示请求页码的参数名称
+            rows: "limit",  //// 表示请求行数的参数名称
+            order: "order",  //// 表示采用的排序方式的参数名称
         },
-        gridComplete: function () {
+        gridComplete: function () {        //设置表格数据加载完毕后，所执行的操作 数据加载完成后
             //隐藏grid底部滚动条
             $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
         }
@@ -42,7 +49,7 @@ $(function () {
         $("#jqGrid").setGridWidth($(".card-body").width());
     });
 
-    function coverImageFormatter(cellvalue) {
+    function coverImageFormatter(cellvalue) {   //cellvalue表示当前单元格的值
         return "<img src='" + cellvalue + "' height=\"120\" width=\"160\" alt='coverImage'/>";
     }
 
@@ -76,7 +83,7 @@ function search() {
     //点击搜索按钮默认都从第一页开始
     $("#jqGrid").jqGrid("setGridParam", {page: 1});
     //提交post并刷新表格
-    $("#jqGrid").jqGrid("setGridParam", {url: '/user/blogs/list'}).trigger("reloadGrid");
+    $("#jqGrid").jqGrid("setGridParam", {url: '/admin/blogs/list'}).trigger("reloadGrid");
 }
 
 /**
@@ -90,7 +97,7 @@ function reload() {
 }
 
 function addBlog() {
-    window.location.href = "/user/blogs/edit";
+    window.location.href = "/admin/blogs/edit";
 }
 
 function editBlog() {
@@ -98,7 +105,7 @@ function editBlog() {
     if (id == null) {
         return;
     }
-    window.location.href = "/user/blogs/edit/" + id;
+    window.location.href = "/admin/blogs/edit/" + id;
 }
 
 function deleteBlog() {
@@ -117,13 +124,13 @@ function deleteBlog() {
             if (flag) {
                 $.ajax({
                     type: "POST",
-                    url: "/user/blogs/delete",
+                    url: "/admin/blogs/delete",
                     contentType: "application/json",
                     data: JSON.stringify(ids),
                     success: function (r) {
                         if (r.resultCode == 200) {
                             swal("删除成功", {
-                                icon: "success",
+                                icon: "msg-success.html",
                             });
                             $("#jqGrid").trigger("reloadGrid");
                         } else {

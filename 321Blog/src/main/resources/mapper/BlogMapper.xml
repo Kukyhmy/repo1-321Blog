@@ -109,6 +109,12 @@
     from tb_blog
     where blog_sub_url = #{subUrl,jdbcType=VARCHAR} and is_deleted = 0 limit 1
   </select>
+  <select id="selectByBlogTitle" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>,
+    <include refid="Blob_Column_List"/>
+    from tb_blog where blog_title = #{blogTitle}
+  </select>
 
 
 
@@ -297,5 +303,23 @@
       #{id}
     </foreach>
     and is_deleted =0
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kuky.blog.basics.entity.Blog">
+    update tb_blog
+    set blog_title = #{blogTitle,jdbcType=VARCHAR},
+      blog_sub_url = #{blogSubUrl,jdbcType=VARCHAR},
+      blog_cover_image = #{blogCoverImage,jdbcType=VARCHAR},
+      blog_category_id = #{blogCategoryId,jdbcType=INTEGER},
+      blog_category_name = #{blogCategoryName,jdbcType=VARCHAR},
+      blog_tags = #{blogTags,jdbcType=VARCHAR},
+      blog_status = #{blogStatus,jdbcType=TINYINT},
+      blog_views = #{blogViews,jdbcType=BIGINT},
+      enable_comment = #{enableComment,jdbcType=TINYINT},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+       blog_vote_size=#{blogVoteSize,jdbcType=INTEGER} ,
+        blog_summary=#{blogSummary,jdbcType=VARCHAR}
+    where blog_id = #{blogId,jdbcType=BIGINT}
   </update>
 </mapper>

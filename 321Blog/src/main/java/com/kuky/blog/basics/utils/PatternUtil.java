@@ -56,5 +56,20 @@ public class PatternUtil {
             return false;
         }
     }
+    /**
+     * 判断是否符合条件
+     *
+     * @param authorityName
+     * @return
+     */
+    public static boolean isAuthorityName(String authorityName) {
+        String regex = "^[A-Z]+((_[^_])|[A-Z])*[A-Z]$";
+        Pattern pattern = Pattern.compile(regex);
+        if (pattern.matcher(authorityName).matches()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

@@ -150,22 +150,73 @@ $("#protocol").click(function() {
 //表单提交验证和服务器请求
 $("#registsubmit").click(function() {
     var flag = validateFunction.FORM_validate();
+    // if(!validateFunction2()){
+    //     return false;
+    // }
     if (flag) {
         $(this).attr({"disabled":"disabled"}).attr({"value":"提交中,请稍等"});
         $.ajax({
             type: "POST",
-            url: "http://www.pinzhi365.com/regist/"+$("#authcode").val(),
+            url: "/regist/"+$("#authcode").val(),
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             data: $("#formpersonal").serialize(),
             success: function(result) {
-                if (result) {
-                    alert("注册成功");
-                    window.location = "http://www.pinzhi365.com/index";
-                }else{
-                    alert("注册失败");
-                    alert(result);
-                }
+                // alert("res"+result);
+
+
             }
         });
     }
+    swlMessage = '注冊成功';
+    swal({
+        title: swlMessage,
+        type: 'msg-success.html',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: '前往登录页',
+        confirmButtonClass: 'btn btn-success',
+        buttonsStyling: false
+    }).then(function () {
+        window.location = "/login";
+    })
 });
+function validateFunction2() {
+    //获取用户名
+    $("#username").change(function (){
+        var  username = $("#username").val();
+        $.ajax({
+            type : "POST",
+            contentType : "application/x-www-form-urlencoded;charset=utf-8",
+            scriptCharset : 'utf-8',
+            url : "/check/"+username+"/"+1,
+            success : function(data) {
+                if(data) {
+                    return true;
+                }else{
+                    $("#username_error").html("用户名已存在，请更换。");
+                    return false;
+                }
+            }
+        });
+    });
+
+    //获取用户名
+    $("#mail").change(function (){
+        var  mail = $("#mail").val();
+        $.ajax({
+            type : "POST",
+            contentType : "application/x-www-form-urlencoded;charset=utf-8",
+            scriptCharset : 'utf-8',
+            url : "/check/"+mail+"/"+2,
+            success : function(data) {
+                if(data) {
+                    return true;
+                }else{
+                    $("#mail_error").html("邮箱已存在，请更换。");
+                    return false;
+                }
+            }
+        });
+    });
+
+}

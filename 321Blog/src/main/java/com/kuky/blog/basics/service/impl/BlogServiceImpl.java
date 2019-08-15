@@ -1,10 +1,7 @@
 package com.kuky.blog.basics.service.impl;
 
 import com.kuky.blog.basics.dao.*;
-import com.kuky.blog.basics.entity.Blog;
-import com.kuky.blog.basics.entity.BlogCategory;
-import com.kuky.blog.basics.entity.BlogTag;
-import com.kuky.blog.basics.entity.BlogTagRelation;
+import com.kuky.blog.basics.entity.*;
 import com.kuky.blog.basics.entity.es.EsBlog;
 import com.kuky.blog.basics.service.BlogService;
 import com.kuky.blog.basics.service.EsBlogService;
@@ -17,12 +14,21 @@ import com.kuky.blog.basics.vo.BlogListVO;
 import io.swagger.models.auth.In;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,6 +40,8 @@ import java.util.stream.Stream;
 @Service
 public class BlogServiceImpl implements BlogService {
 
+    @Autowired
+  private AdminUserMapper adminUserMapper;
     @Autowired
     private BlogMapper blogMapper;
 
@@ -208,6 +216,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
 
+
+
     @Override
     public PageResult getBlogsPageBySearch(String keyword, int page) {
         if (page > 0 && PatternUtil.validKeyword(keyword)) {
@@ -244,7 +254,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     @Transactional
-    public String saveBlog(Blog blog) {
+    public String saveBlog(Blog blog, UserDetails user) {
         BlogCategory blogCategory = blogCategoryMapper.selectByPrimaryKey(blog.getBlogCategoryId());
         if (blogCategory == null) {
             blog.setBlogCategoryId(0);
@@ -266,18 +276,27 @@ public class BlogServiceImpl implements BlogService {
         EsBlog esBlog = null;
         //保存文章
         int blogId = blogMapper.insertSelective(blog);
-        Long blogId2 = new Long((long)blogId);
-        Blog returnBlog = blogMapper.selectByPrimaryKey(blogId2);
+
+        //Long blogId2 = new Long((long)blogId);
+        Blog returnBlog = blogMapper.selectByBlogTitle(blog.getBlogTitle());
+
+        System.out.println(returnBlog);
+        AdminUser adminUser = new AdminUser();
+        AdminUser user2 = adminUserMapper.findByUserName(user.getUsername());
+        adminUser.setLoginUserName(user.getUsername());
+        adminUser.setAvatar(user2.getAvatar());
+        returnBlog.setAdminUser(adminUser);
+
         if (isNew) {  //添加
             esBlog = new EsBlog(returnBlog);
         } else {     //更新
+            System.out.println(blog.getBlogId());
             esBlog = esBlogService.getEsBlogByBlogId(blog.getBlogId());
             esBlog.update(returnBlog);
         }
         esBlogService.updateEsBlog(esBlog);
 
-
-        if (blogId != 0) {
+        if (blogId >0) {
             //新增的tag对象
             List<BlogTag> tagListForInsert = new ArrayList<>();
             //所有的tag对象，用于建立关系数据
@@ -303,6 +322,7 @@ public class BlogServiceImpl implements BlogService {
             allTagsList.addAll(tagListForInsert);
             for (BlogTag tag : allTagsList) {
                 BlogTagRelation blogTagRelation = new BlogTagRelation();
+                System.out.println(blog.getBlogId());
                 blogTagRelation.setBlogId(blog.getBlogId());
                 blogTagRelation.setTagId(tag.getTagId());
 
@@ -333,6 +353,7 @@ public class BlogServiceImpl implements BlogService {
             List<Long> idslong = idList1.stream().map(a -> Long.parseLong(a)).collect(Collectors.toList());
             for (Long aLong : idslong) {
                 EsBlog esblog = esBlogService.getEsBlogByBlogId(aLong);
+
                 esBlogService.removeEsBlog(esblog.getId());
             }
             return true;
@@ -408,4 +429,18 @@ public class BlogServiceImpl implements BlogService {
         }
         return "修改失败";
     }
+
+    @Override
+    public PageResult getBlogsPage(PageQueryUtil pageUtil) {
+        List<Blog> blogList = blogMapper.findBlogList(pageUtil);
+        int total = blogMapper.getTotalBlogs(pageUtil);
+        PageResult pageResult = new PageResult(blogList, total, pageUtil.getLimit(), pageUtil.getPage());
+        return pageResult;
+    }
+
+    @Override
+    public Blog getBlogById(Long blogId) {
+        return blogMapper.selectByPrimaryKey(blogId);
+    }
+
 }

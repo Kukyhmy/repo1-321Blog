@@ -327,7 +327,7 @@ var nameold, emailold, authcodeold;
 var namestate = false, emailstate = false, authcodestate = false;
 //回调函数
 var validateFunction = {
-    username:function (option) {
+   username:function (option) {
 
         var format = validateRules.isUid(option.value);
         var length = validateRules.betweenLength(option.value.replace(/[^\x00-\xff]/g, "**"), 4, 20);
@@ -339,15 +339,17 @@ var validateFunction = {
         }
         else if (length && !format) {
             validateSettings.error.run(option, option.prompts.error.badFormat);
-        } else if (validateRules.fullNumberName(option.value)) {
+        } else  if (validateRules.fullNumberName(option.value)) {
             validateSettings.error.run(option, option.prompts.error.fullNumberName);
-        } else {
-            if (!namestate || nameold != option.value) {
+        } else{
+            validateSettings.succeed.run(option);
+        }
+           /* if (!namestate || nameold != option.value) {
                 if (nameold != option.value) {
                     nameold = option.value;
                     option.errorEle.html("<span style='color:#999'>检验中……</span>");
-                    $.getJSON("check/" + escape(option.value)+"/"+1, {},function (date) {
-                        if (date) {
+                    $.getJSON("check/" + escape(option.value)+"/"+1, {},function (data) {
+                        if (data) {
                             validateSettings.succeed.run(option);
                             namestate = true;
                         } else {
@@ -363,8 +365,8 @@ var validateFunction = {
             }
             else {
                 validateSettings.succeed.run(option);
-            }
-        }
+            }*/
+
     },
     pwd:function (option) {
         var str1 = option.value;
@@ -419,28 +421,29 @@ var validateFunction = {
             if (!format2) {
                 validateSettings.error.run(option, option.prompts.error.badLength);
             } else {
-                if (!emailstate || emailold != option.value) {
-                    if (emailold != option.value) {
-                        emailold = option.value;
-                        option.errorEle.html("<span style='color:#999'>检验中……</span>");
-                        $.getJSON("check/" + escape(option.value)+"/"+2, {},function (date) {
-                            if (date) {
-                                validateSettings.succeed.run(option);
-                                emailstate = true;
-                            } else {
-                                validateSettings.error.run(option, option.prompts.error.beUsed);
-                                emailstate = false;
-                            }
-                        })
-                    }
-                    else {
-                        validateSettings.error.run(option, option.prompts.error.beUsed);
-                        emailstate = false;
-                    }
-                }
-                else {
-                    validateSettings.succeed.run(option);
-                }
+                validateSettings.succeed.run(option);
+                // if (!emailstate || emailold != option.value) {
+                //     if (emailold != option.value) {
+                //         emailold = option.value;
+                //         option.errorEle.html("<span style='color:#999'>检验中……</span>");
+                //         $.getJSON("check/" + escape(option.value)+"/"+2, {},function (data) {
+                //             if (data.success == "true") {
+                //                 validateSettings.succeed.run(option);
+                //                 emailstate = true;
+                //             } else {
+                //                 validateSettings.error.run(option, option.prompts.error.beUsed);
+                //                 emailstate = false;
+                //             }
+                //         })
+                //     }
+                //     else {
+                //         validateSettings.error.run(option, option.prompts.error.beUsed);
+                //         emailstate = false;
+                //     }
+                // }
+                // else {
+                //     validateSettings.succeed.run(option);
+                // }
             }
         }
     },
