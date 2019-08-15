@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kuky.blog.core.properties;
 
 import org.springframework.boot.autoconfigure.social.SocialProperties;

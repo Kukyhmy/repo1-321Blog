@@ -9,17 +9,19 @@ $(function () {
             var params = $("#userNameForm").serialize();
             $.ajax({
                 type: "POST",
-                url: "/user/profile/name",
+                url: "/admin/profile/name",
                 data: params,
                 success: function (r) {
-                    console.log(r);
-                    if (r == 'success') {
+                    if (r == 'msg-success.html') {
                         alert('修改成功');
                     } else {
                         alert('修改失败');
+                        $("#updateUserNameButton").prop("disabled",false);
                     }
                 }
             });
+        } else {
+            $("#updateUserNameButton").prop("disabled",false);
         }
     });
     //修改密码
@@ -31,18 +33,21 @@ $(function () {
             var params = $("#userPasswordForm").serialize();
             $.ajax({
                 type: "POST",
-                url: "/user/profile/password",
+                url: "/admin/profile/password",
                 data: params,
                 success: function (r) {
                     console.log(r);
-                    if (r == 'success') {
+                    if (r == 'msg-success.html') {
                         alert('修改成功');
-                        window.location.href = '/user/login';
+                        window.location.href = '/admin/login';
                     } else {
                         alert('修改失败');
+                        $("#updatePasswordButton").attr("disabled",false);
                     }
                 }
             });
+        } else {
+            $("#updatePasswordButton").attr("disabled",false);
         }
     });
 })

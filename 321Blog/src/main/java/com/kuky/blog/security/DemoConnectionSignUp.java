@@ -5,12 +5,13 @@ package com.kuky.blog.security;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
+import org.springframework.stereotype.Component;
 
 /**
  *自动生成userId
  *
  */
-//@Component
+@Component
 public class DemoConnectionSignUp implements ConnectionSignUp {
 
 

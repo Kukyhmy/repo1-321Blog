@@ -8797,7 +8797,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 		}
 	}
 
-	return { state: "success", data: response };
+	return { state: "msg-success.html", data: response };
 }
 
 jQuery.extend( {
@@ -9172,7 +9172,7 @@ jQuery.extend( {
 
 		// Install callbacks on deferreds
 		completeDeferred.add( s.complete );
-		jqXHR.done( s.success );
+		jqXHR.done( s.msg );
 		jqXHR.fail( s.error );
 
 		// Get transport

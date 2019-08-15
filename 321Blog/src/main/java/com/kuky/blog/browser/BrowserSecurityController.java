@@ -103,7 +103,7 @@ public class BrowserSecurityController {
 		userInfo.setNickname(connection.getDisplayName());
 		userInfo.setHeadimg(connection.getImageUrl());
 		map.put("user", userInfo);
-		return new ModelAndView("socialRegister", map);
+		return new ModelAndView("321blog/mobanzhijia/index", map);
 	}
 
 }

@@ -5,18 +5,27 @@ import com.aliyuncs.exceptions.ClientException;
 import com.kuky.blog.basics.dao.AdminUserMapper;
 import com.kuky.blog.basics.dao.UserAuthorityMapper;
 import com.kuky.blog.basics.entity.AdminUser;
+import com.kuky.blog.basics.entity.Authority;
 import com.kuky.blog.basics.entity.UserAuthority;
 import com.kuky.blog.basics.service.AdminUserService;
+import com.kuky.blog.basics.utils.MD5Util;
+import com.kuky.blog.basics.utils.PageQueryUtil;
+import com.kuky.blog.basics.utils.PageResult;
 import com.kuky.blog.basics.utils.SmsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * @author Kuky
@@ -40,16 +49,16 @@ public class AdminUserServiceImpl implements AdminUserService {
 
 
     @Override
-    public String createSmsCode(String phone) throws ClientException {
+    public String createSmsCode(String phone , HttpServletRequest req) throws ClientException {
         //1、生成一个6为随机验证码
         String smscode = (long)(Math.random()*1000000)+"";
-        System.out.println(smscode);
-        //2.将验证码放入redis
+        //2.将验证码放入redis  session
+       // req.getSession().setAttribute("smscode", smscode);
         //  redisTemplate.boundHashOps("smscode").put(phone,smscode);
         redisTemplate.opsForValue().set(phone,smscode,5, TimeUnit.MINUTES);
 
         String s = redisTemplate.opsForValue().get(phone);
-        System.out.println(s);
+        log.info("redis:"+s);
         Map map  = new HashMap();
         map.put("number",smscode);
         smsUtil.sendSms(phone,"SMS_169899873","KUKY", JSONUtils.toJSONString(map));
@@ -59,7 +68,9 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public boolean checkSmsCode(String phone, String code) {
-        String syssmscode = (String) redisTemplate.boundHashOps("smscode").get(phone);
+       // String syssmscode = (String) redisTemplate.boundHashOps("smscode").get(phone);
+        String syssmscode = redisTemplate.opsForValue().get(phone);
+        log.info("注册验证码："+syssmscode);
         if(syssmscode==null){
             return false;
         }
@@ -152,4 +163,50 @@ public class AdminUserServiceImpl implements AdminUserService {
     public List<AdminUser> listUsersByUsernames(List<String> usernamelist) {
         return adminUserMapper.listUsersByUsernames(usernamelist);
     }
+
+    @Override
+    public PageResult getUserPage(PageQueryUtil pageUtil) {
+        List<AdminUser> userList = adminUserMapper.findUserList(pageUtil);
+        log.info("用户列表+权限："+userList);
+        for(int i = 0 ; i<userList.size();i++){
+            AdminUser adminUser = userList.get(i);
+            List<Authority> authorityList1 = adminUser.getAuthorityList();
+            List<String> authorityList2 = authorityList1.stream().map(Authority::getName).filter(x -> x != null).collect(Collectors.toList());
+
+            adminUser.setAuthorityList2(authorityList2);
+
+            log.info("修改后："+adminUser.getAuthorityList2());
+            //userList.add(adminUser);
+        }
+        int total = adminUserMapper.getTotalUsers(pageUtil);
+        PageResult pageResult = new PageResult(userList, total, pageUtil.getLimit(), pageUtil.getPage());
+        return pageResult;
+    }
+
+    @Override
+    public int getTotalUsers() {
+        return adminUserMapper.getTotalUsers(null);
+    }
+
+    @Override
+    public AdminUser login(String userName, String password) {
+        String passwordMd5 = MD5Util.MD5Encode(password, "UTF-8");
+        return adminUserMapper.login(userName, passwordMd5);
+    }
+
+    @Override
+    public boolean deleteBatch(Integer[] ids) {
+        return adminUserMapper.deleteBatch(ids)>0;
+    }
+
+    @Override
+    public boolean edit0Batch(Long id) {
+        return adminUserMapper.edit0Batch(id)>0;
+    }
+    @Override
+    public boolean edit1Batch(Long id) {
+        return adminUserMapper.edit1Batch(id)>0;
+    }
+
+
 }

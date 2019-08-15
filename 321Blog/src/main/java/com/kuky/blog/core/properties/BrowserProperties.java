@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kuky.blog.core.properties;
 
 
@@ -9,6 +6,7 @@ public class BrowserProperties {
 	private SessionProperties session = new SessionProperties();
 	
 	private String signUpUrl = "/socialRegister";
+	//private String signUpUrl = "/social/user";
 
 	private String signOutUrl = "/signOut.html";
 	

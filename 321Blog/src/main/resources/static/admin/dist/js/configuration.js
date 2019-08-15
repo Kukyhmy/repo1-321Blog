@@ -11,7 +11,7 @@ $(function () {
             success: function (result) {
                 if (result.resultCode == 200 && result.data) {
                     swal("保存成功", {
-                        icon: "success",
+                        icon: "msg-success.html",
                     });
                 }
                 else {
@@ -39,7 +39,7 @@ $(function () {
             success: function (result) {
                 if (result.resultCode == 200&& result.data) {
                     swal("保存成功", {
-                        icon: "success",
+                        icon: "msg-success.html",
                     });
                 }
                 else {
@@ -67,7 +67,7 @@ $(function () {
             success: function (result) {
                 if (result.resultCode == 200&& result.data) {
                     swal("保存成功", {
-                        icon: "success",
+                        icon: "msg-success.html",
                     });
                 }
                 else {

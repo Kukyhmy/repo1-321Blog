@@ -61,13 +61,14 @@ public class AbstractSessionStrategy {
 			logger.info("session失效,跳转到"+targetUrl);
 			redirectStrategy.sendRedirect(request, response, targetUrl);
 		}else{
-			String message = "session已失效";
+			/*String message = "session已失效";
 			if(isConcurrency()){
 				message = message + "，有可能是并发登录导致的";
 			}
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			response.setContentType("application/json;charset=UTF-8");
-			response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(message)));
+			response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(message)));*/
+			response.sendRedirect("/");
 		}
 		
 	}

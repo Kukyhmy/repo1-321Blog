@@ -3,8 +3,11 @@ package com.kuky.blog.basics.dao;
 import com.kuky.blog.basics.entity.Blog;
 import java.util.List;
 
+import com.kuky.blog.basics.entity.BlogCategory;
 import com.kuky.blog.basics.utils.PageQueryUtil;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -34,4 +37,8 @@ public interface BlogMapper {
     int updateByPrimaryKeySelective(Blog record);
 
     int updateBlogCategorys(@Param("categoryName") String categoryName, @Param("categoryId") Integer categoryId, @Param("ids")Integer[] ids);
+
+   Blog selectByBlogTitle(@Param("blogTitle") String blogTitle);
+
+    Page<Blog> findByCategory(Integer categoryId, Pageable pageable);
 }

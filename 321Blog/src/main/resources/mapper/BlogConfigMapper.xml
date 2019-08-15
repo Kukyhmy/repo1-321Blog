@@ -11,6 +11,14 @@
   <sql id="Base_Column_List">
     config_name, config_value, create_time, update_time
   </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_config
+    where config_name = #{configName,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
@@ -53,5 +61,19 @@
       </if>
     </trim>
   </insert>
-
+  <update id="updateByPrimaryKeySelective" parameterType="com.kuky.blog.basics.entity.BlogConfig">
+    update tb_config
+    <set>
+      <if test="configValue != null">
+        config_value = #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where config_name = #{configName,jdbcType=VARCHAR}
+  </update>
 </mapper>

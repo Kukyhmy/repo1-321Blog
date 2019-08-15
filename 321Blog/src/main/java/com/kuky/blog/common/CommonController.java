@@ -18,8 +18,9 @@ import java.io.ByteArrayOutputStream;
 import static com.kuky.blog.basics.config.Constants.EXPIRE_SECOND;
 import static com.kuky.blog.basics.config.Constants.SESSION_KEY;
 
-/**
- * 产生验证码
+/**产生验证码
+ * @author Kuky
+ * @create 2019/7/8 15:25
  */
 @Controller
 public class CommonController {
@@ -38,8 +39,7 @@ public class CommonController {
         try {
             //生产验证码字符串并保存到session中
             String verifyCode = captchaProducer.createText();
-
-
+            req.getSession().setAttribute("verifyCode", verifyCode);
             BufferedImage challenge = captchaProducer.createImage(verifyCode);
             ImageIO.write(challenge, "jpg", imgOutputStream);
             ImageCode ic = new ImageCode(challenge,verifyCode,EXPIRE_SECOND);

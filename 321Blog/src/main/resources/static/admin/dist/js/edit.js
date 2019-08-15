@@ -10,22 +10,56 @@ $('#blogTags').tagsInput({
 $('.select2').select2()
 
 $(function () {
-    blogEditor = editormd("321blog-editormd", {
+    blogEditor = editormd("blog-editormd", {
         width: "100%",
         height: 640,
         syncScrolling: "single",
-        path: "/user/plugins/editormd/lib/",
+        path: "/admin/plugins/editormd/lib/",
         toolbarModes: 'full',
         /**图片上传配置*/
         imageUpload: true,
         imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"], //图片上传格式
-        imageUploadURL: "/user/blogs/md/uploadfile",
+        imageUploadURL: "/admin/blogs/md/uploadfile",
         onload: function (obj) { //上传成功之后的回调
         }
     });
 
+    // 编辑器粘贴上传
+    document.getElementById("blog-editormd").addEventListener("paste", function (e) {
+        var clipboardData = e.clipboardData;
+        if (clipboardData) {
+            var items = clipboardData.items;
+            if (items && items.length > 0) {
+                for (var item of items) {
+                    if (item.type.startsWith("image/")) {
+                        var file = item.getAsFile();
+                        if (!file) {
+                            alert("请上传有效文件");
+                            return;
+                        }
+                        var formData = new FormData();
+                        formData.append('file', file);
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "/u/upload/file");
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                var json=JSON.parse(xhr.responseText);
+                                if (json.resultCode == 200) {
+                                    blogEditor.insertValue("![](" + json.data + ")");
+                                } else {
+                                    alert("上传失败");
+                                }
+                            }
+                        }
+                        xhr.send(formData);
+                    }
+                }
+            }
+        }
+    });
+
     new AjaxUpload('#uploadCoverImage', {
-        action: '/user/upload/file',
+        action: '/u/upload/file',
         name: 'file',
         autoSubmit: true,
         responseType: "json",
@@ -52,6 +86,7 @@ $('#confirmButton').click(function () {
     var blogSubUrl = $('#blogSubUrl').val();
     var blogCategoryId = $('#blogCategoryId').val();
     var blogTags = $('#blogTags').val();
+    var blogSummary = $('#blogSummary').val();
     var blogContent = blogEditor.getMarkdown();
     if (isNull(blogTitle)) {
         swal("请输入文章标题", {
@@ -95,8 +130,20 @@ $('#confirmButton').click(function () {
         });
         return;
     }
+    if (isNull(blogSummary)) {
+        swal("请输入文章摘要内容", {
+            icon: "error",
+        });
+        return;
+    }
     if (!validLength(blogTags, 100000)) {
         swal("文章内容过长", {
+            icon: "error",
+        });
+        return;
+    }
+    if (!validLength(blogSummary, 200)) {
+        swal("文章摘要内容过长", {
             icon: "error",
         });
         return;
@@ -110,6 +157,7 @@ $('#saveButton').click(function () {
     var blogSubUrl = $('#blogSubUrl').val();
     var blogCategoryId = $('#blogCategoryId').val();
     var blogTags = $('#blogTags').val();
+    var blogSummary = $('#blogSummary').val();
     var blogContent = blogEditor.getMarkdown();
     var blogCoverImage = $('#blogCoverImage')[0].src;
     var blogStatus = $("input[name='blogStatus']:checked").val();
@@ -120,15 +168,15 @@ $('#saveButton').click(function () {
         });
         return;
     }
-    var url = '/user/blogs/save';
+    var url = '/admin/blogs/save';
     var swlMessage = '保存成功';
     var data = {
         "blogTitle": blogTitle, "blogSubUrl": blogSubUrl, "blogCategoryId": blogCategoryId,
-        "blogTags": blogTags, "blogContent": blogContent, "blogCoverImage": blogCoverImage, "blogStatus": blogStatus,
+        "blogTags": blogTags, "blogContent": blogContent,"blogSummary": blogSummary, "blogCoverImage": blogCoverImage, "blogStatus": blogStatus,
         "enableComment": enableComment
     };
     if (blogId > 0) {
-        url = '/user/blogs/update';
+        url = '/admin/blogs/update';
         swlMessage = '修改成功';
         data = {
             "blogId": blogId,
@@ -137,6 +185,7 @@ $('#saveButton').click(function () {
             "blogCategoryId": blogCategoryId,
             "blogTags": blogTags,
             "blogContent": blogContent,
+            "blogSummary": blogSummary,
             "blogCoverImage": blogCoverImage,
             "blogStatus": blogStatus,
             "enableComment": enableComment
@@ -152,14 +201,14 @@ $('#saveButton').click(function () {
                 $('#articleModal').modal('hide');
                 swal({
                     title: swlMessage,
-                    type: 'success',
+                    type: 'msg-success.html',
                     showCancelButton: false,
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: '返回博客列表',
                     confirmButtonClass: 'btn btn-success',
                     buttonsStyling: false
                 }).then(function () {
-                    window.location.href = "/user/blogs";
+                    window.location.href = "/admin/blogs";
                 })
             }
             else {
@@ -179,7 +228,7 @@ $('#saveButton').click(function () {
 });
 
 $('#cancelButton').click(function () {
-    window.location.href = "/user/blogs";
+    window.location.href = "/admin/blogs";
 });
 
 /**
@@ -187,6 +236,6 @@ $('#cancelButton').click(function () {
  */
 $('#randomCoverImage').click(function () {
     var rand = parseInt(Math.random() * 40 + 1);
-    $("#blogCoverImage").attr("src", '/user/dist/img/rand/' + rand + ".jpg");
+    $("#blogCoverImage").attr("src", '/admin/dist/img/rand/' + rand + ".jpg");
     $("#blogCoverImage").attr("style", "width:160px ;height: 120px;display:block;");
 });

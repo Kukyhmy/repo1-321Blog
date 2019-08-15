@@ -36,6 +36,8 @@ public class AdminUser implements Serializable,SocialUserDetails {
 
     private List<Authority> authorityList;
 
+    private  List<String> authorityList2;
+
     public List<Authority> getAuthorityList() {
         return authorityList;
     }

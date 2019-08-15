@@ -1,6 +1,6 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: '/user/comments/list',
+        url: '/admin/comments/list',
         datatype: "json",
         colModel: [
             {label: 'id', name: 'commentId', index: 'commentId', width: 50, key: true, hidden: true},
@@ -42,10 +42,10 @@ $(function () {
     });
     function statusFormatter(cellvalue) {
         if (cellvalue == 0) {
-            return "<button type=\"button\" class=\"btn btn-block btn-secondary btn-sm\" style=\"width: 50%;\">待审核</button>";
+            return "<button type=\"button\" class=\"btn btn-block btn-secondary btn-sm\" style=\"width: 80%;\">待审核</button>";
         }
         else if (cellvalue == 1) {
-            return "<button type=\"button\" class=\"btn btn-block btn-success btn-sm\" style=\"width: 50%;\">已审核</button>";
+            return "<button type=\"button\" class=\"btn btn-block btn-success btn-sm\" style=\"width: 80%;\">已审核</button>";
         }
     }
 
@@ -76,28 +76,28 @@ function checkDoneComments() {
         buttons: true,
         dangerMode: true,
     }).then((flag) => {
-            if (flag) {
-                $.ajax({
-                    type: "POST",
-                    url: "/user/comments/checkDone",
-                    contentType: "application/json",
-                    data: JSON.stringify(ids),
-                    success: function (r) {
-                        if (r.resultCode == 200) {
-                            swal("审核成功", {
-                                icon: "success",
-                            });
-                            $("#jqGrid").trigger("reloadGrid");
-                        } else {
-                            swal(r.message, {
-                                icon: "error",
-                            });
-                        }
+        if (flag) {
+            $.ajax({
+                type: "POST",
+                url: "/admin/comments/checkDone",
+                contentType: "application/json",
+                data: JSON.stringify(ids),
+                success: function (r) {
+                    if (r.resultCode == 200) {
+                        swal("审核成功", {
+                            icon: "msg-success.html",
+                        });
+                        $("#jqGrid").trigger("reloadGrid");
+                    } else {
+                        swal(r.message, {
+                            icon: "error",
+                        });
                     }
-                });
-            }
+                }
+            });
         }
-    );
+    }
+);
 }
 
 /**
@@ -115,28 +115,28 @@ function deleteComments() {
         buttons: true,
         dangerMode: true,
     }).then((flag) => {
-            if (flag) {
-                $.ajax({
-                    type: "POST",
-                    url: "/user/comments/delete",
-                    contentType: "application/json",
-                    data: JSON.stringify(ids),
-                    success: function (r) {
-                        if (r.resultCode == 200) {
-                            swal("删除成功", {
-                                icon: "success",
-                            });
-                            $("#jqGrid").trigger("reloadGrid");
-                        } else {
-                            swal(r.message, {
-                                icon: "error",
-                            });
-                        }
+        if (flag) {
+            $.ajax({
+                type: "POST",
+                url: "/admin/comments/delete",
+                contentType: "application/json",
+                data: JSON.stringify(ids),
+                success: function (r) {
+                    if (r.resultCode == 200) {
+                        swal("删除成功", {
+                            icon: "msg-success.html",
+                        });
+                        $("#jqGrid").trigger("reloadGrid");
+                    } else {
+                        swal(r.message, {
+                            icon: "error",
+                        });
                     }
-                });
-            }
+                }
+            });
         }
-    );
+    }
+);
 }
 
 
@@ -166,7 +166,7 @@ $('#saveButton').click(function () {
         });
         return;
     } else {
-        var url = '/user/comments/reply';
+        var url = '/admin/comments/reply';
         var id = getSelectedRow();
         var params = {"commentId": id, "replyBody": replyBody}
         $.ajax({
@@ -177,7 +177,7 @@ $('#saveButton').click(function () {
                 if (result.resultCode == 200) {
                     $('#replyModal').modal('hide');
                     swal("回复成功", {
-                        icon: "success",
+                        icon: "msg-success.html",
                     });
                     reload();
                 }

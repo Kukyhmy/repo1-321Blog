@@ -20,7 +20,7 @@
 
             var imageDialog = window.parent.document.getElementById(query['dialog_id']);
 
-            if (parseInt(query['success']) === 1)
+            if (parseInt(query['msg-success.html']) === 1)
             {
                 imageDialog.querySelector("[data-url]").value = query['url'];
             }

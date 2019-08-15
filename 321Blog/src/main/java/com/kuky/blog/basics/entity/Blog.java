@@ -48,9 +48,16 @@ public class Blog {
 
 private BlogCategory blogCategory;
 
+private AdminUser adminUser;
 
+/*    private Long id;*/
 
-
+    public Long getId() {
+        return blogId;
+    }
+    public void setId(Long id) {
+        this.blogId = id;
+    }
     public Long getBlogId() {
         return blogId;
     }

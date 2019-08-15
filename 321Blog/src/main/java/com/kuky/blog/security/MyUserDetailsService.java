@@ -16,12 +16,16 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * UserDetailsService：处理用户信息获取逻辑
@@ -46,26 +50,33 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
 
 	@Autowired
 	private UserAuthorityMapper userAuthorityMapper;
+
 	/*
-	 * (non-Javadoc)
-	 * 
+	 *
 	 * 处理用户校验逻辑
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException  {
 		// 根据用户名查找用户信息
-		//根据查找到的用户信息判断用户是否被冻结
+		//根据查找到的用户信息判断用户是否被锁定  0----未  1----已锁无法登
 		String permissions = "";
+
 		AdminUser adminUser = adminUserMapper.findByUserName(username);
-		if (adminUser != null) {
-			//permissions = adminUserMapper.findAuthorityByUserName(adminUser.getUsername());
-			List<Authority> authorityList = adminUser.getAuthorityList();
-			log.info(permissions);
-			String authoritis = authorityList.stream().map(Authority::getName).toString();
-			return new AdminUser(adminUser.getLoginUserName(), adminUser.getLoginPassword(), AuthorityUtils.
-					commaSeparatedStringToAuthorityList(authoritis));
+		if(adminUser.getLocked()==0){
+
+			if (adminUser != null) {
+				//permissions = adminUserMapper.findAuthorityByUserName(adminUser.getUsername());
+				List<Authority> authorityList = adminUser.getAuthorityList();
+				//Stream<String> stringStream = authorityList.stream().map(Authority::getName);
+				String authoritis = authorityList.stream().map(Authority::getName).collect(joining(","));
+				log.info("权限："+authoritis);
+				return new AdminUser(adminUser.getLoginUserName(), adminUser.getLoginPassword(), AuthorityUtils.
+						commaSeparatedStringToAuthorityList(authoritis));
+			}else{
+				throw new BadCredentialsException("用户名不存在！");
+			}
 		}else{
-			throw new BadCredentialsException("用户名不存在！");
+			throw new BadCredentialsException("此账号已冻结，请联系管理员！");
 		}
 
 	}

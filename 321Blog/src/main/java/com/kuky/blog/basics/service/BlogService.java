@@ -1,9 +1,15 @@
 package com.kuky.blog.basics.service;
 
+import com.kuky.blog.basics.entity.AdminUser;
 import com.kuky.blog.basics.entity.Blog;
+import com.kuky.blog.basics.entity.BlogCategory;
+import com.kuky.blog.basics.utils.PageQueryUtil;
 import com.kuky.blog.basics.utils.PageResult;
 import com.kuky.blog.basics.vo.BlogDetailVO;
 import com.kuky.blog.basics.vo.BlogListVO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -68,7 +74,7 @@ public interface BlogService {
 
     int getTotalBlogs();
 
-    String saveBlog(Blog blog);
+    String saveBlog(Blog blog, UserDetails user);
 
     void increaseVoteSize(Long blogId);
 
@@ -81,4 +87,21 @@ public interface BlogService {
      * @return
      */
     String updateBlog(Blog blog);
+
+    /**
+     * 后台获取分页数据
+     * @param pageUtil
+     * @return
+     */
+    PageResult getBlogsPage(PageQueryUtil pageUtil);
+
+    /**
+     * 根据id获取详情
+     *
+     * @param blogId
+     * @return
+     */
+    Blog getBlogById(Long blogId);
+
+
 }

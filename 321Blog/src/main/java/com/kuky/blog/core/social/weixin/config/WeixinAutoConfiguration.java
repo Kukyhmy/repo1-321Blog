@@ -23,26 +23,23 @@ import org.springframework.web.servlet.View;
  *
  */
 @Configuration
-@ConditionalOnProperty(prefix = "blog.security.social.weixin", name = "app-id")
+@ConditionalOnProperty(prefix = "321blog.security.social.weixin", name = "app-id")
 public class WeixinAutoConfiguration extends SocialAutoConfigurerAdapter {
 
 	@Autowired
 	private SecurityProperties securityProperties;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.springframework.boot.autoconfigure.social.SocialAutoConfigurerAdapter
-	 * #createConnectionFactory()
-	 */
 	@Override
 	protected ConnectionFactory<?> createConnectionFactory() {
 		WeixinProperties weixinConfig = securityProperties.getSocial().getWeixin();
 		return new WeixinConnectionFactory(weixinConfig.getProviderId(), weixinConfig.getAppId(),
 				weixinConfig.getAppSecret());
 	}
-	
+	/**
+	 * /connect/weixin POST请求,绑定微信返回connect/weixinConnected视图
+	 * /connect/weixin DELETE请求,解绑返回connect/weixinConnect视图
+	 * @return
+	 */
 	@Bean({"connect/weixinConnect", "connect/weixinConnected"})
 	@ConditionalOnMissingBean(name = "weixinConnectedView")
 	public View weixinConnectedView() {

@@ -2,7 +2,10 @@ package com.kuky.blog.basics.service;
 
 import com.aliyuncs.exceptions.ClientException;
 import com.kuky.blog.basics.entity.AdminUser;
+import com.kuky.blog.basics.utils.PageQueryUtil;
+import com.kuky.blog.basics.utils.PageResult;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -11,7 +14,7 @@ import java.util.List;
  */
 public interface AdminUserService {
 
-    public String createSmsCode(String phone) throws ClientException;
+    public String createSmsCode(String phone, HttpServletRequest req) throws ClientException;
 
     public boolean checkSmsCode(String phone, String code);
 
@@ -65,4 +68,21 @@ public interface AdminUserService {
      * @return
      */
     AdminUser getUserById(Long id);
+
+    /**
+     * 根据分页条件获得users
+     * @param pageUtil
+     * @return
+     */
+    PageResult getUserPage(PageQueryUtil pageUtil);
+
+    int getTotalUsers();
+
+    AdminUser login(String userName, String password);
+
+    boolean deleteBatch(Integer[] ids);
+
+    boolean edit0Batch(Long id);
+
+    boolean edit1Batch(Long id);
 }

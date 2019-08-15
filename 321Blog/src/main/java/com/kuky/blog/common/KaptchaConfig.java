@@ -7,6 +7,10 @@ import com.google.code.kaptcha.util.Config;
 
 import java.util.Properties;
 
+/**
+ * @author Kuky
+ * @create 2019/7/8 15:25
+ */
 @Component
 public class KaptchaConfig {
     @Bean

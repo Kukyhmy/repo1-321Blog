@@ -20,7 +20,7 @@ import org.springframework.web.servlet.View;
 
 
 @Configuration
-@ConditionalOnProperty(prefix = "blog.security.social.qq", name = "app-id")
+@ConditionalOnProperty(prefix = "321blog.security.social.qq", name = "app-id")
 @Order(2)
 public class QQAutoConfig extends SocialAutoConfigurerAdapter {
 
